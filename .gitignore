@@ -1,0 +1,10 @@
+.idea
+*.swp
+
+# xmonad
+*.errors
+*.hi
+*.o
+xmonad-x86_64-linux
+xmonad
+

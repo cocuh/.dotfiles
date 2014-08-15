@@ -1,0 +1,8 @@
+# path
+export PATH=$PATH:/home/cocu/bin/bin-git/twitter
+export PATH=$PATH:/home/cocu/bin/bin-git/utils
+export PATH=$PATH:/home/cocu/bin/utils
+export PATH=$PATH:/home/cocu/bin/coins-tools
+export PATH=$PATH:/home/cocu/bin/coins-utils
+export PATH=$PATH:/home/cocu/.local/bin
+

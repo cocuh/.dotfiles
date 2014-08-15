@@ -1,0 +1,10 @@
+# set emacs keybinding
+bindkey -e
+
+# disable ctrl-s suspend
+stty stop undef
+
+export PYTHONSTARTUP=~/.python/startup.py
+source /usr/bin/virtualenvwrapper.sh
+
+export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'

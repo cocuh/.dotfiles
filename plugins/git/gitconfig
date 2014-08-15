@@ -1,0 +1,11 @@
+[alias]
+	st = status
+[color]
+	ui = auto
+[user]
+	name = cocu
+	email = cocu.436f6375@gmail.com
+[github]
+	user = cocu
+[core]
+	autocrlf = input
