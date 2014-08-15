@@ -87,6 +87,9 @@ def main():
 
     if check_files(target_paths):
         install(target_paths, is_debug=args.debug)
+        print("")
+        print("install successed!!!")
+        print("")
     else:
         raise BaseException()
 
