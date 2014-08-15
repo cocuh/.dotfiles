@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 if [ -e ~/.zshrc ];then
     rm ~/.zshrc
 fi
