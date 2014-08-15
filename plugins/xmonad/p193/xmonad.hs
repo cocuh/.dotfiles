@@ -10,6 +10,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 
 import XMonad.Util.Run
+import XMonad.Util.Scratchpad
 import System.IO
 
 import qualified XMonad.StackSet as W
@@ -33,17 +34,27 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9","0"]
 
 --Workspace application attach
 myManageHook = composeAll
-	[className =? "mikutter" --> doShift "6"
+	([className =? "mikutter" --> doShift "6"
 	---
 	,className =? "Gimp" --> doFloat
-	]
+	])<+>manageScratchpad
+
+--Scrwatchpad
+manageScratchpad :: ManageHook
+manageScratchpad = scratchpadManageHook (W.RationalRect l t w h)
+	where
+	h = 0.7
+	w = 0.7
+	t = (1-h)/2
+	l = (1-w)/2
+
 
 --Keybinding
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[((modm.|.shiftMask,xK_Return),spawn $ XMonad.terminal  conf)
 	,((modm,            xK_Return),spawn $ XMonad.terminal  conf)
 	,((modm,            xK_p     ),spawn "dmenu_run")
-	,((modm,            xK_d     ),spawn "dmenu_run")
+	,((modm,            xK_d     ),spawn "xboomx")
 	,((modm.|.shiftMask,xK_c     ),kill)
 	,((modm.|.shiftMask,xK_q     ),kill)
 	,((modm,            xK_f     ),sendMessage NextLayout)
@@ -76,6 +87,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 		(windows . W.greedyView) "0"
 		screenWorkspace 1 >>= flip whenJust (windows . W.view)
 		(windows . W.greedyView) "1")
+    --Scratchpad
+	,((modm,            xK_grave ),scratchpadSpawnAction defaultConfig {terminal = "urxvt"})
+	,((modm,            xK_backslash),spawn "import hoge.jpg")
+	,((modm.|.shiftMask,xK_backslash),spawn "import -window root hoge.jpg")
 	--,((modm,            
 	--,((modm.|.shiftMask,
 	]
