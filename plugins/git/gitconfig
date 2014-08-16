@@ -9,3 +9,4 @@
 	user = cocu
 [core]
 	autocrlf = input
+	pager=less -q -R 
