@@ -26,7 +26,6 @@ alias vi='vim'
 
 alias ta='tmux_ornot'
 alias pdb='python /usr/lib/python2.7/pdb.py'
-alias up='cd ..'
 alias ocaml='ledit ocaml'
 
 alias mitmproxy-p9999='mitmproxy -p 9999'
