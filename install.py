@@ -26,7 +26,7 @@ def check_files(target_paths):
             logging.error('No such file: {0}'.format(from_path))
             flag = False
         if os.path.exists(to_path):
-            if not os.path.islink(to_path):≡jedi=0, ≡                                   (**args*, **kwargs) ≡jedi≡
+            if not os.path.islink(to_path):
                 logging.error('The file exists(not symbolic link): {0}'.format(to_path))
                 flag = False
     return flag
