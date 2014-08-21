@@ -12,3 +12,10 @@ if [ -e /usr/bin/virtualenvwrapper.sh ];then
 fi
 
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
+
+function up(){
+	cd ..
+    zle reset-prompt
+}
+zle -N up
+bindkey '^U' up
