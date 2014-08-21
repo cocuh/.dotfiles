@@ -16,7 +16,7 @@ FILEPATH = os.path.abspath(sys.argv[0])
 PATH = os.path.dirname(FILEPATH)
 
 CONF_PATH = os.path.join(PATH, 'install.conf')
-PLUGIN_PATH = os.path.join(PATH, 'plugins')
+PLUGIN_PATH = os.path.join(PATH, 'plugin')
 
 
 def check_files(target_paths):

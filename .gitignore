@@ -8,5 +8,5 @@
 xmonad-x86_64-linux
 
 # vim
-plugins/vim/vim/bundle
+plugin/vim/bundle
 
