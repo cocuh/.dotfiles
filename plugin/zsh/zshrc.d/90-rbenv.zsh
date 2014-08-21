@@ -1,6 +1,10 @@
-export PATH="/home/cocu/.rbenv/shims:${PATH}"
+if [ -d "/home/cocu/.rbenv/shims" ];then
+    export PATH="/home/cocu/.rbenv/shims:${PATH}"
+fi
 export RBENV_SHELL=zsh
-source '/home/cocu/.rbenv/libexec/../completions/rbenv.zsh'
+if [ -f '/home/cocu/.rbenv/libexec/../completions/rbenv.zsh' ];then
+    source '/home/cocu/.rbenv/libexec/../completions/rbenv.zsh'
+fi
 rbenv rehash 2>/dev/null
 rbenv() {
   local command
