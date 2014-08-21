@@ -1,4 +1,5 @@
 NeoBundle 'thinca/vim-quickrun'
 
 set splitright
-nma <C-\> :QuickRun<CR>
+nmap <C-\> :QuickRun<CR>
+let g:quickrun_config = {}
