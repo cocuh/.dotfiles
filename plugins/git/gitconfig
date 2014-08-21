@@ -10,3 +10,5 @@
 [core]
 	autocrlf = input
 	pager=less -q -R 
+[merge]
+	tool = vimdiff
