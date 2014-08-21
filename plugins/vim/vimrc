@@ -1,0 +1,3 @@
+runtime! ../.vimrc.d/basic/*.vim
+runtime! ../.vimrc.d/plugin/*.vim
+
