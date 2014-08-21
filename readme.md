@@ -15,6 +15,8 @@ $ ./regenzshrc.sh
 ```
 
 ### 注意
+pythonが必要(2,3 compatible)
+
 このzshの設定では`.zshrc`は生成しないので、
 初期起動時に`~/zshrc.d`の内部を結合して`.zshrc`を作る必要がある。
 
