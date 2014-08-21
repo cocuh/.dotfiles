@@ -24,7 +24,7 @@ pythonが必要(2,3 compatible)
 
 できればzcompileでやりたかったぽよ
 
-profiles
+profile
 --------
 
 pluginのまとまり
@@ -34,7 +34,7 @@ pluginのまとまり
 * server
 
 
-plugins
+plugin
 -------
 
 dotfileをどのようにシンボリックリンクするかの定義を大まかにソフトウェアごとに分けた集合
