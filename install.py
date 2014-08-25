@@ -2,7 +2,6 @@
 import sys
 import os
 
-import argparse
 import logging
 
 if sys.version_info[0] == 3:
@@ -57,11 +56,35 @@ def parse_args(conf):
     profile_names = conf.options('PROFILES')
     plugin_names = sorted(set(conf.sections()) - set('PROFILES'))
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument('profile', choices=profile_names)
-    parser.add_argument('plugins', nargs='*', choices=[[]] + plugin_names)
-    parser.add_argument('--debug', action='store_true')
-    return parser.parse_args()
+    try:
+        import argparse
+        is_argparse = True
+    except:
+        is_argparse = False
+
+    if is_argparse:
+        parser = argparse.ArgumentParser()
+        parser.add_argument('profile', choices=profile_names)
+        parser.add_argument('plugins', nargs='*', choices=[[]] + plugin_names)
+        parser.add_argument('--debug', action='store_true')
+        return parser.parse_args()
+    else:
+        if len(sys.argv) < 2:
+            print('\n'.join([
+                    "Usage: {cmd} profile",
+                    "    profiles: {profiles}"
+                ]).format(cmd=sys.argv[0], profiles=', '.join(profile_names))
+            )
+        class Args:
+            def __init__(self, profile):
+                self.profile = profile
+                self.plugins = []
+                self.debug = False
+        
+        profile = sys.argv[1]
+        if profile in profile_names:
+            args = Args(profile)
+        return args
 
 
 def main():
