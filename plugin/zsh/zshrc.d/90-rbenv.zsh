@@ -1,5 +1,8 @@
 if [ -d "/home/cocu/.rbenv/shims" ];then
-    export PATH="/home/cocu/.rbenv/shims:${PATH}"
+    export PATH="${PATH}:/home/cocu/.rbenv/shims"
+fi
+if [ -d "/home/cocu/.gem/ruby/2.1.0/bin/" ];then
+    export PATH="${PATH}:/home/cocu/.gem/ruby/2.1.0/bin/"
 fi
 export RBENV_SHELL=zsh
 if [ -f '/home/cocu/.rbenv/libexec/../completions/rbenv.zsh' ];then
