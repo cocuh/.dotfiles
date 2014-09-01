@@ -9,4 +9,4 @@ xmonad-x86_64-linux
 
 # vim
 plugin/vim/bundle
-
+.netrwhist
