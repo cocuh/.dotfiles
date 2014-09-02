@@ -14,3 +14,7 @@ fi
 if [ -d /home/cocu/.rbenv/bin/ ]; then
 	export PATH=$PATH:/home/cocu/.rbenv/bin/
 fi
+
+if [ -d /home/cocu/.gem/ruby/2.1.0/bin/ ]; then
+	export PATH=$PATH:/home/cocu/.gem/ruby/2.1.0/bin/
+fi
