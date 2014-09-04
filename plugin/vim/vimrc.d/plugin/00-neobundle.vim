@@ -25,12 +25,3 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-
-
-"########
-" NeoBundle
-"########
-
-NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
-
-
