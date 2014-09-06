@@ -31,6 +31,7 @@ pluginのまとまり
 
 * p193
 * macbookair
+* macbookpro
 * server
 
 
