@@ -20,4 +20,4 @@ function up(){
     zle reset-prompt
 }
 zle -N up
-bindkey '^U' up
+bindkey '^I' up
