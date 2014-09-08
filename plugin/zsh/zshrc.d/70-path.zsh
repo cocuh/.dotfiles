@@ -1,20 +1,16 @@
 # path
-export PATH=$PATH:/home/cocu/bin/bin
-export PATH=$PATH:/home/cocu/bin/bin-git/utils
-export PATH=$PATH:/home/cocu/bin/bin-git/twitter
-export PATH=$PATH:/home/cocu/bin/bin-git/utils
-export PATH=$PATH:/home/cocu/bin/utils
-export PATH=$PATH:/home/cocu/bin/coins-tools
-export PATH=$PATH:/home/cocu/bin/coins-utils
-
-if [ -d /home/cocu/.local/bin ]; then
-	export PATH=$PATH:/home/cocu/.local/bin
-fi
-
-if [ -d /home/cocu/.rbenv/bin/ ]; then
-	export PATH=$PATH:/home/cocu/.rbenv/bin/
-fi
-
-if [ -d /home/cocu/.gem/ruby/2.1.0/bin/ ]; then
-	export PATH=$PATH:/home/cocu/.gem/ruby/2.1.0/bin/
-fi
+binPathArray=(\
+    "$HOME/bin/bin",\
+    "$HOME/bin/bin-git/utils",\
+    "$HOME/bin/bin-git/twitter",\
+    "$HOME/bin/bin-git/utils",\
+    "$HOME/bin/utils",\
+    "$HOME/bin/coins-tools",\
+    "$HOME/bin/coins-utils",\
+    "$HOME/.local/bin",\
+)
+for binPath in "${binPathArray[@]}";do;
+    if [ -d $binPath ]; then
+        export PATH=$PATH:$binPath
+    fi
+done
