@@ -1,5 +1,8 @@
 # path
-binPathArray=(\
+binPathArrayBefore=(\
+    "$HOME/.rbenv/bin",\
+)
+binPathArrayAfter=(\
     "$HOME/bin/bin",\
     "$HOME/bin/bin-git/utils",\
     "$HOME/bin/bin-git/twitter",\
@@ -9,8 +12,17 @@ binPathArray=(\
     "$HOME/bin/coins-utils",\
     "$HOME/.local/bin",\
 )
-for binPath in "${binPathArray[@]}";do;
+
+for binPath in "${binPathArrayBefore[@]}";do;
     if [ -d $binPath ]; then
         export PATH=$PATH:$binPath
     fi
 done
+
+for binPath in "${binPathArrayAfter[@]}";do;
+    if [ -d $binPath ]; then
+        export PATH=$PATH:$binPath
+    fi
+done
+
+
