@@ -11,4 +11,4 @@ set ignorecase
 set smartcase
 
 " swp files
-set directory ~/.vim/swp
+set directory=~/.vim/swp
