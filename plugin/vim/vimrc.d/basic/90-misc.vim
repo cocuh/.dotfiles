@@ -12,3 +12,6 @@ set smartcase
 
 " swp files
 set directory=~/.vim/swp
+
+" listchar
+set listchars=eol:~,tab:>.
