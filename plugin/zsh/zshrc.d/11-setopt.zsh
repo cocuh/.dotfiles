@@ -25,6 +25,4 @@ setopt print_eight_bit
 setopt extended_glob
 setopt globdots
 
-setopt share_history
-
 setopt prompt_subst
