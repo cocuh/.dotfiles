@@ -114,11 +114,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	++
 
 	--screen selecting
-    	[((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_bracketleft, xK_bracketright] [0..]
+    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_bracketright, xK_bracketleft, xK_backslash] [0, 1, 2]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-    	++
-	[((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+    ++
+    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_BackSpace] [2]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    ++
+    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_z, xK_x] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
