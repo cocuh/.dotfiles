@@ -1,5 +1,13 @@
 #alias
-alias ls='ls -FG'
+case $OSTYPE in
+  Darwin*)
+    alias ls='ls -FG'
+    ;;
+  linux*)
+    alias ls='ls -F --color'
+    ;;
+esac
+
 alias la='ls -a'
 alias ll='ls -al'
 alias sl='ls'
@@ -38,5 +46,5 @@ alias highlight='pygmentize -O style=monokai -f console256 -g'
 alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
 
 refresh(){
-    echo c
+  echo c
 }
