@@ -2,15 +2,7 @@ setl autoindent
 setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
-
-let g:indent_guides_auto_colors=0
-let g:indent_guides_start_level=2
-hi IndentGuidesEven ctermbg=235
-hi IndentGuidesOdd ctermbg=none
-
 setlocal indentkeys+=0#
-
-
 
 "setlocal omnifunc=pythoncomplete#Complete
 "let g:jedi#auto_initialization = 1
