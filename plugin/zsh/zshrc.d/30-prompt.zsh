@@ -4,7 +4,7 @@ case $(hostname) in
 cocu-P193-arch)
   the_prompt="_(_「ε:)_"
   ;;
-cocu-MBA-Arch)
+eliphas)
   the_prompt="_(:3｣_)_"
   ;;
 esac
