@@ -12,7 +12,6 @@ command	Q q
 command W w
 cmap PP set filetype=python<CR>
 
-nmap <Leader>f :NERDTreeToggle<CR>
 nmap te :tabedit<CR>
 
 
