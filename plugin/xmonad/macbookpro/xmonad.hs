@@ -100,8 +100,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	,((modm,            xK_g     ),namedScratchpadAction scratchpads "common")
 --	,((modm,            xK_m     ),namedScratchpadAction scratchpads "cmus")
 	--screen shot 
-	,((modm,            xK_backslash),spawn "import hoge.jpg")
-	,((modm.|.shiftMask,xK_backslash),spawn "import -window root hoge.jpg")
+	,((modm,            xK_slash ),spawn "import hoge.jpg")
+	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.jpg")
 	--,((modm,            
 	--,((modm.|.shiftMask,
 	]
@@ -115,7 +115,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 	--screen selecting
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_bracketright, xK_bracketleft, xK_backslash] [0, 1, 2]
+        | (key, sc) <- zip [xK_bracketleft, xK_bracketright, xK_backslash] [2, 0, 1]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
