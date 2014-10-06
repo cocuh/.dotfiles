@@ -89,8 +89,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 		(windows . W.greedyView) "1")
     --Scratchpad
 	,((modm,            xK_grave ),scratchpadSpawnAction defaultConfig {terminal = "urxvt"})
-	,((modm,            xK_backslash),spawn "import hoge.jpg")
-	,((modm.|.shiftMask,xK_backslash),spawn "import -window root hoge.jpg")
+	,((modm,            xK_slash ),spawn "import hoge.jpg")
+	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.jpg")
 	--,((modm,            
 	--,((modm.|.shiftMask,
 	]
