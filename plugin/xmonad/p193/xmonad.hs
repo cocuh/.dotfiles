@@ -69,6 +69,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	,((modm,            xK_w     ),spawn "python /home/cocu/bin/WallpaperChanger/wallpaperchanger.py")
 	,((modm.|.shiftMask,xK_w     ),spawn "feh --bg-fill ~/picture/wallpaper/saya.jpg")
 	,((modm,            xK_m     ),spawn "python /home/cocu/bin/utils/minecraft-input_helper")
+	,((modm,            xK_minus ),spawn "")
+	,((modm.|.shiftMask,xK_minus ),spawn "")
 
 
 	--move focus
