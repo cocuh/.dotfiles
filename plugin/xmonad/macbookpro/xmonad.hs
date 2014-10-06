@@ -102,6 +102,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	--screen shot 
 	,((modm,            xK_slash ),spawn "import hoge.jpg")
 	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.jpg")
+
+	--no type
+	,((modm,            xK_minus ),spawn "")
+	,((modm.|.shiftMask,xK_minus ),spawn "")
 	--,((modm,            
 	--,((modm.|.shiftMask,
 	]
@@ -119,7 +123,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_BackSpace] [2]
+        | (key, sc) <- zip [xK_BackSpace] [1]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
