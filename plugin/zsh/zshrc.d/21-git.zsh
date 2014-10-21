@@ -13,3 +13,7 @@ vcs_info_wrapper() {
         echo "${vcs_info_msg_0_}%{$reset_color%}$del"
     fi
 }
+
+function git-root(){
+    cd $(git rev-parse --show-toplevel)
+}
