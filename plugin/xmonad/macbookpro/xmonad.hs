@@ -100,8 +100,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	,((modm,            xK_g     ),namedScratchpadAction scratchpads "common")
 --	,((modm,            xK_m     ),namedScratchpadAction scratchpads "cmus")
 	--screen shot 
-	,((modm,            xK_slash ),spawn "import hoge.jpg")
-	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.jpg")
+	,((modm,            xK_slash ),spawn "import hoge.png")
+	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.png")
 
 	--no type
 	,((modm,            xK_minus ),spawn "")
