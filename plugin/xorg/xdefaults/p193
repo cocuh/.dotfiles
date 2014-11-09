@@ -1,12 +1,12 @@
 URxvt.depth: 32
-URxvt.background: rgba:0000/0000/0000/bbbb
+URxvt.background: rgba:0000/0000/0000/9999
 URxvt.scrollBar: False
 URxvt.font: xft:Ricty for Powerline:size=14.5
 #URxvt.font: xft:Ricty:size=14.5
 URxvt.termName: rxvt-256color
 URxvt.loginShell: True
 URxvt.fading: 10
-URxvt.shading: 50
+URxvt.shading: 80
 URxvt.inputMethod: fcitx
 URxvt.preeditType: OverTheSpot
 URxvt.saveLines: 20000
