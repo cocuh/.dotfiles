@@ -3,6 +3,7 @@ binPathArrayBefore=(\
     "$HOME/.rbenv/bin"\
 )
 binPathArrayAfter=(\
+    "$HOME/bin"\
     "$HOME/bin/bin"\
     "$HOME/bin/local"\
     "$HOME/bin/bin-git/utils"\
