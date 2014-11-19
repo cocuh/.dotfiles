@@ -1,7 +1,7 @@
 #zsh PROMPT
 local the_prompt="%{${fg_bold[cyan]}%}%n@%{${fg[red]}%}%m%{${reset_color}%}"
 case $(hostname) in
-kuro)
+degtyaryova)
   the_prompt="_(_「ε:)_"
   ;;
 saya)
