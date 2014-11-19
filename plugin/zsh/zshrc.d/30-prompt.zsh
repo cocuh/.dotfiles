@@ -1,10 +1,10 @@
 #zsh PROMPT
 local the_prompt="%{${fg_bold[cyan]}%}%n@%{${fg[red]}%}%m%{${reset_color}%}"
 case $(hostname) in
-cocu-P193-arch)
+kuro)
   the_prompt="_(_「ε:)_"
   ;;
-eliphas)
+saya)
   the_prompt="_(:3｣_)_"
   ;;
 esac
