@@ -20,6 +20,10 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Fullscreen
 
+--screen_order = [1, 0, 1]
+--screen_order = [1, 0, 2]
+screen_order = [2, 0, 1]
+
 --Layout
 myLayout = windowNavigation(tiled)||| Mirror tiled ||| noBorders (fullscreenFull Full)
 	where 
@@ -119,11 +123,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 	--screen selecting
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_bracketleft, xK_bracketright, xK_backslash] [2, 0, 1]
+        | (key, sc) <- zip [xK_bracketleft, xK_bracketright, xK_backslash] screen_order
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_BackSpace] [1]
+        | (key, sc) <- zip [xK_BackSpace] [screen_order!!2]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
     ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
