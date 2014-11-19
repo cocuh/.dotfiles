@@ -9,9 +9,14 @@ URxvt.shading: 50
 URxvt.inputMethod: fcitx
 URxvt.preeditType: OverTheSpot
 URxvt.saveLines: 20000
-URxvt.perl-ext-common:default, clipboard
 URxvt.iso14755: False
 URxvt.iso14755_52: False
+
+URxvt.perl-ext-common:default,clipboard,matcher
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.colorUL: #66A2B4
+
 
 vmplayer.scrollBar: False
 
