@@ -1,6 +1,9 @@
 .idea
 *.swp
 
+# zsh
+/plugin/zsh/zshrc.d/local
+
 # xmonad
 *.errors
 *.hi
