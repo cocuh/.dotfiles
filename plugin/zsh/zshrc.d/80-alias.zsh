@@ -42,7 +42,6 @@ alias mitmproxy-p9999='mitmproxy -p 9999'
 alias simplehttpserver='python -m http.server'
 alias cgihttpserver='python -m http.server --cgi'
 
-alias highlight='pygmentize -O style=monokai -f console256 -g'
 alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
 
 refresh(){
