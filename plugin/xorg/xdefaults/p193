@@ -1,5 +1,5 @@
 URxvt.depth: 32
-URxvt.background: rgba:0000/0000/0000/9999
+URxvt.background: rgba:0000/0000/0000/BBBB
 URxvt.scrollBar: False
 URxvt.font: xft:Ricty for Powerline:size=14.5
 #URxvt.font: xft:Ricty:size=14.5
