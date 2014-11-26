@@ -23,10 +23,6 @@ alias dc='cd'
 alias pingg='ping -c 3 www.google.co.jp'
 alias less='less -R'
 
-alias poweroff='sudo poweroff'
-alias reboot='sudo reboot'
-alias shutdown='sudo shutdown'
-
 alias sozsh='source ~/.zshrc'
 alias :q='exit'
 alias :Q='exit'
