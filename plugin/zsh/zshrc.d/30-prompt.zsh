@@ -2,7 +2,7 @@
 local the_prompt="%{${fg_bold[cyan]}%}%n@%{${fg[red]}%}%m%{${reset_color}%}"
 case $(hostname) in
 degtyaryova)
-  the_prompt="_(_「ε:)_"
+  the_prompt="%{${fg_bold[cyan]}%}_(_「ε:)_"
   ;;
 saya)
   the_prompt="_(:3｣_)_"
