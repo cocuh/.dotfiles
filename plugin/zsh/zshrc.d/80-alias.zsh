@@ -34,6 +34,8 @@ alias ta='tmux_ornot'
 alias pdb='python /usr/lib/python2.7/pdb.py'
 alias ocaml='ledit ocaml'
 
+alias sudovim='sudoedit'
+
 alias mitmproxy-p9999='mitmproxy -p 9999'
 alias simplehttpserver='python -m http.server'
 alias cgihttpserver='python -m http.server --cgi'
