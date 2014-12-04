@@ -31,7 +31,7 @@ ENCODING = auto
 # bidi_mode = normal
 # bidi_separators =
 # use_ind = false
-# use_combining = true
+use_combining = false
 # use_dynamic_comb = false
 # (assamese,bengali,gujarati,hindi,kannada,malayalam,oriya,punjabi,roman,tamil,telugu)
 # iscii_lang = malayalam
@@ -103,9 +103,9 @@ use_xim = true
 # logsize = 128
 # word_separators = " ,.:;/@"
 # (none,mod1,mod2,mod3,mod4,meta,alt,super,hyper)
-# mod_meta_key = none
+mod_meta_key = alt
 # (none,esc,8bit)
-# mod_meta_mode = none
+mod_meta_mode = esc
 # (none,sound,visual,sound|visual)
 # bel_mode = sound
 # use_urgent_bell = false
