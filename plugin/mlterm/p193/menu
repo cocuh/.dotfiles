@@ -1,0 +1,16 @@
+"Font Size" {
+	"Larger"	"fontsize=larger"
+	"Smaller"	"fontsize=smaller"
+}
+"Encoding" {
+	"Auto"		"encoding=auto"
+	"UTF-8"		"encoding=UTF-8"
+}
+"Full Reset"	"full_reset"
+"Font" {
+	"Kochi Gothic"	"aafont:DEFAULT=Kochi Gothic"
+	"Kochi Mincho"	"aafont:DEFAULT=Kochi Mincho"
+}
+-
+pty_list
+"New PTY"	"open_pty"
