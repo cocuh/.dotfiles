@@ -4,6 +4,10 @@
 # zsh
 /plugin/zsh/zshrc.d/local
 
+# mlterm
+/plugin/mlterm/*/challenge
+/plugin/mlterm/*/*.six
+
 # xmonad
 *.errors
 *.hi
