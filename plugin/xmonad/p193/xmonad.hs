@@ -51,7 +51,7 @@ manageScratchpad = scratchpadManageHook (W.RationalRect l t w h)
 
 --Keybinding
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-	[((modm.|.shiftMask,xK_Return),spawn $ XMonad.terminal  conf)
+	[((modm.|.shiftMask,xK_Return),spawn "urxvt")
 	,((modm,            xK_Return),spawn $ XMonad.terminal  conf)
 	,((modm,            xK_p     ),spawn "dmenu_run")
 	,((modm,            xK_d     ),spawn "xboomx")
@@ -128,7 +128,7 @@ main = do
 	,normalBorderColor = "#000000"
 	,focusedBorderColor = "#2222BB"
 	----------------------------------
-	,terminal = "urxvt"
+	,terminal = "mlterm"
 	----------------------------------
 	,layoutHook = avoidStruts$myLayout
 	,workspaces = myWorkspaces
