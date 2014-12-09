@@ -33,7 +33,7 @@ myLayout = windowNavigation(tiled)||| Mirror tiled ||| noBorders (fullscreenFull
 	delta = 5/100
 
 --Workspace
-myWorkspaces = ["1","2","3","4","5","6","7","8","9","0"]
+myWorkspaces = ["1","2","3","4","5","6","7","8","9","0","-"]
 
 --Workspace application attach
 myManageHook = composeAll
@@ -107,9 +107,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	,((modm,            xK_slash ),spawn "import hoge.png")
 	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.png")
 
-	--no type
-	,((modm,            xK_minus ),spawn "")
-	,((modm.|.shiftMask,xK_minus ),spawn "")
 	--,((modm,            
 	--,((modm.|.shiftMask,
 	]
@@ -117,7 +114,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	
 	--Workspace Keybinding
     	[((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0, xK_minus]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 	++
 
