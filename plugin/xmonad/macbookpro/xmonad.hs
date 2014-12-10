@@ -33,7 +33,7 @@ myLayout = windowNavigation(tiled)||| Mirror tiled ||| noBorders (fullscreenFull
 	delta = 5/100
 
 --Workspace
-myWorkspaces = ["1","2","3","4","5","6","7","8","9","0","-"]
+myWorkspaces = ["1","2","3","4","5","6","7","8","9","0","-","="]
 
 --Workspace application attach
 myManageHook = composeAll
@@ -58,7 +58,7 @@ scratchpads =
 
 --Keybinding
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-	[((modm.|.shiftMask,xK_Return),spawn $ XMonad.terminal  conf)
+	[((modm.|.shiftMask,xK_Return),spawn "urxvt")
 	,((modm,            xK_Return),spawn $ XMonad.terminal  conf)
 	,((modm,            xK_p     ),spawn "dmenu_run")
 	,((modm,            xK_d     ),spawn "xboomx")
@@ -96,7 +96,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	--reset workspace
 	,((modm,            xK_r     ),do
 		screenWorkspace 1 >>= flip whenJust (windows . W.view)
-		(windows . W.greedyView) "0"
+		(windows . W.greedyView) "="
 		screenWorkspace 0 >>= flip whenJust (windows . W.view)
 		(windows . W.greedyView) "1")
 	--scratchpad
@@ -114,7 +114,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	
 	--Workspace Keybinding
     	[((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0, xK_minus]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0,xK_minus,xK_equal]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 	++
 
@@ -146,7 +146,7 @@ main = do
 	,normalBorderColor = "#000000"
 	,focusedBorderColor = "#2222BB"
 	----------------------------------
-	,terminal = "urxvt"
+	,terminal = "mlterm"
 	----------------------------------
 	,layoutHook = avoidStruts$myLayout
 	,workspaces = myWorkspaces
