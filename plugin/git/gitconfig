@@ -12,3 +12,5 @@
 	pager=less -q -R 
 [merge]
 	tool = vimdiff
+[push]
+	default = simple
