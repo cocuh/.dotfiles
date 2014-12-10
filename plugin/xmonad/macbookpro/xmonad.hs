@@ -96,7 +96,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	--reset workspace
 	,((modm,            xK_r     ),do
 		screenWorkspace 1 >>= flip whenJust (windows . W.view)
-		(windows . W.greedyView) "="
+		(windows . W.greedyView) "-"
 		screenWorkspace 0 >>= flip whenJust (windows . W.view)
 		(windows . W.greedyView) "1")
 	--scratchpad
