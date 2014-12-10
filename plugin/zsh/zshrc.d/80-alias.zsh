@@ -32,7 +32,7 @@ alias wifi='wicd-curses'
 
 alias ta='tmux_ornot'
 alias pdb='python /usr/lib/python2.7/pdb.py'
-alias ocaml='ledit ocaml'
+alias ocaml='rlwrap ocaml'
 
 alias sudovim='sudoedit'
 
