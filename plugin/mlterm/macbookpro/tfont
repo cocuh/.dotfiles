@@ -1,0 +1,4 @@
+# ISO8859_1 = -*-medium-*--%d-*-*-*-vc-*-iso8859-1:100;
+# ISO8859_1_BOLD = -*-bold-*--%d-*-*-*-vc-*-iso8859-1;
+# JISX0208_1983 = -*-medium-*--%d-*-vc-*-jisx0208.*;
+# JISX0208_1983_BOLD = -*-bold-*--%d-*-vc-*-jisx0208.*-0;
