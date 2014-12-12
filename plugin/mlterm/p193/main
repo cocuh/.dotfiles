@@ -15,7 +15,7 @@ title = mlterm
 # -- Terminal --
 # use_login_shell = false
 # (xterm,mlterm,kterm)
-termtype = mlterm-256color
+termtype = xterm-256color
 # max_ptys = 32
 # startup_screens = 1
 
