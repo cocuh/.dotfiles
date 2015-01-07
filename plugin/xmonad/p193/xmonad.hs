@@ -89,7 +89,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --Scratchpad
 	,((modm,            xK_grave ),scratchpadSpawnAction defaultConfig {terminal = "mlterm"})
 	,((modm,            xK_slash ),spawn "import hoge.png")
-	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.png")
+	,((modm.|.shiftMask,xK_slash ),spawn "import -window \"$(xdotool getwindowfocus -f)\" hoge.png")
+	,((modm.|.shiftMask,xK_comma ),spawn "import -window root hoge.png")
+	,((modm.|.shiftMask,xK_Print ),spawn "import -window root hoge.png")
+	,((modm,            xK_o     ),spawn "~/bin/utils/xrandr_one")
+	,((modm.|.shiftMask,xK_o     ),spawn "~/bin/utils/xrandr_init")
 	--,((modm,            
 	--,((modm.|.shiftMask,
 	]
