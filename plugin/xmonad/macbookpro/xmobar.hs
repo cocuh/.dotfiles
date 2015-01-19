@@ -7,7 +7,7 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
        , lowerOnStart = True
        , persistent = False
        , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run Network "enp0s20u2" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run BatteryP ["BAT0"] ["-t","Batt:<acstatus><left>% <timeleft>","-L","30","-H","80","-p","3","-l","red","-h","green","--","-O"," ","-o","+"] 60
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
@@ -18,5 +18,5 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %wlp3s0% - %eth0% }{ <fc=#ee9a00>%date%</fc> | %battery% | %uname%"
+       , template = "%cpu% | %memory% * %swap% | %wlp3s0% - %enp0s20u2% }{ <fc=#ee9a00>%date%</fc> | %battery% | %uname%"
        }
