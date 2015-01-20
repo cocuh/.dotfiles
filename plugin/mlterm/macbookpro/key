@@ -10,7 +10,7 @@
 # UNUSED=SWITCH_OSC52
 # UNUSED=EXIT_PROGRAM
 # Control+Button1="menu:mlterm-menu"
-Control+Shift+C="menu:mlconfig"
+# Control+Shift+C="menu:mlconfig"
 
 #### Examples
 # Control+Right=NEXT_PTY
