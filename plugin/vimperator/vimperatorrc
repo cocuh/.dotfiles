@@ -1,3 +1,6 @@
 set titlestring=Firefox
 hi Hint font-size:20px; color:white; background-color:#222
 set complete=sl
+
+imap <C-p> <ESC>:tabprevious<CR>
+imap <C-n> <ESC>:tabnext<CR>
