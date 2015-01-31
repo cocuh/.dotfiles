@@ -12,6 +12,7 @@ alias la='ls -a'
 alias ll='ls -al'
 alias sl='ls'
 
+alias g='git'
 
 alias tree='tree -N'
 alias du='du -h'
