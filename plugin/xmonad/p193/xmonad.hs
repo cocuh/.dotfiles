@@ -48,7 +48,7 @@ scratchpads = [
         (customFloating $ W.RationalRect (1/12) (1/12) (5/6) (5/6)),
 
     NS "tmp"
-        "mlterm -T=tmp -e mlterm"
+        "mlterm -T=tmp"
         (title =? "tmp")
         (customFloating $ W.RationalRect (1/12) (1/12) (5/6) (5/6)),
 
