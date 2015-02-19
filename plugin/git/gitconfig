@@ -3,10 +3,10 @@
 [color]
 	ui = auto
 [user]
-	name = cocu
+	name = cocuh
 	email = cocu.436f6375@gmail.com
 [github]
-	user = cocu
+	user = cocuh
 [core]
 	autocrlf = input
 	pager=less -q -R 
