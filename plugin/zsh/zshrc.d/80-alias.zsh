@@ -11,6 +11,7 @@ esac
 alias la='ls -a'
 alias ll='ls -al'
 alias sl='ls'
+alias fire='firefox'
 
 alias g='git'
 alias gst='git status;'
