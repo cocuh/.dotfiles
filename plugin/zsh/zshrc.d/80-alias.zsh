@@ -13,6 +13,7 @@ alias ll='ls -al'
 alias sl='ls'
 
 alias g='git'
+alias gst='git status;'
 
 alias tree='tree -N'
 alias du='du -h'
