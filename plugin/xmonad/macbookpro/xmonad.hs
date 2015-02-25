@@ -37,24 +37,39 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9","0","-","="]
 
 --Workspace application attach
 myManageHook = composeAll
-	([className =? "mikutter" --> doShift "6"
-	---
-	,className =? "Gimp" --> doFloat
-	])<+>namedScratchpadManageHook scratchpads
+    ([className =? "mikutter" --> doShift "6"
+    ---
+    ,className =? "Gimp" --> doFloat
+    ])<+>manageScratchpad
 
---ScratchPad
-centerScratchpadSize = W.RationalRect l t w h 
-	where
-	h = 0.7
-	w = 0.7
-	t = (1-h)/2
-	l = (1-w)/2
+--Scrwatchpad
+scratchpads :: [NamedScratchpad]
+scratchpads = [
+    NS "htop"
+        "mlterm -T=htop -e htop"
+        (title =? "htop")
+        (customFloating $ W.RationalRect (1/12) (1/12) (5/6) (5/6)),
 
-scratchpads = 
-	[NS "common" "urxvt -title common" (title =? "common") (customFloating $ centerScratchpadSize)
-	,NS "htop" "urxvt -e htop" (title =? "htop") (customFloating $ centerScratchpadSize)
---	,NS "cmus" "urxvt -name cmus" (resource =? "cmus") (customFloating $ W.RationalRect 0.5 0 0.5 1)
-	]
+    NS "tmp"
+        "mlterm -T=tmp"
+        (title =? "tmp")
+        (customFloating $ W.RationalRect (1/12) (1/12) (5/6) (5/6)),
+
+    NS "wallpaperchanger"
+        "python /home/cocu/bin/WallpaperChanger/wallpaperchanger.py"
+        (title =? "wallpaperchanger")
+        (customFloating $ W.RationalRect (1/12) (1/12) (5/6) (5/6)),
+
+    NS "stardict"
+        "stardict"
+        (title =? "StarDict")
+        (customFloating $ W.RationalRect (1/12) (1/12) (5/6) (5/6))]
+
+
+manageScratchpad :: ManageHook
+manageScratchpad = namedScratchpadManageHook scratchpads
+
+
 
 --Keybinding
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -80,7 +95,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	,((modm.|.shiftMask,xK_b     ),spawn "xbacklight +5")
 
 	--wallpaper change
-	,((modm,            xK_w     ),spawn "python /home/cocu/bin/WallpaperChanger/wallpaperchanger.py")
+	,((modm,            xK_w     ),namedScratchpadAction scratchpads "wallpaperchanger")
 	,((modm.|.shiftMask,xK_w     ),spawn "feh --bg-fill ~/picture/wallpaper/saya.jpg")
 
 	--move focus
@@ -100,9 +115,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 		screenWorkspace 0 >>= flip whenJust (windows . W.view)
 		(windows . W.greedyView) "1")
 	--scratchpad
-	,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
-	,((modm,            xK_g     ),namedScratchpadAction scratchpads "common")
---	,((modm,            xK_m     ),namedScratchpadAction scratchpads "cmus")
+    ,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
+    ,((modm,            xK_g     ),namedScratchpadAction scratchpads "tmp")
+    ,((modm,            xK_e     ),namedScratchpadAction scratchpads "stardict")
 	--screen shot 
 	,((modm,            xK_slash ),spawn "import hoge.png")
 	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.png")
