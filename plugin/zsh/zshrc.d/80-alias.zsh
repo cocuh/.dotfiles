@@ -31,7 +31,7 @@ alias :q='exit'
 alias :Q='exit'
 alias vi='vim'
 
-alias wifi='wicd-curses'
+alias wifi='cmst'
 
 alias ta='tmux_ornot'
 alias pdb='python /usr/lib/python2.7/pdb.py'
