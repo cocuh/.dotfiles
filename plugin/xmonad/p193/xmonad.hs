@@ -102,7 +102,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --Scratchpad
     ,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
     ,((modm,            xK_g     ),namedScratchpadAction scratchpads "tmp")
-    ,((modm,            xK_w     ),namedScratchpadAction scratchpads "stardict")
+    ,((modm,            xK_e     ),namedScratchpadAction scratchpads "stardict")
     ,((modm,            xK_slash ),spawn "import hoge.png")
     ,((modm.|.shiftMask,xK_slash ),spawn "import -window \"$(xdotool getwindowfocus -f)\" hoge.png")
     ,((modm.|.shiftMask,xK_comma ),spawn "import -window root hoge.png")
