@@ -6,6 +6,7 @@
 
 # mlterm
 /plugin/mlterm/*/challenge
+/plugin/mlterm/*/*.log
 /plugin/mlterm/*/*.six
 
 # xmonad
