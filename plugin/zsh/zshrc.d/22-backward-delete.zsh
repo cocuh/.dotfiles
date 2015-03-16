@@ -1,6 +1,5 @@
 cocuh-backward-delete-word() {
     local WORDCHARS="${WORDCHARS:s#/#}"
-    local WORDCHARS="${WORDCHARS:s#.#}"
     zle backward-delete-word
 }
 
