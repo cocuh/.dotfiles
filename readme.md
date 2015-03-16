@@ -1,4 +1,4 @@
-cocu's dotfiles
+cocuh's dotfiles
 ==============
 
 usage
@@ -8,7 +8,7 @@ usage
 
 ```
 $ cd ~
-$ git clone http://github.com/cocu/dotfiles.git .dotfiles
+$ git clone http://github.com/cocuh/.dotfiles.git
 $ cd .dotfiles
 $ ./install.py [PROFILE]
 $ ./regenzshrc.sh
