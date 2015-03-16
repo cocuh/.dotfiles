@@ -31,7 +31,7 @@ alias :q='exit'
 alias :Q='exit'
 alias vi='vim'
 
-alias wifi='wicd-curses'
+alias wifi='nmtui'
 alias pm-suspend='sudo pm-suspend'
 
 alias ta='tmux_ornot'
@@ -49,3 +49,4 @@ alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
 refresh(){
   echo c
 }
+alias globalip='curl http://ipecho.net/plain'
