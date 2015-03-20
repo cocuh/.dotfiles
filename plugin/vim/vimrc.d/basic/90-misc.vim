@@ -9,4 +9,5 @@ set directory=~/.vim/swp
 " listchar
 set listchars=eol:~,tab:>.
 
-
+" encoding
+set encoding=utf-8
