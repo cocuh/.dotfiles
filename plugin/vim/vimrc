@@ -1,2 +1,8 @@
 runtime! vimrc.d/basic/*.vim
-runtime! vimrc.d/plugin/*.vim
+
+if empty(glob("~/.vim/bundle/neobundle.vim/README.md"))
+    echo 'neobundle not installed!!'
+else
+    runtime! vimrc.d/plugin/*.vim
+endif
+
