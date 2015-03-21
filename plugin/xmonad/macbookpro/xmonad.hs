@@ -39,7 +39,6 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9","0","-","="]
 myManageHook = composeAll
     ([className =? "mikutter" --> doShift "6"
     ---
-    ,className =? "Gimp" --> doFloat
     ])<+>manageScratchpad
 
 --Scrwatchpad
