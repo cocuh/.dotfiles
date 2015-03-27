@@ -96,9 +96,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --reset workspace
     ,((modm,            xK_r     ),do
         screenWorkspace 0 >>= flip whenJust (windows . W.view)
-        (windows . W.greedyView) "-"
+        (windows . W.greedyView) "1"
         screenWorkspace 1 >>= flip whenJust (windows . W.view)
-        (windows . W.greedyView) "1")
+        (windows . W.greedyView) "-")
     --Scratchpad
     ,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
     ,((modm,            xK_g     ),namedScratchpadAction scratchpads "tmp")
@@ -122,7 +122,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     --screen selecting
         [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_bracketright, xK_bracketleft] [0..]
+        | (key, sc) <- zip [xK_bracketleft, xK_bracketright] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
         ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
