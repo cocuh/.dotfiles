@@ -45,6 +45,7 @@ alias simplehttpserver='python -m http.server'
 alias cgihttpserver='python -m http.server --cgi'
 
 alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
+alias hoge='git commit -m "hogehoge" && git push'
 
 refresh(){
   echo c
