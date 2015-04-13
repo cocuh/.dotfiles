@@ -81,8 +81,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	,((modm.|.shiftMask,xK_q     ),kill)
 	,((modm,            xK_f     ),sendMessage NextLayout)
 	,((modm.|.shiftMask,xK_l     ),spawn "xscreensaver-command --lock")
-	,((modm,            xK_o     ),spawn "xrandr --output eDP1 --mode 1920x1200_60")
-	,((modm.|.shiftMask,xK_o     ),spawn "xrandr --output eDP1 --mode 1280x960")
+	,((modm,            xK_o     ),spawn "xrandr --auto;xrandr --output eDP1 --mode 1920x1200_60")
+	,((modm.|.shiftMask,xK_o     ),spawn "xrandr --auto;xrandr --output eDP1 --mode 1280x960")
 	,((modm.|.shiftMask,xK_p     ),spawn "sudo pm-suspend")
 	,((modm,            xK_n     ),refresh)
 	,((modm,            xK_t     ),withFocused $ windows . W.sink)
@@ -119,8 +119,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ,((modm,            xK_g     ),namedScratchpadAction scratchpads "tmp")
     ,((modm,            xK_e     ),namedScratchpadAction scratchpads "stardict")
 	--screen shot 
-	,((modm,            xK_slash ),spawn "import hoge.png")
-	,((modm.|.shiftMask,xK_slash ),spawn "import -window root hoge.png")
+	,((modm,            xK_slash ),spawn "import ~/hoge.png")
+	,((modm.|.shiftMask,xK_slash ),spawn "import -window root ~/hoge.png")
 
 	--,((modm,            
 	--,((modm.|.shiftMask,
