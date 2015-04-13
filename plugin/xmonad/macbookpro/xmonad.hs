@@ -26,11 +26,11 @@ screen_order = [2, 0, 1]
 
 --Layout
 myLayout = windowNavigation(tiled)||| Mirror tiled ||| noBorders (fullscreenFull Full)
-	where 
-	tiled = Tall nmaster delta ratio
-	nmaster = 1
-	ratio = 3/5
-	delta = 5/100
+    where 
+    tiled = Tall nmaster delta ratio
+    nmaster = 1
+    ratio = 3/5
+    delta = 5/100
 
 --Workspace
 myWorkspaces = ["1","2","3","4","5","6","7","8","9","0","-","="]
@@ -131,9 +131,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     	[((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1,xK_2,xK_3,xK_4,xK_5,xK_6,xK_7,xK_8,xK_9,xK_0,xK_minus,xK_equal]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-	++
+    ++
 
-	--screen selecting
+    --screen selecting
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_bracketleft, xK_bracketright, xK_backslash] screen_order
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
@@ -156,22 +156,22 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
 main = do
-	xmonad $ defaultConfig{
-	 borderWidth = 1
-	,normalBorderColor = "#000000"
-	,focusedBorderColor = "#2222BB"
-	----------------------------------
-	,terminal = "mlterm"
-	----------------------------------
-	,layoutHook = avoidStruts$myLayout
-	,workspaces = myWorkspaces
-	,manageHook = myManageHook <+> manageHook defaultConfig
-	,startupHook=setWMName "LG3D"
-	--Keybinding
-	,keys = myKeys
-	,mouseBindings = myMouseBindings
-	,focusFollowsMouse = False
-	--
-	,modMask = mod4Mask
-	}
+    xmonad $ defaultConfig{
+     borderWidth = 1
+    ,normalBorderColor = "#000000"
+    ,focusedBorderColor = "#2222BB"
+    ----------------------------------
+    ,terminal = "mlterm"
+    ----------------------------------
+    ,layoutHook = avoidStruts$myLayout
+    ,workspaces = myWorkspaces
+    ,manageHook = myManageHook <+> manageHook defaultConfig
+    ,startupHook=setWMName "LG3D"
+    --Keybinding
+    ,keys = myKeys
+    ,mouseBindings = myMouseBindings
+    ,focusFollowsMouse = False
+    --
+    ,modMask = mod4Mask
+    }
 

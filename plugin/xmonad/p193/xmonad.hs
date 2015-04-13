@@ -95,18 +95,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ,((modm,            xK_space ),windows W.swapMaster)
     --reset workspace
     ,((modm,            xK_r     ),do
-    	screenWorkspace 0 >>= flip whenJust (windows . W.view)
-    	(windows . W.greedyView) "-"
-    	screenWorkspace 1 >>= flip whenJust (windows . W.view)
-    	(windows . W.greedyView) "1")
+        screenWorkspace 0 >>= flip whenJust (windows . W.view)
+        (windows . W.greedyView) "1"
+        screenWorkspace 1 >>= flip whenJust (windows . W.view)
+        (windows . W.greedyView) "-")
     --Scratchpad
     ,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
     ,((modm,            xK_g     ),namedScratchpadAction scratchpads "tmp")
     ,((modm,            xK_e     ),namedScratchpadAction scratchpads "stardict")
-    ,((modm,            xK_slash ),spawn "import hoge.png")
-    ,((modm.|.shiftMask,xK_slash ),spawn "import -window \"$(xdotool getwindowfocus -f)\" hoge.png")
-    ,((modm.|.shiftMask,xK_comma ),spawn "import -window root hoge.png")
-    ,((modm.|.shiftMask,xK_Print ),spawn "import -window root hoge.png")
+    ,((modm,            xK_slash ),spawn "import ~/hoge.png && mogrify +repage ~/hoge.png")
+    ,((modm.|.shiftMask,xK_slash ),spawn "import -window \"$(xdotool getwindowfocus -f)\" ~/hoge.png && mogrify +repage ~/hoge.png")
+    ,((modm.|.shiftMask,xK_comma ),spawn "import -window root ~/hoge.png && mogrify +repage ~/hoge.png")
+    ,((modm.|.shiftMask,xK_Print ),spawn "import -window root ~/hoge.png && mogrify +repage ~/hoge.png")
     ,((modm,            xK_o     ),spawn "~/bin/utils/xrandr_one")
     ,((modm.|.shiftMask,xK_o     ),spawn "~/bin/utils/xrandr_init")
     --,((modm,            
@@ -122,7 +122,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     --screen selecting
         [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_bracketright, xK_bracketleft] [0..]
+        | (key, sc) <- zip [xK_bracketleft, xK_bracketright] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
         ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
