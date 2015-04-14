@@ -2,6 +2,18 @@ from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
 
+
+def toggle_bar(qtile):
+    bar = qtile.currentScreen.top
+    if bar.size == 0:
+        bar.size = 30
+        bar.window.unhide()
+    else:
+        bar.size = 0
+        bar.window.hide()
+    qtile.currentGroup.layoutAll()
+
+
 mod = "mod4"
 
 keys = [
@@ -13,6 +25,11 @@ keys = [
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "j", lazy.layout.down()),
     Key([mod], "l", lazy.layout.right()),
+
+    # focus screen
+    Key([mod], "bracketleft", lazy.to_screen(1)),
+    Key([mod], "bracketright", lazy.to_screen(0)),
+    Key([mod], "backslash", lazy.to_screen(2)),
 
     # launcher
     Key([mod], "d", lazy.spawn("xboomx")),
@@ -42,6 +59,7 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating()),
 
     Key([mod, "shift"], "r", lazy.restart()),
+    Key([mod], "e", lazy.function(toggle_bar)),
     Key([mod, "shift"], "Escape", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
 ]
@@ -106,6 +124,8 @@ screens = [
             30,
         ),
     ),
+    Screen(),
+    Screen(),
 ]
 
 # Drag floating layouts.
