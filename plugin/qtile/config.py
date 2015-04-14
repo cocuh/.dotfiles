@@ -6,7 +6,7 @@ from libqtile import layout, bar, widget
 def toggle_bar(qtile):
     bar = qtile.currentScreen.top
     if bar.size == 0:
-        bar.size = 30
+        bar.size = 25
         bar.window.unhide()
     else:
         bar.size = 0
@@ -15,6 +15,8 @@ def toggle_bar(qtile):
 
 
 mod = "mod4"
+
+screen_layout = [2, 0, 1]
 
 keys = [
     # terminal
@@ -27,9 +29,15 @@ keys = [
     Key([mod], "l", lazy.layout.right()),
 
     # focus screen
-    Key([mod], "bracketleft", lazy.to_screen(1)),
-    Key([mod], "bracketright", lazy.to_screen(0)),
-    Key([mod], "backslash", lazy.to_screen(2)),
+    Key([mod], "bracketleft", lazy.to_screen(screen_layout[0])),
+    Key([mod], "bracketright", lazy.to_screen(screen_layout[1])),
+    Key([mod], "backslash", lazy.to_screen(screen_layout[2])),
+    Key([mod], "BackSpace", lazy.to_screen(screen_layout[2])),
+
+    Key([mod, "shift"], "bracketleft", lazy.window.to_screen(screen_layout[0])),
+    Key([mod, "shift"], "bracketright", lazy.window.to_screen(screen_layout[1])),
+    Key([mod, "shift"], "backslash", lazy.window.to_screen(screen_layout[2])),
+    Key([mod, "shift"], "BackSpace", lazy.window.to_screen(screen_layout[2])),
 
     # launcher
     Key([mod], "d", lazy.spawn("xboomx")),
@@ -39,14 +47,14 @@ keys = [
     Key([mod], "w",
         lazy.spawn("python /home/cocu/bin/WallpaperChanger/wallpaperchanger.py")),
     Key([mod, "shift"], "w",
-        lazy.spawn("feh --bg-fill ~/picture/wallpaper/saya.jpg")),
+        lazy.spawn("feh --bg-fill /home/cocu/picture/wallpaper/saya.jpg")),
 
     # backlight
     Key([mod], "b", lazy.spawn("xbacklight =5")),
     Key([mod, "shift"], "b", lazy.spawn("xbacklight +5")),
 
     # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next()),
+    Key([mod], "space", lazy.layout.swap_left()),
 
     # Swap panes of split stack
     Key([mod, "shift"], "space", lazy.layout.rotate()),
@@ -102,9 +110,9 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='Arial',
+    font='Koruri',
     fontsize=16,
-    padding=3,
+    padding=0,
 )
 
 screens = [
@@ -113,7 +121,7 @@ screens = [
             [
                 widget.CPUGraph(),
                 widget.NetGraph(),
-                widget.GroupBox(),
+                widget.GroupBox(inactive='606060', highlight_method='block', other_screen_border='214458'),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.CurrentLayout(),
@@ -121,7 +129,7 @@ screens = [
                 widget.Battery(low_percentage=15),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
             ],
-            30,
+            25,
         ),
     ),
     Screen(),
@@ -140,7 +148,7 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = []
 main = None
-follow_mouse_focus = True
+follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating()
