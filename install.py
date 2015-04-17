@@ -100,7 +100,7 @@ def main():
     target_paths = [
         (
             paths[0].format(**{
-                'PATh': COMPONENT_PATH,
+                'path': COMPONENT_PATH,
             }),
             os.path.expanduser(paths[1])
         )
