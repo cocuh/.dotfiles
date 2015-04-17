@@ -65,9 +65,9 @@ keys = [
     Key([mod, "shift"], "l",
         lazy.spawn("xscreensaver-command --lock")),
     Key([mod], "w",
-        lazy.spawn(expanduser("python ~/bin/WallpaperChanger/wallpaperchanger.py"))),
+        lazy.spawn("python {home}/bin/WallpaperChanger/wallpaperchanger.py".format(home=expanduser("~")))),
     Key([mod, "shift"], "w",
-        lazy.spawn(expanduser("feh --bg-fill ~/picture/wallpaper/saya.jpg"))),
+        lazy.spawn("feh --bg-fill {home}/picture/wallpaper/saya.jpg".format(home=expanduser("~")))),
 
     # backlight
     Key([mod], "b", lazy.spawn("xbacklight =5")),
