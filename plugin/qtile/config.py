@@ -1,5 +1,6 @@
 from socket import gethostname
 from os.path import expanduser
+from subprocess import Popen
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
@@ -10,30 +11,18 @@ HOSTNAME = gethostname()
 BAR_HEIGHT = 25
 
 
-def toggle_window(qtile):
-    window = qtile.currentWindow
-    if window:
-        if window.hidden:
-            window.show()
-        else:
-            window.hide()
-
-
 mod = "mod4"
 
 def get_screen_order():
     DEFAULT = [2, 0, 1]
     return {
-        'degtyaryova': [0, 1, 2],
+        'degtyaryova': [0, 1],
         'saya': DEFAULT,
     }.get(HOSTNAME, DEFAULT)
 
 screen_order = get_screen_order()
 
 keys = [
-    # for test
-    Key([mod], "q", lazy.function(toggle_window)),
-
     # terminal
     Key([mod], "Return", lazy.spawn("mlterm")),
 
@@ -87,20 +76,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd()),
 ]
 
-groups = [
-    Group("1"),
-    Group("2"),
-    Group("3"),
-    Group("4"),
-    Group("5"),
-    Group("6"),
-    Group("7"),
-    Group("8"),
-    Group("9"),
-    Group("0"),
-    Group("-"),
-    Group("="),
-]
+groups = [Group(name) for name in "1234567890-="]
 
 for g in groups:
     key_name = {
@@ -124,32 +100,47 @@ layouts = [
     layout.Max(),
 ]
 
+def gen_bar():
+    return bar.Bar(
+        [
+            widget.CPUGraph(),
+            widget.NetGraph(),
+            widget.GroupBox(inactive='606060', highlight_method='block', other_screen_border='214458'),
+            widget.Prompt(),
+            widget.WindowName(),
+            widget.CurrentLayout(),
+            widget.Systray(),
+            widget.Battery(low_percentage=15),
+            widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+            #widget.DebugInfo(),
+        ],
+        BAR_HEIGHT,
+    )
+
+def get_screens():
+    DEFAULT = [
+        Screen(top=gen_bar()),
+        Screen(),
+        Screen(),
+    ]
+
+    DEGTYARYOVA = [
+        Screen(),
+        Screen(top=gen_bar()),
+    ]
+
+    return {
+        'degtyaryova': DEGTYARYOVA,
+        'saya': DEFAULT,
+    }.get(HOSTNAME, DEFAULT)
+
 widget_defaults = dict(
     font='Koruri',
     fontsize=16,
     padding=0,
 )
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CPUGraph(),
-                widget.NetGraph(),
-                widget.GroupBox(inactive='606060', highlight_method='block', other_screen_border='214458'),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.CurrentLayout(),
-                widget.Systray(),
-                widget.Battery(low_percentage=15),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-            ],
-            BAR_HEIGHT,
-        ),
-    ),
-    Screen(),
-    Screen(),
-]
+screens = get_screens()
 
 # Drag floating layouts.
 mouse = [
