@@ -13,14 +13,27 @@ BAR_HEIGHT = 25
 
 mod = "mod4"
 
+
 def get_screen_order():
     DEFAULT = [2, 0, 1]
     return {
-        'degtyaryova': [0, 1],
+        'degtyaryova': [0, 1, 2],
         'saya': DEFAULT,
     }.get(HOSTNAME, DEFAULT)
 
 screen_order = get_screen_order()
+
+@lazy.function
+def reset_default_group(qtile):
+    def get_group_by_name(name):
+        for group in qtile.groups:
+            if group.name == name:
+                return group
+        return None
+
+    qtile.screens[0].setGroup(get_group_by_name('1'))
+    qtile.screens[1].setGroup(get_group_by_name('-'))
+
 
 keys = [
     # terminal
@@ -42,6 +55,9 @@ keys = [
     Key([mod, "shift"], "bracketright", lazy.window.to_screen(screen_order[1])),
     Key([mod, "shift"], "backslash", lazy.window.to_screen(screen_order[2])),
     Key([mod, "shift"], "BackSpace", lazy.window.to_screen(screen_order[2])),
+
+    # reset groups
+    Key([mod], "r", reset_default_group),
 
     # launcher
     Key([mod], "d", lazy.spawn("xboomx")),
@@ -73,7 +89,6 @@ keys = [
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod], "e", lazy.hide_show_bar()),
     Key([mod, "shift"], "Escape", lazy.shutdown()),
-    Key([mod], "r", lazy.spawncmd()),
 ]
 
 groups = [Group(name) for name in "1234567890-="]
@@ -112,7 +127,7 @@ def gen_bar():
             widget.Systray(),
             widget.Battery(low_percentage=15),
             widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-            #widget.DebugInfo(),
+            # widget.DebugInfo(),
         ],
         BAR_HEIGHT,
     )
@@ -127,6 +142,7 @@ def get_screens():
     DEGTYARYOVA = [
         Screen(),
         Screen(top=gen_bar()),
+        Screen(),
     ]
 
     return {
@@ -134,13 +150,13 @@ def get_screens():
         'saya': DEFAULT,
     }.get(HOSTNAME, DEFAULT)
 
+screens = get_screens()
+
 widget_defaults = dict(
     font='Koruri',
     fontsize=16,
     padding=0,
 )
-
-screens = get_screens()
 
 # Drag floating layouts.
 mouse = [
