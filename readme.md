@@ -27,7 +27,7 @@ pythonが必要(2,3 compatible)
 profile
 --------
 
-pluginのまとまり
+componentのまとまり
 
 * p193
 * macbookair

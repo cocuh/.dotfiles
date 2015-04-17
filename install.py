@@ -15,7 +15,7 @@ FILEPATH = os.path.abspath(sys.argv[0])
 PATH = os.path.dirname(FILEPATH)
 
 CONF_PATH = os.path.join(PATH, 'install.conf')
-PLUGIN_PATH = os.path.join(PATH, 'components')
+COMPONENT_PATH = os.path.join(PATH, 'components')
 
 
 def check_files(target_paths):
@@ -100,7 +100,7 @@ def main():
     target_paths = [
         (
             paths[0].format(**{
-                'component': PLUGIN_PATH,
+                'PATh': COMPONENT_PATH,
             }),
             os.path.expanduser(paths[1])
         )
