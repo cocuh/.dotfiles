@@ -1,20 +1,2 @@
 .idea
 *.swp
-
-# zsh
-/components/zsh/zshrc.d/local
-
-# mlterm
-/components/mlterm/*/challenge
-/components/mlterm/*/*.log
-/components/mlterm/*/*.six
-
-# xmonad
-*.errors
-*.hi
-*.o
-xmonad-x86_64-linux
-
-# vim
-components/vim/bundle
-.netrwhist
