@@ -1,7 +1,7 @@
 URxvt.depth: 32
 URxvt.background: rgba:0000/0000/0000/aaaa
 URxvt.scrollBar: False
-URxvt.font: xft:Ricty for Powerline:size=12
+URxvt.font: xft:Ricty for Powerline:size=24
 URxvt.termName: rxvt-256color
 URxvt.loginShell: True
 URxvt.fading: 10
