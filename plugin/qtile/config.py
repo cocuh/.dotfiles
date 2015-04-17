@@ -1,17 +1,19 @@
-from socket import gethostbyname
+from socket import gethostname
+from os.path import expanduser
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
 
 
-HOSTNAME = gethostbyname()
+HOSTNAME = gethostname()
+BAR_HEIGHT = 25
 
 
 def toggle_bar(qtile):
     bar = qtile.currentScreen.top
     if bar.size == 0:
-        bar.size = 25
+        bar.size = BAR_HEIGHT
         bar.window.unhide()
     else:
         bar.size = 0
@@ -19,16 +21,30 @@ def toggle_bar(qtile):
     qtile.currentGroup.layoutAll()
 
 
+def toggle_window(qtile):
+    window = qtile.currentWindow
+    if window:
+        if window.hidden:
+            window.show()
+        else:
+            window.hide()
+
+
 mod = "mod4"
 
-def get_layout():
+def get_screen_order():
+    DEFAULT = [2, 0, 1]
     return {
-        'saya': [2, 0, 1],
-    }.get(HOSTNAME, [2, 0, 1])
+        'degtyaryova': [0, 1, 2],
+        'saya': DEFAULT,
+    }.get(HOSTNAME, DEFAULT)
 
-screen_layout = get_layout()
+screen_order = get_screen_order()
 
 keys = [
+    # for test
+    Key([mod], "q", lazy.function(toggle_window)),
+
     # terminal
     Key([mod], "Return", lazy.spawn("mlterm")),
 
@@ -39,15 +55,15 @@ keys = [
     Key([mod], "l", lazy.layout.right()),
 
     # focus screen
-    Key([mod], "bracketleft", lazy.to_screen(screen_layout[0])),
-    Key([mod], "bracketright", lazy.to_screen(screen_layout[1])),
-    Key([mod], "backslash", lazy.to_screen(screen_layout[2])),
-    Key([mod], "BackSpace", lazy.to_screen(screen_layout[2])),
+    Key([mod], "bracketleft", lazy.to_screen(screen_order[0])),
+    Key([mod], "bracketright", lazy.to_screen(screen_order[1])),
+    Key([mod], "backslash", lazy.to_screen(screen_order[2])),
+    Key([mod], "BackSpace", lazy.to_screen(screen_order[2])),
 
-    Key([mod, "shift"], "bracketleft", lazy.window.to_screen(screen_layout[0])),
-    Key([mod, "shift"], "bracketright", lazy.window.to_screen(screen_layout[1])),
-    Key([mod, "shift"], "backslash", lazy.window.to_screen(screen_layout[2])),
-    Key([mod, "shift"], "BackSpace", lazy.window.to_screen(screen_layout[2])),
+    Key([mod, "shift"], "bracketleft", lazy.window.to_screen(screen_order[0])),
+    Key([mod, "shift"], "bracketright", lazy.window.to_screen(screen_order[1])),
+    Key([mod, "shift"], "backslash", lazy.window.to_screen(screen_order[2])),
+    Key([mod, "shift"], "BackSpace", lazy.window.to_screen(screen_order[2])),
 
     # launcher
     Key([mod], "d", lazy.spawn("xboomx")),
@@ -55,9 +71,9 @@ keys = [
     Key([mod, "shift"], "l",
         lazy.spawn("xscreensaver-command --lock")),
     Key([mod], "w",
-        lazy.spawn("python /home/cocu/bin/WallpaperChanger/wallpaperchanger.py")),
+        lazy.spawn(expanduser("python ~/bin/WallpaperChanger/wallpaperchanger.py"))),
     Key([mod, "shift"], "w",
-        lazy.spawn("feh --bg-fill /home/cocu/picture/wallpaper/saya.jpg")),
+        lazy.spawn(expanduser("feh --bg-fill ~/picture/wallpaper/saya.jpg"))),
 
     # backlight
     Key([mod], "b", lazy.spawn("xbacklight =5")),
@@ -115,7 +131,7 @@ for g in groups:
 
 
 layouts = [
-    layout.xmonad.MonadTall(border_focus="#0000ff", border_width=1),
+    layout.MonadTall(border_focus="#0000ff", border_width=1),
     layout.Max(),
 ]
 
@@ -139,7 +155,7 @@ screens = [
                 widget.Battery(low_percentage=15),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
             ],
-            25,
+            BAR_HEIGHT,
         ),
     ),
     Screen(),
