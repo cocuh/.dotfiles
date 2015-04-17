@@ -1,6 +1,11 @@
+from socket import gethostbyname
+
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
+
+
+HOSTNAME = gethostbyname()
 
 
 def toggle_bar(qtile):
@@ -16,7 +21,12 @@ def toggle_bar(qtile):
 
 mod = "mod4"
 
-screen_layout = [2, 0, 1]
+def get_layout():
+    return {
+        'saya': [2, 0, 1],
+    }.get(HOSTNAME, [2, 0, 1])
+
+screen_layout = get_layout()
 
 keys = [
     # terminal
