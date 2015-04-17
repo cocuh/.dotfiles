@@ -10,17 +10,6 @@ HOSTNAME = gethostname()
 BAR_HEIGHT = 25
 
 
-def toggle_bar(qtile):
-    bar = qtile.currentScreen.top
-    if bar.size == 0:
-        bar.size = BAR_HEIGHT
-        bar.window.unhide()
-    else:
-        bar.size = 0
-        bar.window.hide()
-    qtile.currentGroup.layoutAll()
-
-
 def toggle_window(qtile):
     window = qtile.currentWindow
     if window:
@@ -93,7 +82,7 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating()),
 
     Key([mod, "shift"], "r", lazy.restart()),
-    Key([mod], "e", lazy.function(toggle_bar)),
+    Key([mod], "e", lazy.hide_show_bar()),
     Key([mod, "shift"], "Escape", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
 ]
