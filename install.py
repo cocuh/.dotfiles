@@ -15,7 +15,7 @@ FILEPATH = os.path.abspath(sys.argv[0])
 PATH = os.path.dirname(FILEPATH)
 
 CONF_PATH = os.path.join(PATH, 'install.conf')
-PLUGIN_PATH = os.path.join(PATH, 'plugin')
+PLUGIN_PATH = os.path.join(PATH, 'components')
 
 
 def check_files(target_paths):
@@ -43,18 +43,18 @@ def install(target_paths, is_debug=False):
             os.symlink(from_path, to_path)
 
 
-def get_plugin_names(conf, profile_name):
+def get_component_names(conf, profile_name):
     return [
-        plugin
-        for plugin in
+        component
+        for component in
         conf.get('PROFILES', profile_name).splitlines()
-        if plugin
+        if component
     ]
 
 
 def parse_args(conf):
     profile_names = conf.options('PROFILES')
-    plugin_names = sorted(set(conf.sections()) - set('PROFILES'))
+    component_names = sorted(set(conf.sections()) - set('PROFILES'))
 
     try:
         import argparse
@@ -65,7 +65,7 @@ def parse_args(conf):
     if is_argparse:
         parser = argparse.ArgumentParser()
         parser.add_argument('profile', choices=profile_names)
-        parser.add_argument('plugins', nargs='*', choices=[[]] + plugin_names)
+        parser.add_argument('components', nargs='*', choices=[[]] + component_names)
         parser.add_argument('--debug', action='store_true')
         return parser.parse_args()
     else:
@@ -78,7 +78,7 @@ def parse_args(conf):
         class Args:
             def __init__(self, profile):
                 self.profile = profile
-                self.plugins = []
+                self.components = []
                 self.debug = False
         
         profile = sys.argv[1]
@@ -92,15 +92,15 @@ def main():
     conf.read(CONF_PATH)
 
     args = parse_args(conf)
-    plugins = get_plugin_names(conf, args.profile) + args.plugins
+    components = get_component_names(conf, args.profile) + args.components
 
     target_paths = []
-    for plugin in plugins:
-        target_paths += conf.items(plugin)
+    for component in components:
+        target_paths += conf.items(component)
     target_paths = [
         (
             paths[0].format(**{
-                'plugin': PLUGIN_PATH,
+                'component': PLUGIN_PATH,
             }),
             os.path.expanduser(paths[1])
         )

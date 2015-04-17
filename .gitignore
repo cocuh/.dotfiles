@@ -2,12 +2,12 @@
 *.swp
 
 # zsh
-/plugin/zsh/zshrc.d/local
+/components/zsh/zshrc.d/local
 
 # mlterm
-/plugin/mlterm/*/challenge
-/plugin/mlterm/*/*.log
-/plugin/mlterm/*/*.six
+/components/mlterm/*/challenge
+/components/mlterm/*/*.log
+/components/mlterm/*/*.six
 
 # xmonad
 *.errors
@@ -16,5 +16,5 @@
 xmonad-x86_64-linux
 
 # vim
-plugin/vim/bundle
+components/vim/bundle
 .netrwhist

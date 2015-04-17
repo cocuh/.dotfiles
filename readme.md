@@ -35,16 +35,20 @@ pluginのまとまり
 * server
 
 
-plugin
+component
 -------
 
 dotfileをどのようにシンボリックリンクするかの定義を大まかにソフトウェアごとに分けた集合
 
-いい命名が思いつかなかった
-
 * zsh
+* vim
 * tmux
-* xmonad
+* mlterm
+* ipython
 * xdefaults
 * xresources
+* vimperator
 * python
+* qtile
+* ~xmonad~
+  * qtileへ移行(2015/04/18)
