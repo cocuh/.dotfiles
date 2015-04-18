@@ -125,8 +125,10 @@ def gen_bar():
             widget.WindowName(),
             widget.CurrentLayout(),
             widget.Systray(),
+        ] + ([
             widget.Battery(low_percentage=15),
-            widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+        ]if HOSTNAME == 'saya'else [])+[
+            widget.Clock(format='%Y-%m-%d %a %H:%M:%S'),
             # widget.DebugInfo(),
         ],
         BAR_HEIGHT,
