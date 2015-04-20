@@ -124,10 +124,11 @@ def gen_bar():
             widget.Prompt(),
             widget.WindowName(),
             widget.CurrentLayout(),
-            widget.Systray(),
+            widget.Sep(padding=5, linewidth=0),
         ] + ([
-            widget.Battery(low_percentage=15),
+            widget.Battery(low_percentage=0.15, update_delay=5, foreground='7070ff'),
         ]if HOSTNAME == 'saya'else [])+[
+            widget.Sep(padding=5, linewidth=0),
             widget.Clock(format='%Y-%m-%d %a %H:%M:%S'),
             # widget.DebugInfo(),
         ],
@@ -173,7 +174,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []
 main = None
 follow_mouse_focus = False
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating()
 auto_fullscreen = True
@@ -186,4 +187,4 @@ auto_fullscreen = True
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-#wmname = "LG3D"
+wmname = "LG3D"
