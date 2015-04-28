@@ -125,6 +125,7 @@ def gen_bar():
             widget.WindowName(),
             widget.CurrentLayout(),
             widget.Sep(padding=5, linewidth=0),
+            widget.Systray(),
         ] + ([
             widget.Battery(low_percentage=0.15, update_delay=5, foreground='7070ff'),
         ]if HOSTNAME == 'saya'else [])+[
