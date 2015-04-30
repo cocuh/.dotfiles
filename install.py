@@ -80,7 +80,7 @@ def parse_args(conf):
                 self.profile = profile
                 self.components = []
                 self.debug = False
-        
+
         profile = sys.argv[1]
         if profile in profile_names:
             args = Args(profile)
