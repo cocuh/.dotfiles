@@ -33,6 +33,7 @@ def reset_default_group(qtile):
 
     qtile.screens[0].setGroup(get_group_by_name('1'))
     qtile.screens[1].setGroup(get_group_by_name('-'))
+    qtile.screens[2].setGroup(get_group_by_name('2'))
 
 
 keys = [
