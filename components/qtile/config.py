@@ -62,7 +62,6 @@ keys = [
 
     # launcher
     Key([mod], "d", lazy.spawn("xboomx")),
-    Key([mod], "p", lazy.spawn("dmenu_run")),
     Key([mod, "shift"], "l",
         lazy.spawn("xscreensaver-command --lock")),
     Key([mod], "w",
@@ -178,7 +177,7 @@ main = None
 follow_mouse_focus = False
 bring_front_click = True
 cursor_warp = False
-floating_layout = layout.Floating()
+#floating_layout = layout.Floating()
 auto_fullscreen = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
