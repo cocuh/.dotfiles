@@ -17,7 +17,7 @@ mod = "mod4"
 def get_screen_order():
     DEFAULT = [2, 0, 1]
     return {
-        'degtyaryova': [0, 1, 2],
+        'stern': [0, 1, 2],
         'saya': DEFAULT,
     }.get(HOSTNAME, DEFAULT)
 
@@ -35,6 +35,11 @@ def reset_default_group(qtile):
     qtile.screens[1].setGroup(get_group_by_name('-'))
     qtile.screens[2].setGroup(get_group_by_name('2'))
 
+def move_window_to_the_screen(idx):
+    @lazy.function
+    def func(qtile):
+        qtile.currentWindow.togroup(qtile.screens[screen_order[idx]].group.name)
+    return func
 
 keys = [
     # terminal
@@ -52,10 +57,10 @@ keys = [
     Key([mod], "backslash", lazy.to_screen(screen_order[2])),
     Key([mod], "BackSpace", lazy.to_screen(screen_order[2])),
 
-    Key([mod, "shift"], "bracketleft", lazy.window.to_screen(screen_order[0])),
-    Key([mod, "shift"], "bracketright", lazy.window.to_screen(screen_order[1])),
-    Key([mod, "shift"], "backslash", lazy.window.to_screen(screen_order[2])),
-    Key([mod, "shift"], "BackSpace", lazy.window.to_screen(screen_order[2])),
+    Key([mod, "shift"], "bracketleft", move_window_to_the_screen(0)),
+    Key([mod, "shift"], "bracketright", move_window_to_the_screen(1)),
+    Key([mod, "shift"], "backslash", move_window_to_the_screen(2)),
+    Key([mod, "shift"], "BackSpace", move_window_to_the_screen(2)),
 
     # reset groups
     Key([mod], "r", reset_default_group),
@@ -131,7 +136,7 @@ def gen_bar():
         ]if HOSTNAME == 'saya'else [])+[
             widget.Sep(padding=5, linewidth=0),
             widget.Clock(format='%Y-%m-%d %a %H:%M:%S'),
-            # widget.DebugInfo(),
+            #widget.DebugInfo(),
         ],
         BAR_HEIGHT,
     )
@@ -143,14 +148,14 @@ def get_screens():
         Screen(),
     ]
 
-    DEGTYARYOVA = [
+    STERN = [
         Screen(),
         Screen(top=gen_bar()),
         Screen(),
     ]
 
     return {
-        'degtyaryova': DEGTYARYOVA,
+        'stern': STERN,
         'saya': DEFAULT,
     }.get(HOSTNAME, DEFAULT)
 
