@@ -23,6 +23,7 @@ def get_screen_order():
 
 screen_order = get_screen_order()
 
+
 @lazy.function
 def reset_default_group(qtile):
     def get_group_by_name(name):
@@ -35,11 +36,13 @@ def reset_default_group(qtile):
     qtile.screens[1].setGroup(get_group_by_name('-'))
     qtile.screens[2].setGroup(get_group_by_name('2'))
 
+
 def move_window_to_the_screen(idx):
     @lazy.function
     def func(qtile):
         qtile.currentWindow.togroup(qtile.screens[screen_order[idx]].group.name)
     return func
+
 
 keys = [
     # terminal
@@ -182,7 +185,7 @@ main = None
 follow_mouse_focus = False
 bring_front_click = True
 cursor_warp = False
-#floating_layout = layout.Floating()
+floating_layout = layout.Floating()
 auto_fullscreen = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
