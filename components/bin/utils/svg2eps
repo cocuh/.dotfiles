@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+usage(){
+	echo "Usage: $CMDNAME input.svg" 
+	exit 1
+}
+
+name_full=$1
+name_part=`echo $name_full|sed -e "s/^\(.*\)\.svg$/\1/"`
+inkscape -z -T -E "${name_part}.eps" $1

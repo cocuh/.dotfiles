@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+CMDNAME=`basename $0`
+
+usage(){
+    echo "Usage: $CMDNAME [-v] file"
+    exit 1
+}
+
+pdf_view=1
+
+while getopts ":v" OPT
+do
+    case $OPT in
+        "v" ) pdf_view=0;;
+          * ) usage;;
+    esac
+done
+
+shift `expr $OPTIND-1`
+name_full=$1
+
+echo $1
+if [ ! -z $name_full ] && [ -f $name_full ]; then
+    if ! platex ${name_full} ; then
+        exit 1
+    fi
+    name_part=`echo $name_full | sed -e "s/^.*\/\([^\/]*\)$/\1/"`
+    name_noext=`echo $name_part | sed -e "s/\(^.*\)\..*$/\1/"`
+    dvipdfmx ${name_noext}.dvi
+
+    if [ $pdf_view -eq 0 ] ; then
+        mupdf ${name_noext}.pdf
+    fi
+else
+    usage
+fi

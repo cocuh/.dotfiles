@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+CMDNAME=`basename $0`
+
+usage(){
+    echo "Usage: $CMDNAME [-v] file"
+    exit 1
+}
+
+pdf_view=1
+
+while getopts ":v" OPT
+do
+    case $OPT in
+        "v" ) pdf_view=0;;
+          * ) usage;;
+    esac
+done
+
+shift `expr $OPTIND-1`
+name_full=$1
+
+echo $1
+if [ ! -z $name_full ] && [ -f $name_full ]; then
+    if ! platex ${name_full} ; then
+        exit 1
+    fi
+    name_part=`echo $name_full | sed -e "s/^.*\/\([^\/]*\)$/\1/"`
+    name_noext=`echo $name_part | sed -e "s/\(^.*\)\..*$/\1/"`
+    server=`coins-imac`
+    scp ${name_noext}.dvi ${server}:./tmp/${name_noext}.dvi
+    ssh ${server} \
+	    "dvipdfmx -f ptex-hiragino.map -f otf-hiragino.map -o tmp/${name_noext}.pdf tmp/${name_noext}.dvi ;
+	    rm tmp/${name_noext}.dvi"
+    scp ${server}:./tmp/${name_noext}.pdf ./
+    ssh ${server} "rm tmp/${name_noext}.pdf"
+
+    if [ $pdf_view -eq 0 ] ; then
+        mupdf ${name_noext}.pdf
+    fi
+else
+    usage
+fi

@@ -1,0 +1,59 @@
+#!/bin/python
+
+import argparse
+import subprocess as sp
+import os.path
+
+parse = argparse.ArgumentParser()
+parse.add_argument("-p",help="preview", action="store_true")
+parse.add_argument("-l","-lang",help="language", nargs=1)
+parse.add_argument("file_name")
+
+options = parse.parse_args()
+
+if options.l:
+    lang = "\nlanguage={%s},"%options.l[0]
+else:
+    lang = ""
+
+
+
+file_name = os.path.splitext(options.file_name)[0]
+fp = open(file_name+".tex","w")
+body = open(options.file_name).read()
+fp.write("""
+\\documentclass[a4paper]{jsarticle}
+\\usepackage[dvipdfmx]{graphicx, color}
+\\usepackage{listings, jlisting}
+\\usepackage[right=25mm,left=25mm,top=25mm,bottom=30mm,centering]{geometry}
+
+\\renewcommand{\\ttdefault}{pcr}
+
+\\lstset{
+    breaklines=true,%s
+    backgroundcolor={\\color[gray]{1}},
+    basicstyle=\\ttfamily\\small,
+    keywordstyle={\\bfseries\\ttfamily \\color[rgb]{0,0,1}},
+    commentstyle={\\itshape\\color{red}},
+    frame=tRBl,
+    framesep=5pt,
+    showstringspaces=false,
+    numbers=left,
+    stepnumber=1,
+    numberstyle=\\tiny,
+    tabsize=4,
+}
+
+
+
+\\begin{document}
+\\begin{lstlisting}
+%s
+\\end{lstlisting}
+\\end{document}
+"""%(lang,body))
+
+
+sp.Popen(["textan",file_name+".tex"])
+if options.p:
+    sp.Popen(["mupdf",file_name+".pdf"])
