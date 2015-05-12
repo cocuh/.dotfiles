@@ -6,8 +6,6 @@ binPathArrayAfter=(\
     "$HOME/bin"\
     "$HOME/bin/bin"\
     "$HOME/bin/local"\
-    "$HOME/bin/bin-git/utils"\
-    "$HOME/bin/bin-git/twitter"\
     "$HOME/bin/utils"\
     "$HOME/bin/coins-tools"\
     "$HOME/bin/coins-utils"\
