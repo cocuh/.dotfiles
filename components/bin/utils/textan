@@ -3,16 +3,16 @@
 CMDNAME=`basename $0`
 
 usage(){
-    echo "Usage: $CMDNAME [-v] file"
+    echo "Usage: $CMDNAME [-p] file"
     exit 1
 }
 
 pdf_view=1
 
-while getopts ":v" OPT
+while getopts ":p" OPT
 do
     case $OPT in
-        "v" ) pdf_view=0;;
+        "p" ) pdf_view=0;;
           * ) usage;;
     esac
 done
