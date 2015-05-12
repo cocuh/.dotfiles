@@ -41,6 +41,7 @@ component
 dotfileをどのようにシンボリックリンクするかの定義を大まかにソフトウェアごとに分けた集合
 
 * zsh
+* bin
 * vim
 * tmux
 * mlterm
