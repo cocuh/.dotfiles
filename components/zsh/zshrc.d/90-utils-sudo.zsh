@@ -1,0 +1,3 @@
+function sk(){
+    sudo -k
+}
