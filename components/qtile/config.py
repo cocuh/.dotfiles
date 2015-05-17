@@ -78,7 +78,7 @@ keys = [
         lazy.spawn("feh --bg-fill {home}/picture/wallpaper/saya.jpg".format(home=expanduser("~")))),
 
     # backlight
-    Key([mod], "b", lazy.spawn("xbacklight =5")),
+    Key([mod], "b", lazy.spawn("xbacklight =0")),
     Key([mod, "shift"], "b", lazy.spawn("xbacklight +5")),
 
     # Switch window focus to other pane(s) of stack
