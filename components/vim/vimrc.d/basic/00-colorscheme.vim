@@ -1,4 +1,4 @@
-colorscheme molokai-cocu
+colorscheme molokai-cocuh
 
 " syntax color
 syntax on
