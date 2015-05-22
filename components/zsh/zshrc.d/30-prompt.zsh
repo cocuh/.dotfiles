@@ -2,7 +2,7 @@
 local the_prompt="%{${fg_bold[cyan]}%}%n@%{${fg[red]}%}%m%{${reset_color}%}"
 case $(hostname) in
 stern)
-  the_prompt="%{${fg_bold[cyan]}%}ヾ(  _ﾟ々｡ア"
+  the_prompt="%{${fg_bold[green]}%}ヾ(  _ﾟ々｡ア"
   ;;
 saya)
   the_prompt="_(:3｣_)_"
