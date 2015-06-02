@@ -1,6 +1,8 @@
 from socket import gethostname
 from os.path import expanduser
 from subprocess import Popen
+from logging import getLogger
+logger = getLogger('qtile')
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
@@ -166,6 +168,10 @@ def get_screens():
 def floating_dialogs(window):
     is_dialog = window.window.get_wm_type() == 'dialog'
     is_transient = window.window.get_wm_transient_for()
+    is_mikutter_preview = window.window.get_wm_window_role() == "mikutter_image_preview"
+    if window.group is None:
+        g_name = window.qtile.currentScreen.group.name
+        window.togroup(g_name)
     if is_dialog or is_transient:
         window.floating = True
 
