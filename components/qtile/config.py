@@ -4,7 +4,7 @@ from subprocess import Popen
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
-from libqtile import layout, bar, widget
+from libqtile import layout, bar, widget, hook
 
 
 HOSTNAME = gethostname()
@@ -161,6 +161,13 @@ def get_screens():
         'stern': STERN,
         'saya': DEFAULT,
     }.get(HOSTNAME, DEFAULT)
+
+@hook.subscribe.client_new
+def floating_dialogs(window):
+    is_dialog = window.window.get_wm_type() == 'dialog'
+    is_transient = window.window.get_wm_transient_for()
+    if is_dialog or is_transient:
+        window.floating = True
 
 screens = get_screens()
 
