@@ -47,6 +47,7 @@ c = get_config()
 c.InteractiveShellApp.exec_lines = [
     'import numpy as np',
     'import sympy as sym',
+    'sym.init_printing()',
 ]
 
 # dotted module name of an IPython extension to load.
