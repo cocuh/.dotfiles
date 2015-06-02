@@ -1,9 +1,10 @@
 if [ -e ~/.python/startup.py ];then
     export PYTHONSTARTUP=~/.python/startup.py
 fi
-
-if [ -e $(where virtualenvwrapper.sh) ];then
-    source $(where virtualenvwrapper.sh)
-fi
+for vwpath in $(where virtualenvwrapper.sh);do
+    if [ -e $vwpath ];then
+        source $vwpath
+    fi
+done
 
 
