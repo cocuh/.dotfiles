@@ -8,7 +8,6 @@ function regenzshrc(){
         echo >> ~/.zshrc 
     done
     echo regened zshrc
-    source ~/.zshrc
 }
 if [ ! -f ~/.zshrc -o ${#$(find ~/.zshrc.d/ -type f -newer ~/.zshrc)} -ne 0 ]; then
     regenzshrc
