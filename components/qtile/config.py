@@ -19,7 +19,7 @@ mod = "mod4"
 def get_screen_order():
     DEFAULT = [2, 0, 1]
     return {
-        'stern': [0, 1, 2],
+        'stern': DEFAULT,
         'saya': DEFAULT,
     }.get(HOSTNAME, DEFAULT)
 
@@ -57,15 +57,13 @@ keys = [
     Key([mod], "l", lazy.layout.right()),
 
     # focus screen
-    Key([mod], "bracketleft", lazy.to_screen(screen_order[0])),
-    Key([mod], "bracketright", lazy.to_screen(screen_order[1])),
-    Key([mod], "backslash", lazy.to_screen(screen_order[2])),
-    Key([mod], "BackSpace", lazy.to_screen(screen_order[2])),
+    Key([mod], "p", lazy.to_screen(screen_order[0])),
+    Key([mod], "bracketleft", lazy.to_screen(screen_order[1])),
+    Key([mod], "bracketright", lazy.to_screen(screen_order[2])),
 
-    Key([mod, "shift"], "bracketleft", move_window_to_the_screen(0)),
-    Key([mod, "shift"], "bracketright", move_window_to_the_screen(1)),
-    Key([mod, "shift"], "backslash", move_window_to_the_screen(2)),
-    Key([mod, "shift"], "BackSpace", move_window_to_the_screen(2)),
+    Key([mod, "shift"], "p", move_window_to_the_screen(0)),
+    Key([mod, "shift"], "bracketleft", move_window_to_the_screen(1)),
+    Key([mod, "shift"], "bracketright", move_window_to_the_screen(2)),
 
     # reset groups
     Key([mod], "r", reset_default_group),
