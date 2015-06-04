@@ -121,6 +121,7 @@ for g in groups:
 layouts = [
     layout.MonadTall(border_focus="#0000ff", border_width=1),
     layout.Max(),
+    layout.TreeTab(),
 ]
 
 def gen_bar():
