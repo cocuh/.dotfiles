@@ -26,3 +26,4 @@ setopt extended_glob
 setopt globdots
 
 setopt prompt_subst
+setopt nonomatch
