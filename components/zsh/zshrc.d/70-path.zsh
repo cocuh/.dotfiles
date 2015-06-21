@@ -9,6 +9,7 @@ binPathArrayAfter=(\
     "$HOME/bin/utils"\
     "$HOME/bin/coins-tools"\
     "$HOME/bin/coins-utils"\
+    "$HOME/bin/mdl-utils"\
     "$HOME/.local/bin"\
     "$HOME/.gem/ruby/2.1.0/bin"\
 )
