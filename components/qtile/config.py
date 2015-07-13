@@ -2,11 +2,13 @@ from socket import gethostname
 from os.path import expanduser
 from subprocess import Popen
 from logging import getLogger
+import enum
 logger = getLogger('qtile')
 
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
+import libqtile.widget.base
 
 
 HOSTNAME = gethostname()
@@ -14,6 +16,99 @@ BAR_HEIGHT = 25
 
 
 mod = "mod4"
+
+
+class BatteryWidget(libqtile.widget.base.ThreadedPollText):
+    defaults = [
+        ('update_interval', 5., 'Update interval for the clock'),
+    ]
+
+    def __init__(self, **config):
+        libqtile.widget.base.ThreadedPollText.__init__(self, **config)
+        self.add_defaults(BatteryWidget.defaults)
+
+    def _read_file(self, path):
+        return open(path).read()
+
+    def refresh(self):
+        status_str = self._read_file('/sys/class/power_supply/BAT0/status')
+        self.bat_status = BatteryWidget.Status.parse(status_str)
+
+        self.bat_curr = int(self._read_file('/sys/class/power_supply/BAT0/charge_now'))
+        self.bat_full = int(self._read_file('/sys/class/power_supply/BAT0/charge_full'))
+
+        self.ac_powered = bool(int(self._read_file('/sys/class/power_supply/ADP1/online')))
+        self.power_curr = int(self._read_file('/sys/class/power_supply/BAT0/current_now'))
+
+
+    def _get_percent(self):
+        return float(self.bat_curr) / self.bat_full
+
+    def _get_left_time(self):
+        time = 0
+        if self.bat_status is BatteryWidget.Status.CHARGING:
+            try:
+                time = (self.bat_full - self.bat_curr) / self.power_curr
+            except ZeroDivisionError:
+                time = -1
+        elif self.bat_status is BatteryWidget.Status.DISCHARGING:
+            try:
+                time = self.bat_curr / self.power_curr
+            except ZeroDivisionError:
+                time = -1
+
+        hour = 0
+        minute = 0
+        if time >= 0:
+            hour = int(time)
+            minute = int(time * 60) % 60
+        else:
+            hour = -1
+            minute = -1
+        return hour, minute
+
+
+    def _get_text(self):
+        status = {
+            BatteryWidget.Status.FULL: "F",
+            BatteryWidget.Status.CHARGING: "^",
+            BatteryWidget.Status.DISCHARGING: "V",
+            BatteryWidget.Status.UNKNOWN: "?",
+        }.get(self.bat_status)
+        hour, minute = self._get_left_time()
+
+        return "{ac}{status} {percent:2.0%} {hour:02d}:{minute:02d}".format(
+            ac="=" if self.ac_powered else "|",
+            status=status,
+            percent=self._get_percent(),
+            hour=hour,
+            minute=minute,
+        )
+
+    def poll(self):
+        try:
+            self.refresh()
+            text = self._get_text()
+        except Exception as e:
+            logger.error(str(e))
+            text = "XXX"
+        return text
+
+
+    class Status(enum.Enum):
+        FULL = 0
+        CHARGING = 1
+        DISCHARGING = 2
+        UNKNOWN = 3
+
+        @classmethod
+        def parse(cls, status_str):
+            return {
+                    'Full': cls.FULL,
+                    'Charging': cls.CHARGING,
+                    'Discharging': cls.DISCHARGING,
+                    'Unknown': cls.UNKNOWN
+            }.get(status_str.strip(), cls.UNKNOWN)
 
 
 def get_screen_order():
@@ -136,7 +231,7 @@ def gen_bar():
             widget.Sep(padding=5, linewidth=0),
             widget.Systray(),
         ] + ([
-            widget.Battery(low_percentage=0.15, update_delay=5, foreground='7070ff'),
+            BatteryWidget(),
         ]if HOSTNAME == 'saya'else [])+[
             widget.Sep(padding=5, linewidth=0),
             widget.Clock(format='%Y-%m-%d %a %H:%M:%S'),
