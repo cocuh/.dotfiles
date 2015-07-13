@@ -51,7 +51,7 @@ dotfileをどのようにシンボリックリンクするかの定義を大ま�
 * vimperator
 * python
 * qtile
-* ~xmonad~
+* ~~xmonad~~
   * qtileへ移行(2015/04/18)
 
 screenshots
