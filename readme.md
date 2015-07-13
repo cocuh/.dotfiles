@@ -53,3 +53,10 @@ dotfileをどのようにシンボリックリンクするかの定義を大ま�
 * qtile
 * ~xmonad~
   * qtileへ移行(2015/04/18)
+
+screenshots
+-----------
+
+### qtile
+#### saya
+![](https://raw.github.com/wiki/cocuh/.dotfiles/screenshots/qtile.png)
