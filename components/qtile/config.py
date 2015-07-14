@@ -111,6 +111,10 @@ class BatteryWidget(libqtile.widget.base.ThreadedPollText):
             }.get(status_str.strip(), cls.UNKNOWN)
 
 
+class GroupBoxWidget(widget.GroupBox):
+    def button_press(self, x, y, button):
+        pass
+
 def get_screen_order():
     DEFAULT = [2, 0, 1]
     return {
@@ -224,7 +228,7 @@ def gen_bar():
         [
             widget.CPUGraph(),
             widget.NetGraph(),
-            widget.GroupBox(inactive='606060', highlight_method='block', other_screen_border='214458'),
+            GroupBoxWidget(inactive='606060', highlight_method='block', other_screen_border='214458'),
             widget.Prompt(),
             widget.WindowName(),
             widget.CurrentLayout(),
