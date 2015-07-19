@@ -34,7 +34,9 @@ c = get_config()
 # c.InteractiveShellApp.reraise_ipython_extension_failures = False
 
 # A list of dotted module names of IPython extensions to load.
-# c.InteractiveShellApp.extensions = []
+c.InteractiveShellApp.extensions = [
+    'Cython',
+]
 
 # Execute the given command string.
 # c.InteractiveShellApp.code_to_run = ''
@@ -46,6 +48,8 @@ c = get_config()
 # lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = [
     'import numpy as np',
+    'import matplotlib as mlp',
+    'import matplotlib.pylab as plt',
     'import sympy as sym',
     'sym.init_printing()',
 ]
