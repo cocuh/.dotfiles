@@ -168,8 +168,8 @@ keys = [
     Key([mod], "r", reset_default_group),
 
     # launcher
-    Key([mod], "n", lazy.spawn("rofi -show window")),
-    Key([mod], "m", lazy.spawn("rofi -show run")),
+    Key([mod], "n", lazy.spawn("rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85")),
+    Key([mod], "m", lazy.spawn("rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85")),
     Key([mod], "d", lazy.spawn("xboomx")),
     Key([mod, "shift"], "l",
         lazy.spawn("xscreensaver-command --lock")),
