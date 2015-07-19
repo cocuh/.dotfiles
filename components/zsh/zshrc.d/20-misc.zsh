@@ -9,6 +9,7 @@ export EDITOR='vim'
 
 function up(){
     echo
+    echo $(pwd)
 	cd ..
     zle reset-prompt
 }
