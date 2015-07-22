@@ -138,6 +138,19 @@ def reset_default_group(qtile):
     qtile.screens[2].setGroup(get_group_by_name('2'))
 
 
+@lazy.function
+def focus_floating_layout(qtile):
+    win = qtile.currentGroup.floating_layout.focus_first()
+    win.focus(True)
+    win.cmd_bring_to_front()
+
+@lazy.function
+def focus_current_layout(qtile):
+    win = qtile.currentGroup.layout.focus_first()
+    win.focus(True)
+    win.cmd_bring_to_front()
+
+
 def move_window_to_the_screen(idx):
     @lazy.function
     def func(qtile):
@@ -151,8 +164,8 @@ keys = [
 
     # move focus
     Key([mod], "h", lazy.layout.left()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.group.next_window()),
+    Key([mod], "j", lazy.group.next_window()),
     Key([mod], "l", lazy.layout.right()),
 
     # focus screen
@@ -163,6 +176,10 @@ keys = [
     Key([mod, "shift"], "p", move_window_to_the_screen(0)),
     Key([mod, "shift"], "bracketleft", move_window_to_the_screen(1)),
     Key([mod, "shift"], "bracketright", move_window_to_the_screen(2)),
+
+    # focus floating layout
+    Key([mod], "f", focus_floating_layout),
+    Key([mod, "shift"], "f", focus_current_layout),
 
     # reset groups
     Key([mod], "r", reset_default_group),
