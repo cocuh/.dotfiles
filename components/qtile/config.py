@@ -139,16 +139,20 @@ def reset_default_group(qtile):
 
 
 @lazy.function
-def focus_floating_layout(qtile):
-    win = qtile.currentGroup.floating_layout.focus_first()
+def focus_next_window(qtile):
+    qtile.currentGroup.cmd_next_window()
+    win = qtile.currentGroup.currentWindow
     win.focus(True)
-    win.cmd_bring_to_front()
+    from xcffib.xproto import StackMode
+    win.window.configure(stackmode=StackMode.Above)
 
 @lazy.function
-def focus_current_layout(qtile):
-    win = qtile.currentGroup.layout.focus_first()
+def focus_prev_window(qtile):
+    qtile.currentGroup.cmd_prev_window()
+    win = qtile.currentGroup.currentWindow
     win.focus(True)
-    win.cmd_bring_to_front()
+    from xcffib.xproto import StackMode
+    win.window.configure(stackmode=StackMode.Above)
 
 
 def move_window_to_the_screen(idx):
@@ -164,8 +168,8 @@ keys = [
 
     # move focus
     Key([mod], "h", lazy.layout.left()),
-    Key([mod], "k", lazy.group.next_window()),
-    Key([mod], "j", lazy.group.next_window()),
+    Key([mod], "k", focus_prev_window),
+    Key([mod], "j", focus_next_window),
     Key([mod], "l", lazy.layout.right()),
 
     # focus screen
@@ -176,10 +180,6 @@ keys = [
     Key([mod, "shift"], "p", move_window_to_the_screen(0)),
     Key([mod, "shift"], "bracketleft", move_window_to_the_screen(1)),
     Key([mod, "shift"], "bracketright", move_window_to_the_screen(2)),
-
-    # focus floating layout
-    Key([mod], "f", focus_floating_layout),
-    Key([mod, "shift"], "f", focus_current_layout),
 
     # reset groups
     Key([mod], "r", reset_default_group),
