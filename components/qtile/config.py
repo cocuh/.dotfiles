@@ -85,10 +85,20 @@ class BatteryWidget(libqtile.widget.base.ThreadedPollText):
             minute=minute,
         )
 
+    def _get_color(self):
+        percent = self._get_percent()
+        color = '#ffffff'
+        if percent < 0.25:
+            color = '#fa8072'
+        elif percent > 0.9:
+            color = '#9cf771'
+        return color
+
     def poll(self):
         try:
             self.refresh()
             text = self._get_text()
+            self.layout.colour = self._get_color()
         except Exception as e:
             logger.error(str(e))
             text = "XXX"
