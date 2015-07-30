@@ -4,7 +4,7 @@ cocuh's dotfiles
 usage
 -----
 
-`install.py`を走らせればシンボリックリンクを貼ってくれる。
+run `install.py`. it makes symbolic link to dotfiles.
 
 ```
 $ cd ~
@@ -14,8 +14,9 @@ $ ./install.py [PROFILE]
 $ ./regenzshrc.sh
 ```
 
-### 注意
-pythonが必要(2,3 compatible)
+### warning
+this script required python. (but compatible for either python2 or 3)
+
 
 このzshの設定では`.zshrc`は生成しないので、
 初期起動時に`~/zshrc.d`の内部を結合して`.zshrc`を作る必要がある。
