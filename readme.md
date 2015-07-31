@@ -18,10 +18,9 @@ $ ./regenzshrc.sh
 this script required python. (but compatible for either python2 or 3)
 
 
-このzshの設定では`.zshrc`は生成しないので、
-初期起動時に`~/zshrc.d`の内部を結合して`.zshrc`を作る必要がある。
-
-最初に生成後は`~/.zshrc.d`に更新チェックをかけて再生成する。
+This install script doesn't generate `.zshrc`.
+You should run `regenzshrc.sh` to generate `.zshrc` at first.
+After first generation, `.zshrc` watches `.zshrc.d/*/*.zsh` files to re-generate itself if these files changes.
 
 できればzcompileでやりたかったぽよ
 
@@ -38,8 +37,7 @@ componentのまとまり
 
 component
 -------
-
-dotfileをどのようにシンボリックリンクするかの定義を大まかにソフトウェアごとに分けた集合
+Components define how to make symbolic links on each software.
 
 * zsh
 * bin
