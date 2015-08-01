@@ -51,7 +51,7 @@ Components define how to make symbolic links on each software.
 * python
 * qtile
 * ~~xmonad~~
-  * qtileへ移行(2015/04/18)
+  * change to `qtile`(2015/04/18)
 
 screenshots
 -----------
