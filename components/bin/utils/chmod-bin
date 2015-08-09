@@ -1,2 +1,0 @@
-#!/bin/zsh
-chmod -R 700 ~/bin/*
