@@ -1,7 +1,14 @@
 runtime! vimrc.d/basic/*.vim
 
 if empty(glob("~/.vim/bundle/neobundle.vim/README.md"))
-    echo 'neobundle not installed!!'
+    echo 'neobundle not installed!!(run :DotfilesSubmoduleUpdate)'
+    function! DotfilesSubmoduleUpdate()
+        cd ~/.dotfiles
+        !git submodule init<CR>
+        !git submodule update<CR>
+        q
+    endfunction
+    command DotfilesSubmoduleUpdate :call DotfilesSubmoduleUpdate()
 else
     runtime! vimrc.d/plugin/*.vim
 endif
