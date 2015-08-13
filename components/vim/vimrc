@@ -4,8 +4,8 @@ if empty(glob("~/.vim/bundle/neobundle.vim/README.md"))
     echo 'neobundle not installed!!(run :DotfilesSubmoduleUpdate)'
     function! DotfilesSubmoduleUpdate()
         cd ~/.dotfiles
-        !git submodule init<CR>
-        !git submodule update<CR>
+        !git submodule init
+        !git submodule update
         q
     endfunction
     command DotfilesSubmoduleUpdate :call DotfilesSubmoduleUpdate()
