@@ -139,7 +139,7 @@ c = get_config()
 
 # If not empty, use this Pygments style for syntax highlighting. Otherwise, the
 # style sheet is queried for Pygments style information.
-# c.IPythonWidget.syntax_style = ''
+c.IPythonWidget.syntax_style = 'monokai'
 
 # Whether to ask for user confirmation when restarting kernel
 # c.IPythonWidget.confirm_restart = True

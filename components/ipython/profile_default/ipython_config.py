@@ -51,7 +51,7 @@ c.InteractiveShellApp.exec_lines = [
     'import matplotlib as mlp',
     'import matplotlib.pylab as plt',
     'import sympy as sym',
-    'sym.init_printing()',
+    'sym.init_printing(forecolor="White")',
 ]
 
 # dotted module name of an IPython extension to load.
@@ -555,3 +555,10 @@ c.TerminalInteractiveShell.colors = 'Linux'
 # If True, any %store-d variables will be automatically restored when IPython
 # starts.
 # c.StoreMagics.autorestore = False
+
+c.InlineBackend.rc = {
+        'figure.figsize':  (6., 4.),
+        'figure.facecolor':  (1., 1., 1., 1.),
+        'savefig.dpi':  72,
+}
+
