@@ -1,7 +1,7 @@
 URxvt.depth: 32
 URxvt.background: rgba:0000/0000/0000/BBBB
 URxvt.scrollBar: False
-URxvt.font: xft:Ricty for Powerline:size=14.5
+URxvt.font: xft:Ricty for Powerline:size=12
 #URxvt.font: xft:Ricty:size=14.5
 URxvt.termName: rxvt-256color
 URxvt.loginShell: True
@@ -18,4 +18,6 @@ URxvt*shading: 15
 
 vmplayer.scrollBar: False
 
-font: xft:Ricty for Powerline:size=14.5
+font: xft:Ricty for Powerline:size=12
+
+Xcursor.size: 16
