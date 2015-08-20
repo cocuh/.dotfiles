@@ -4,3 +4,5 @@ set complete=sl
 
 imap <C-p> <ESC>:tabprevious<CR>
 imap <C-n> <ESC>:tabnext<CR>
+
+hi CmdLine -append font-size:1.4em
