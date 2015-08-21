@@ -143,9 +143,15 @@ def reset_default_group(qtile):
                 return group
         return None
 
-    qtile.screens[0].setGroup(get_group_by_name('1'))
-    qtile.screens[1].setGroup(get_group_by_name('-'))
-    qtile.screens[2].setGroup(get_group_by_name('2'))
+    def set_screen_group_by_name(screen_idx, name):
+        if screen_idx < 0 or len(qtile.screens) <= screen_idx:
+            return
+        screen = qtile.screens[screen_idx]
+        screen.setGroup(get_group_by_name(name))
+
+    set_screen_group_by_name(0, '1')
+    set_screen_group_by_name(1, '-')
+    set_screen_group_by_name(2, '2')
 
 
 @lazy.function
