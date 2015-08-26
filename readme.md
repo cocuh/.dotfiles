@@ -50,6 +50,10 @@ Components define how to make symbolic links on each software.
 * vimperator
 * python
 * qtile
+  * rofi
+  * xboomx
+  * feh
+  * wallpaperchanger.py
 * ~~xmonad~~
   * change to `qtile`(2015/04/18)
 
