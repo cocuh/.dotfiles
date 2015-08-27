@@ -3,14 +3,16 @@
 function ffmpeg-conv2ogg(){
     cmd=$0
     Usage() {
-        echo "USAGE: $cmd [-s] input output"
+        echo "USAGE: $cmd [-s] [-m] input output"
     }
     inputfile= outputfile= symmetry=false
+    metadata="-map_metadata -1"
 
-    while getopts s opt
+    while getopts sm opt
     do
         case "$opt" in
             "s") symmetry=true;;
+            "m") metadata="";;
         esac
     done
 
@@ -34,21 +36,23 @@ function ffmpeg-conv2ogg(){
             return 1
             ;;
     esac
-    ffmpeg -i $inputfile -map_metadata -1 -acodec libvorbis -vn -ab 256k $outputfile
+    ffmpeg -i $inputfile ${=metadata} -acodec libvorbis -vn -ab 256k $outputfile
 }
 
 function ffmpeg-conv2mp3(){
     cmd=$0
     Usage() {
-        echo "USAGE: $cmd [-s] input output"
+        echo "USAGE: $cmd [-s] [-m] input output"
         return 1
     }
     inputfile= outputfile= symmetry=false
+    metadata="-map_metadata -1"
 
-    while getopts s opt
+    while getopts sm opt
     do
         case "$opt" in
             "s") symmetry=true;;
+            "m") metadata="";;
         esac
     done
 
@@ -72,5 +76,5 @@ function ffmpeg-conv2mp3(){
             return 1
             ;;
     esac
-    ffmpeg -i $inputfile -map_metadata -1 -acodec mp3 -vn -ab 256k $outputfile
+    ffmpeg -i $inputfile ${=metadata} -acodec mp3 -vn -ab 256k $outputfile
 }
