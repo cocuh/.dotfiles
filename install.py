@@ -18,17 +18,17 @@ CONF_PATH = os.path.join(PATH, 'install.conf')
 COMPONENT_PATH = os.path.join(PATH, 'components')
 
 
-def check_files(target_paths):
-    flag = True
+def test_install(target_paths):
+    is_success = True
     for from_path, to_path in target_paths:
         if not os.path.exists(from_path):
             logging.error('No such file: {0}'.format(from_path))
-            flag = False
+            is_success = False
         if os.path.exists(to_path):
             if not os.path.islink(to_path):
                 logging.error('The file exists(not symbolic link): {0}'.format(to_path))
-                flag = False
-    return flag
+                is_success = False
+    return is_success
 
 
 def install(target_paths, is_debug=False):
@@ -108,7 +108,7 @@ def main():
         target_paths
     ]
 
-    if check_files(target_paths):
+    if test_install(target_paths):
         install(target_paths, is_debug=args.debug)
         print("")
         print("install successed!!!")
