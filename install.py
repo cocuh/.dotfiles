@@ -43,7 +43,7 @@ def install(target_paths, is_debug=False):
             os.symlink(from_path, to_path)
 
 
-def get_component_names(conf, profile_name):
+def get_components(conf, profile_name):
     return [
         component
         for component in
@@ -92,21 +92,19 @@ def main():
     conf.read(CONF_PATH)
 
     args = parse_args(conf)
-    components = get_component_names(conf, args.profile) + args.components
+    components = get_components(conf, args.profile) + args.components
+
+    raw_paths = []
+    for component in components:
+        raw_paths += conf.items(component)
 
     target_paths = []
-    for component in components:
-        target_paths += conf.items(component)
-    target_paths = [
-        (
-            paths[0].format(**{
-                'path': COMPONENT_PATH,
-            }),
-            os.path.expanduser(paths[1])
-        )
-        for paths in
-        target_paths
-    ]
+    for from_path, to_path in raw_paths:
+        from_path = from_path.format(**{
+            'path': COMPONENT_PATH,
+        })
+        to_path = os.path.expanduser(to_path)
+        target_paths.append((from_path, to_path))
 
     if test_install(target_paths):
         install(target_paths, is_debug=args.debug)
