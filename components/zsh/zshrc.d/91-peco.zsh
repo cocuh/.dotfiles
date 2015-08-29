@@ -1,7 +1,24 @@
 export EDITOR=vim # 好きなエディタ
 
-function peco-path() {
+
+function peco-find() {
   local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
+  [ -z "$filepath" ] && return
+  echo $filepath
+  if [ -n "$LBUFFER" ]; then
+    BUFFER="$LBUFFER$filepath"
+  else
+    if [ -d "$filepath" ]; then
+      BUFFER="cd $filepath"
+    elif [ -f "$filepath" ]; then
+      BUFFER="$EDITOR $filepath"
+    fi
+  fi
+  CURSOR=$#BUFFER
+}
+
+function peco-ls() {
+  local filepath="./$(ls --color='never' . | grep -v '/\.' | peco --prompt 'PATH>')"
   [ -z "$filepath" ] && return
   if [ -n "$LBUFFER" ]; then
     BUFFER="$LBUFFER$filepath"
@@ -15,7 +32,12 @@ function peco-path() {
   CURSOR=$#BUFFER
 }
 
-zle -N peco-path
-bindkey '^f' peco-path # Ctrl+f で起動
+zle -N peco-find
+bindkey -r '^F'
+bindkey '^F' peco-find
+
+zle -N peco-ls
+bindkey -r '^L'
+bindkey '^L' peco-ls
 
 # http://hotolab.net/blog/peco_select_path/
