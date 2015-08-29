@@ -18,7 +18,11 @@ function peco-find() {
 }
 
 function peco-ls() {
-  local filepath="./$(ls --color='never' . | grep -v '/\.' | peco --prompt 'PATH>')"
+  function custom-ls() {
+    ls --color='never'
+    ls --color='never' -A | grep "^\."
+  }
+  local filepath="./$(custom-ls | peco --prompt 'PATH>')"
   [ -z "$filepath" ] && return
   if [ -n "$LBUFFER" ]; then
     BUFFER="$LBUFFER$filepath"
