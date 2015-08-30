@@ -2,7 +2,6 @@ NeoBundle 'kana/vim-fakeclip.git'
 set clipboard=unnamed
 
 if executable('tmux') && $TMUX != ''
-    echo "youjo!"
     nmap y  <Plug>(fakeclip-screen-y)
     nmap Y  <Plug>(fakeclip-screen-Y)
     nmap yy  <Plug>(fakeclip-screen-Y)
