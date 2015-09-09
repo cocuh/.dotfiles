@@ -4,7 +4,6 @@ export EDITOR=vim # 好きなエディタ
 function peco-find() {
   local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
   [ -z "$filepath" ] && return
-  echo $filepath
   if [ -n "$LBUFFER" ]; then
     BUFFER="$LBUFFER$filepath"
   else
