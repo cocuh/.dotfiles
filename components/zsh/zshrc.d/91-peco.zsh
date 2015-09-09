@@ -27,7 +27,7 @@ function peco-ls() {
     BUFFER="$LBUFFER$filepath"
   else
     if [ -d "$filepath" ]; then
-      BUFFER="cd $filepath"
+        BUFFER="cd $(echo $filepath|sed -e 's/ /\\ /g')"
     elif [ -f "$filepath" ]; then
       BUFFER="$EDITOR $filepath"
     fi
