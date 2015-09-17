@@ -18,8 +18,13 @@ function peco-find() {
 
 function peco-ls() {
   function custom-ls() {
-    ls --color='never'
-    ls --color='never' -A | grep "^\."
+    if [ "$(uname)" == 'Darwin' ];then
+      ls
+      ls -A | grep "^\."
+    else
+      ls --color='never'
+      ls --color='never' -A | grep "^\."
+    fi
   }
   local filepath="./$(custom-ls | peco --prompt 'PATH>')"
   [ -z "$filepath" ] && return
