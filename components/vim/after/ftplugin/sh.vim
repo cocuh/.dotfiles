@@ -1,5 +1,5 @@
 setl autoindent
 setl smartindent
-setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
+setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 IndentGuidesEnable
