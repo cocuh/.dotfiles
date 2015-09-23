@@ -1,0 +1,43 @@
+.background-transparent(@alpha:0){
+  background-color: rgba(0, 0, 0, @alpha);
+}
+
+body, html {
+  font-family: @font-family-base;
+  font-style: normal !important;
+}
+
+.markdown-preview{
+  font-family: @font-family-base;
+  font-size: @font-size-base;
+  padding: .5em;
+  .background-transparent();
+  h1,h2,h3,h4,h5,h6 {
+    font-family: @font-family-base;
+  }
+}
+
+atom-workspace{
+    background: url(@background-image);
+    background-position: center;
+    background-size: cover;
+}
+
+
+atom-pane {
+  .background-transparent(.7);
+  border: solid #282828 0.1em;
+  padding: 0!important;
+}
+
+
+atom-text-editor {
+  .background-transparent();
+}
+
+atom-panel-container{
+  &.left:empty{
+      padding-left: 0!important;
+  }
+  .background-transparent(.8);
+}
