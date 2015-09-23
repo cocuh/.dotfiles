@@ -34,6 +34,8 @@ function peco-ls() {
       ;;
     *)
       /bin/ls
+      ;;
+    esac
   }
   local filepath="./$(custom-ls | peco --prompt 'PATH>')"
   _insert_commandline $filepath
