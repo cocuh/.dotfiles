@@ -1,9 +1,9 @@
 #alias
-case $OSTYPE in
+case $(uname) in
   Darwin*)
     alias ls='ls -FG'
     ;;
-  linux*)
+  Linux*)
     alias ls='ls -F --color'
     ;;
 esac
