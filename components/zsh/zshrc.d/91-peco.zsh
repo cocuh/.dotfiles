@@ -56,6 +56,9 @@ function agvim() {
   local data="$(ag $@ | peco)"
   local filepath="$(echo $data | awk -F : '{print $1}')"
   local lineno="$(echo $data | awk -F : '{print $2}')"
-  vim -c $lineno "$filepath"
+  [ -z "$filepath" ] && return
+  if [ -f "$filepath" ]; then
+    vim -c $lineno "$filepath"
+  fi
 }
 
