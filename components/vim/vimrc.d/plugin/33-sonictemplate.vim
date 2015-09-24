@@ -1,2 +1,0 @@
-NeoBundle 'mattn/sonictemplate-vim'
-
