@@ -1,5 +1,8 @@
 #zsh PROMPT
-local the_prompt="%{${fg_bold[cyan]}%}%n@%{${fg[red]}%}%m%{${reset_color}%}"
+local host_formats;host_formats=('%{${fg[red]}%}' '%{${fg[green]}%}' '%{${fg[cyan]}%}')
+local host_int=$(echo "ibase=16;hostname=$(echo $(hostname) | sha1sum | awk '{print toupper($1)}');ibase=A;hostname%${#host_formats}" | bc)
+
+local the_prompt="%{${fg_bold[cyan]}%}%n@${host_formats[host_int]}%m%{${reset_color}%}"
 case $(hostname) in
 stern)
   the_prompt="%{${fg_bold[green]}%}ヾ(  _ﾟ々｡ア"
@@ -8,6 +11,7 @@ saya)
   the_prompt="_(:3｣_)_"
   ;;
 esac
+
 
 
 PROMPT="
