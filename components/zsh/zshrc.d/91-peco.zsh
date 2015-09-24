@@ -1,4 +1,4 @@
-function _insert_commandline() {
+function peco--insert-commandline() {
   local filepath="$1"
   [ -z "$filepath" ] && return
   if [ -n "$LBUFFER" ]; then
@@ -15,12 +15,12 @@ function _insert_commandline() {
 
 function peco-find() {
   local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
-  _insert_commandline $filepath
+  peco--insert-commandline $filepath
 }
 
 function peco-find_dep2() {
   local filepath="$(find . -maxdepth 2 | grep -v '/\.' | peco --prompt 'PATH>')"
-  _insert_commandline $filepath
+  peco--insert-commandline $filepath
 }
 
 function peco-ls() {
@@ -40,7 +40,7 @@ function peco-ls() {
     esac
   }
   local filepath="./$(custom-ls | peco --prompt 'PATH>')"
-  _insert_commandline $filepath
+  peco--insert-commandline $filepath
   return
 }
 
@@ -55,8 +55,6 @@ bindkey '^F' peco-find_dep2
 zle -N peco-ls
 bindkey -r '^L'
 bindkey '^L' peco-ls
-
-# http://hotolab.net/blog/peco_select_path/
 
 function agvim() {
   local data="$(ag $@ | peco)"
