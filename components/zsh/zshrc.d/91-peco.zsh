@@ -1,6 +1,3 @@
-
-export EDITOR=vim
-
 function _insert_commandline() {
   local filepath="$1"
   [ -z "$filepath" ] && return
