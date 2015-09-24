@@ -1,6 +1,7 @@
 #zsh PROMPT
 local host_formats;host_formats=('%{${fg[red]}%}' '%{${fg[green]}%}' '%{${fg[cyan]}%}')
-local host_int=$(echo "ibase=16;hostname=$(echo $(hostname) | sha1sum | awk '{print toupper($1)}');ibase=A;hostname%${#host_formats}" | bc)
+local host_int=$(echo "ibase=16;hostname=$(echo $(hostname) | shasum | awk '{print toupper($1)}');ibase=A;hostname%${#host_formats}" | bc)
+echo host_int
 
 local the_prompt="%{${fg_bold[cyan]}%}%n@${host_formats[host_int]}%m%{${reset_color}%}"
 case $(hostname) in
