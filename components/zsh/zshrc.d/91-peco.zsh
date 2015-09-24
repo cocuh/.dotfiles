@@ -21,6 +21,11 @@ function peco-find() {
   _insert_commandline $filepath
 }
 
+function peco-find_dep2() {
+  local filepath="$(find . -maxdepth 2 | grep -v '/\.' | peco --prompt 'PATH>')"
+  _insert_commandline $filepath
+}
+
 function peco-ls() {
   function custom-ls() {
     case $(uname) in
@@ -43,8 +48,12 @@ function peco-ls() {
 }
 
 zle -N peco-find
+bindkey -r '^D'
+bindkey '^D' peco-find
+
+zle -N peco-find_dep2
 bindkey -r '^F'
-bindkey '^F' peco-find
+bindkey '^F' peco-find_dep2
 
 zle -N peco-ls
 bindkey -r '^L'
