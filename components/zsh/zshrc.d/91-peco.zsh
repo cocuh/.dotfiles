@@ -21,6 +21,11 @@ function peco-find() {
   _insert_commandline $filepath
 }
 
+function peco-find_dep2() {
+  local filepath="$(find . -maxdepth 2 | grep -v '/\.' | peco --prompt 'PATH>')"
+  _insert_commandline $filepath
+}
+
 function peco-ls() {
   function custom-ls() {
     case $(uname) in
@@ -43,8 +48,12 @@ function peco-ls() {
 }
 
 zle -N peco-find
+bindkey -r '^D'
+bindkey '^D' peco-find
+
+zle -N peco-find_dep2
 bindkey -r '^F'
-bindkey '^F' peco-find
+bindkey '^F' peco-find_dep2
 
 zle -N peco-ls
 bindkey -r '^L'
@@ -56,6 +65,9 @@ function agvim() {
   local data="$(ag $@ | peco)"
   local filepath="$(echo $data | awk -F : '{print $1}')"
   local lineno="$(echo $data | awk -F : '{print $2}')"
-  vim -c $lineno "$filepath"
+  [ -z "$filepath" ] && return
+  if [ -f "$filepath" ]; then
+    vim -c $lineno "$filepath"
+  fi
 }
 
