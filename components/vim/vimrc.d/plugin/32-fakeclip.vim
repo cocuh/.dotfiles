@@ -1,7 +1,8 @@
 NeoBundle 'kana/vim-fakeclip.git'
-set clipboard=unnamed
+
 
 if executable('tmux') && $TMUX != ''
+    let g:fakeclip_terminal_multiplexer_type = 'tmux'
     for _ in ['+', '*']
         execute 'nmap '._.'y  <Plug>(fakeclip-screen-y)'
         execute 'nmap '._.'Y  <Plug>(fakeclip-screen-Y)'
