@@ -7,16 +7,6 @@ body, html {
   font-style: normal !important;
 }
 
-.markdown-preview{
-  font-family: @font-family-base;
-  font-size: @font-size-base;
-  padding: .5em;
-  .background-transparent();
-  h1,h2,h3,h4,h5,h6 {
-    font-family: @font-family-base;
-  }
-}
-
 atom-workspace{
     background: url(@background-image);
     background-position: center;
@@ -40,4 +30,14 @@ atom-panel-container{
       padding-left: 0!important;
   }
   .background-transparent(.8);
+}
+
+.markdown-preview{
+  font-family: @font-family-base!important;
+  font-size: @font-size-base;
+  padding: .5em;
+  .background-transparent();
+  * {
+    font-family: @font-family-base!important;
+  }
 }
