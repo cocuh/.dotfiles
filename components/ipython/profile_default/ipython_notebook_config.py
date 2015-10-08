@@ -106,7 +106,7 @@ c = get_config()
 # c.NotebookApp.mathjax_url = ''
 
 # DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.
-# c.NotebookApp.pylab = 'disabled'
+c.NotebookApp.pylab = 'inline'
 
 # Create a massive crash report when IPython encounters what may be an internal
 # error.  The default is to append a short message to the usual traceback
