@@ -1,0 +1,2 @@
+NeoBundle 'rhysd/vim-crystal'
+
