@@ -209,7 +209,7 @@ keys = [
     Key([mod], "w",
         lazy.spawn("python {home}/bin/WallpaperChanger/wallpaperchanger.py".format(home=expanduser("~")))),
     Key([mod, "shift"], "w",
-        lazy.spawn("feh --bg-fill {home}/picture/wallpaper/saya.jpg".format(home=expanduser("~")))),
+        lazy.spawn("feh --bg-fill {home}/picture/wallpaper/saya.png".format(home=expanduser("~")))),
 
     # backlight
     Key([mod], "b", lazy.spawn("xbacklight =0")),
