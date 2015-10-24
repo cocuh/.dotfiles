@@ -11,6 +11,6 @@ dockrant() {
       args+=(${cmd})
       ;;
   esac
-  echo "vagrant ${args[@]}"
-  vagrant ${args[@]}
+  echo "vagrant ${args[@]} $*"
+  vagrant ${args[@]} $*
 }
