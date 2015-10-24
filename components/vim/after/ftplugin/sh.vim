@@ -1,5 +1,8 @@
-setl autoindent
-setl smartindent
-setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
+set autoindent
+set smartindent
 
 IndentGuidesEnable
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
