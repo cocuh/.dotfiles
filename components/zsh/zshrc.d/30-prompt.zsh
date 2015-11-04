@@ -1,7 +1,15 @@
 #zsh PROMPT
+
+local sha
+if [ `which sha1sum` ];then
+  sha=sha1sum
+else
+  sha=shasum
+fi
+
 local host_formats
 host_formats=('%{${fg[red]}%}' '%{${fg[green]}%}' '%{${fg[cyan]}%}' '%{${fg[blue]}%}' '%{${fg[yellow]}%}' '%{${fg[magenta]}%}' '%{${fg[white]}%}')
-local host_int=$(echo "ibase=16;hostname=$(echo $(hostname) | shasum | awk '{print toupper($1)}');ibase=A;hostname%$#host_formats + 1" | bc)
+local host_int=$(echo "ibase=16;hostname=$(echo $(hostname) | $sha | awk '{print toupper($1)}');ibase=A;hostname%$#host_formats + 1" | bc)
 
 local the_prompt;
 case $(hostname) in
