@@ -51,3 +51,5 @@ refresh(){
   echo c
 }
 alias globalip='curl http://ipecho.net/plain'
+
+alias 進捗='echo ダメです🙅'
