@@ -63,4 +63,5 @@ screenshots
 ### qtile
 #### saya
 ![](https://raw.github.com/wiki/cocuh/.dotfiles/screenshots/qtile-saya.png)
+#### stern
 ![](https://raw.github.com/wiki/cocuh/.dotfiles/screenshots/qtile-stern.png)
