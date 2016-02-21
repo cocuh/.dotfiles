@@ -1,6 +1,7 @@
 # path
 binPathArrayBefore=(\
     "$HOME/.rbenv/bin"\
+    "$HOME/bin/before"\
 )
 binPathArrayAfter=(\
     "$HOME/bin"\
