@@ -15,7 +15,7 @@ atom-workspace{
 
 
 atom-pane {
-  .background-transparent(.7);
+  .background-transparent(@background-image-alpha);
   border: solid #282828 0.1em;
   padding: 0!important;
 }
@@ -29,7 +29,7 @@ atom-panel-container{
   &.left:empty{
       padding-left: 0!important;
   }
-  .background-transparent(.8);
+  .background-transparent(@background-image-alpha);
 }
 
 .markdown-preview{
