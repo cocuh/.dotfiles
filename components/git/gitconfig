@@ -1,5 +1,6 @@
 [alias]
 	st = status
+	today = log --since=midnight --author='Kosuke Kusano' --oneline
 [color]
 	ui = auto
 [user]
