@@ -4,3 +4,5 @@ set directory=~/.cache/nvim/swp
 
 set listchars=eol:~,tab:>-
 
+set foldmethod=marker
+
