@@ -1,13 +1,16 @@
 runtime! vimrc.basic/*.vim
 
+let s:dein_path = expand('~/.cache/dein')
+let s:dein_toml_path = '~/.config/nvim/dein.toml'
+let s:dein_runtime_path = expand('~/.config/nvim/dein.vim')
+let s:dein_toml_lazy_path = '~/.config/nvim/dein_lazy.toml'
+
 if &compatible
   set nocompatible
 endif
 
-let s:dein_toml_path = '~/.config/nvim/dein.toml'
-let s:dein_toml_lazy_path = '~/.config/nvim/dein_lazy.toml'
 
-if empty(glob("~/.config/nvim/dein.vim/README.md"))
+if empty(glob(s:dein_runtime_path.'/README.md'))
     echo 'dein.vim not installed!!(run :DotfilesSubmoduleUpdate)'
     function! DotfilesSubmoduleUpdate()
         cd ~/.dotfiles
@@ -16,20 +19,23 @@ if empty(glob("~/.config/nvim/dein.vim/README.md"))
         q
     endfunction
     command DotfilesSubmoduleUpdate :call DotfilesSubmoduleUpdate()
-else
-    let &runtimepath.=',~/.config/nvim/dein.vim'
-
-    call dein#begin(expand('~/.cache/dein'))
-    if dein#load_cache([expand('<sfile>'), '~/.config/nvim/dein.toml', '~/.config/nvim/dein-lazy.toml'])
-        call dein#load_toml(s:dein_toml_path, {'lazy': 0})
-        call dein#load_toml(s:dein_toml_lazy_path, {'lazy': 1})
-        call dein#save_cache()
-    endif
-    call dein#end()
-
-    if dein#check_install()
-        call dein#install()
-    endif
-
-    runtime! vimrc.plugin/*.vim
+    finish
 endif
+
+let &runtimepath.=',~/.config/nvim/dein.vim'
+
+if !dein#load_state(s:dein_path)
+    finish
+endif
+
+call dein#begin(s:dein_path)
+if dein#load_cache([expand('<sfile>'), s:dein_toml_path, s:dein_toml_lazy_path ])
+    call dein#load_toml(s:dein_toml_path, {'lazy': 0})
+    " currently not used
+    "call dein#load_toml(s:dein_toml_lazy_path, {'lazy': 1})
+endif
+call dein#end()
+
+dein#save_state()
+
+runtime! vimrc.plugin/*.vim

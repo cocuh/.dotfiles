@@ -1,18 +1,114 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
+normalized_name = 'dein'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
-
+normalized_name = 'vimproc'
   [plugins.build]
-  windows = 'tools\\update-dll-mingw'
-  cygwin  = 'make -f make_cygwin.mak'
   mac     = 'make -f make_mac.mak'
   linux   = 'make'
   unix    = 'gmake'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+normalized_name = 'deoplete'
 if = 'has("nvim")'
-on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+normalized_name = 'neocomplete'
+if = '!has("nvim") && has("lua")'
+
+[[plugins]]
+repo = 'Shougo/neocomplcache.vim'
+normalized_name = 'neocomplcache'
+if = '!has("nvim") && !has("lua")'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+normalized_name = 'airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+normalized_name = 'airline-themes'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+normalized_name = 'unite'
+
+[[plugins]]
+repo = 'Shougo/vimfiler'
+normalized_name = 'vimfiler'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+normalized_name = 'indent-guide'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+normalized_name = 'quickrun'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+normalized_name = 'ref'
+
+[[plugins]]
+repo = 'Shougo/vimshell'
+normalized_name = 'vimshell'
+
+[[plugins]]
+repo = 'Shougo/vinarise.vim'
+normalized_name = 'vinarise'
+
+[[plugins]]
+repo = 'rhysd/vim-crystal'
+normalized_name = 'crystal'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive.git'
+normalized_name = 'fugitive'
+
+[[plugins]]
+repo = 'gregsexton/gitv'
+normalized_name = 'gitv'
+
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent'
+normalized_name = 'python-pep8-indent'
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+normalized_name = 'jedi'
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+normalized_name = 'rust'
+
+[[plugins]]
+repo = 'phildawes/racer'
+normalized_name = 'racer'
+  [plugins.build]
+  mac     = 'cargo build --release'
+  unix    = 'cargo build --release'
+
+[[plugins]]
+repo = 'rhysd/github-complete.vim'
+normalized_name = 'github-complete'
+
+[[plugins]]
+repo = 'chrisbra/csv.vim'
+normalized_name = 'csv'
+
+[[plugins]]
+repo = 'kana/vim-fakeclip.git'
+normalized_name = 'fakeclip'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+normalized_name = 'neosnippet'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+normalized_name = 'neosnippet-snippets'
 
