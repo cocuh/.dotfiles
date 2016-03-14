@@ -1,3 +1,5 @@
+runtime! vimrc.basic/*.vim
+
 if &compatible
   set nocompatible
 endif
@@ -28,4 +30,6 @@ else
     if dein#check_install()
         call dein#install()
     endif
+
+    runtime! vimrc.plugin/*.vim
 endif
