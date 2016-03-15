@@ -1,6 +1,5 @@
 #===========
 # lib
-#===========
 [[plugins]]
 name = 'lib/dein'
 repo = 'Shougo/dein.vim'
@@ -13,7 +12,6 @@ build = 'make'
 
 #===========
 # basic
-#===========
 [[plugins]]
 name = 'basic/vimfiler'
 repo = 'Shougo/vimfiler'
@@ -58,7 +56,6 @@ on_i = 1
 
 #===========
 # compl
-#===========
 [[plugins]]
 name = 'compl/deoplete'
 repo = 'Shougo/deoplete.nvim'
@@ -72,7 +69,6 @@ if = 'has("lua")'
 
 #===========
 # ui
-#===========
 [[plugins]]
 name = 'ui/indent-guide'
 repo = 'nathanaelkane/vim-indent-guides'
@@ -90,7 +86,6 @@ lazy=1
 
 #===========
 # lang
-#===========
 [[plugins]]
 name = 'lang/crystal/ft'
 repo = 'rhysd/vim-crystal'
