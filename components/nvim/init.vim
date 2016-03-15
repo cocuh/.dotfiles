@@ -12,7 +12,6 @@ if &compatible
   set nocompatible
 endif
 
-runtime! rc.basics/*.vim
 
 if empty(glob(s:dein_runtime_path.'/README.md'))
     echo 'dein.vim not installed!!(run :DotfilesSubmoduleUpdate)'
@@ -23,6 +22,7 @@ if empty(glob(s:dein_runtime_path.'/README.md'))
         q
     endfunction
     command DotfilesSubmoduleUpdate :call DotfilesSubmoduleUpdate()
+    runtime! rc.basics.vim
     finish
 endif
 
@@ -38,4 +38,5 @@ if dein#load_state(s:dein_path)
     call dein#save_state()
 endif
 
-runtime! plugins.vim
+runtime! rc.basics.vim
+runtime! rc.plugins.vim
