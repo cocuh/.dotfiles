@@ -12,12 +12,16 @@ match WhitespaceEOF /\s\+$/
 " keybinding
 nmap <C-w>: :split<CR>
 nmap <C-w>" :vsplit<CR>
-command Q q
-command W w
+command! Q q
+command! W w
 nmap <silent> <Leader><Leader> :<C-u>update<CR>
+nmap <silent> <Space>ec :<C-u>edit ~/.dotfiles/components<CR>
+nmap <silent> <Space>rc :<C-u>source $MYVIMRC\|echo "re-source ".$MYVIMRC<CR>
 
 " encoding
-set encoding=utf-8
+if has('vim_starting') && &encoding !=# 'utf-8'
+   set encoding=utf-8
+endif
 set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
 " completion
