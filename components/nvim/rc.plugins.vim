@@ -14,8 +14,11 @@ function s:_conf_path(plugin)
 endfunction
 
 function s:register_hook(plugin)
-    execute 'autocmd plugin_hook User' 'dein#source#'.a:plugin.
-                \ ' source '.s:_hook_path(a:plugin)
+    let l:path = s:_hook_path(a:plugin)
+    if exists(l:path)
+        execute 'autocmd plugin_hook User' 'dein#source#'.a:plugin.
+                    \ ' source '.l:path
+    endif
 endfunction
 
 call map(deepcopy(s:plugins), 's:register_hook(v:val)')
