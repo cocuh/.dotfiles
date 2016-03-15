@@ -4,7 +4,6 @@
 [[plugins]]
 name = 'lib/dein'
 repo = 'Shougo/dein.vim'
-normalized_name = 'vim-dein'
 
 [[plugins]]
 name = 'lib/vimproc'
@@ -38,13 +37,11 @@ repo = 'Shougo/vinarise.vim'
 [[plugins]]
 name = 'basic/quickrun'
 repo = 'thinca/vim-quickrun'
-on_map = '<Plug>'
-lazy = 1
 
 [[plugins]]
 name = 'basic/neosnippet'
 repo = 'Shougo/neosnippet'
-depends = ['neosnippet-snippets']
+depends = ['basic/neosnippet-snippets']
 on_i = 1
 on_ft = 'snippet'
 lazy = 1
@@ -52,6 +49,11 @@ lazy = 1
 [[plugins]]
 name = 'basic/neosnippet-snippets'
 repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+name = 'basic/eskk'
+repo = 'tyru/eskk.vim'
+on_i = 1
 
 
 #===========
@@ -82,6 +84,8 @@ repo = 'vim-airline/vim-airline'
 [[plugins]]
 name = 'ui/airline-themes'
 repo = 'vim-airline/vim-airline-themes'
+depends = 'ui/airline'
+lazy=1
 
 
 #===========
@@ -116,6 +120,7 @@ name = 'lang/markdown/compl-github'
 repo = 'rhysd/github-complete.vim'
 on_ft = 'markdown'
 lazy = 1
+
 
 
 
