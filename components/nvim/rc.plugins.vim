@@ -16,7 +16,6 @@ function! s:register_hook(plugin)
     if filereadable(l:path)
         execute 'autocmd plugin_hook User' 'dein#source#'.l:name
                         \ 'source '.l:path
-        execute 'autocmd plugin_hook User' 'dein#source#'.l:name.' !ogg123 ~/music/elipse.ogg'
     endif
 endfunction
 
