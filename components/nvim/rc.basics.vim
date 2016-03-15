@@ -1,5 +1,6 @@
 colorscheme molokai-cocuh
 
+
 " color
 syntax on
 set cursorline " add underline on cursorline
@@ -13,6 +14,7 @@ nmap <C-w>: :split<CR>
 nmap <C-w>" :vsplit<CR>
 command Q q
 command W w
+nmap <silent> <Leader><Leader> :<C-u>update<CR>
 
 " encoding
 set encoding=utf-8
@@ -45,4 +47,13 @@ set foldmethod=marker
 filetype plugin indent on
 let g:netrw_home=expand('~/.cache/vim')
 
+
+" clipboard
+if (!has('nvim') || $DISPLAY != '') && has('clipboard')
+  if has('unnamedplus')
+     set clipboard& clipboard+=unnamedplus
+  else
+     set clipboard& clipboard+=unnamed
+  endif
+endif
 
