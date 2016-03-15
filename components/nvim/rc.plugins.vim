@@ -1,4 +1,4 @@
-let s:dein_plugin_path = expand('<sfile>:p:h').'/plugins'
+let s:dein_plugin_path = 'rc.plugins'
 let s:plugins = keys(dein#get())
 
 augroup plugin_hook
@@ -19,5 +19,8 @@ function s:register_hook(plugin)
 endfunction
 
 call map(deepcopy(s:plugins), 's:register_hook(v:val)')
-runtime! map(deepcopy(s:plugins), 's:_conf_path(v:val)')
+let s:conf_paths = map(deepcopy(s:plugins), 's:_conf_path(v:val)')
+for item in map(deepcopy(s:plugins), 's:_conf_path(v:val)')
+    execute "runtime ".item
+endfor
 
