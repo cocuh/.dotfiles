@@ -1,0 +1,121 @@
+#===========
+# lib
+[[plugins]]
+name = 'lib/dein'
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+name = 'lib/vimproc'
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+
+#===========
+# basic
+[[plugins]]
+name = 'basic/vimfiler'
+repo = 'Shougo/vimfiler'
+
+[[plugins]]
+name = 'basic/vimref'
+repo = 'thinca/vim-ref'
+
+[[plugins]]
+name = 'basic/unite'
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+name = 'basic/vimshell'
+repo = 'Shougo/vimshell'
+
+[[plugins]]
+name = 'basic/vinarise'
+repo = 'Shougo/vinarise.vim'
+
+[[plugins]]
+name = 'basic/quickrun'
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+name = 'basic/neosnippet'
+repo = 'Shougo/neosnippet'
+depends = ['basic/neosnippet-snippets']
+on_i = 1
+on_ft = 'snippet'
+lazy = 1
+
+[[plugins]]
+name = 'basic/neosnippet-snippets'
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+name = 'basic/eskk'
+repo = 'tyru/eskk.vim'
+on_i = 1
+
+
+#===========
+# compl
+[[plugins]]
+name = 'compl/deoplete'
+repo = 'Shougo/deoplete.nvim'
+if = 'has("nvim")'
+
+[[plugins]]
+name = 'compl/neocomplete'
+repo = 'Shougo/neocomplete.vim'
+if = 'has("lua")'
+
+
+#===========
+# ui
+[[plugins]]
+name = 'ui/indent-guide'
+repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+name = 'ui/airline'
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+name = 'ui/airline-themes'
+repo = 'vim-airline/vim-airline-themes'
+depends = 'ui/airline'
+lazy=1
+
+
+#===========
+# lang
+[[plugins]]
+name = 'lang/crystal/ft'
+repo = 'rhysd/vim-crystal'
+on_ft = 'crystal'
+
+[[plugins]]
+name = 'lang/python/compl-jedi'
+repo = 'davidhalter/jedi-vim'
+if = "!has('neovim')"
+on_ft = 'python'
+lazy = 1
+
+[[plugins]]
+name = 'lang/rust/ft'
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+lazy = 1
+
+[[plugins]]
+name = 'lang/rust/compl-racer'
+repo = 'phildawes/racer'
+build = 'cargo build --release'
+on_ft = 'rust'
+
+[[plugins]]
+name = 'lang/markdown/compl-github'
+repo = 'rhysd/github-complete.vim'
+on_ft = 'markdown'
+lazy = 1
+
+
+
+

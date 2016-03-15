@@ -47,6 +47,10 @@ alias cgihttpserver='python -m http.server --cgi'
 alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
 alias hogehoge='git commit -m "hogehoge" && git push'
 
+if [ -n $(where nvim) ];then
+    alias vim='nvim'
+fi
+
 refresh(){
   echo c
 }
