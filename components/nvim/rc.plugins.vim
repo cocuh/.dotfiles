@@ -9,7 +9,7 @@ function! s:_conf_path(plugin)
     return s:dein_plugin_path.'/'.a:plugin.'.vim'
 endfunction
 
-function! s:register_hook(plugin)
+function! s:apply_config(plugin)
     let l:name = a:plugin['name']
     execute "runtime! ".s:_conf_path(l:name)
     let l:path = s:_hook_path(l:name)
@@ -19,5 +19,5 @@ function! s:register_hook(plugin)
     endif
 endfunction
 
-call map(deepcopy(dein#get()), 's:register_hook(v:val)')
+call map(deepcopy(dein#get()), 's:apply_config(v:val)')
 
