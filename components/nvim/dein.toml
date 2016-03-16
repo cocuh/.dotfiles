@@ -37,7 +37,6 @@ repo = 'thinca/vim-quickrun'
 name = 'basic/neosnippet'
 repo = 'Shougo/neosnippet'
 depends = ['basic/neosnippet-snippets']
-on_i = 1
 on_ft = 'snippet'
 lazy = 1
 
@@ -45,10 +44,10 @@ lazy = 1
 name = 'basic/neosnippet-snippets'
 repo = 'Shougo/neosnippet-snippets'
 
-[[plugins]]
-name = 'basic/eskk'
-repo = 'tyru/eskk.vim'
-on_i = 1
+# # disable 2016/03/17, hang when in insert mode
+#[[plugins]]
+#name = 'basic/eskk'
+#repo = 'tyru/eskk.vim'
 
 
 #===========
