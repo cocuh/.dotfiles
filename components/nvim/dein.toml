@@ -89,7 +89,7 @@ repo = 'vim-airline/vim-airline'
 name = 'ui/airline-themes'
 repo = 'vim-airline/vim-airline-themes'
 depends = 'ui/airline'
-lazy=1
+lazy = 1
 
 
 #===========
@@ -102,7 +102,6 @@ on_ft = 'crystal'
 [[plugins]]
 name = 'lang/python/compl-jedi'
 repo = 'davidhalter/jedi-vim'
-if = "!has('neovim')"
 on_ft = 'python'
 lazy = 1
 
@@ -124,6 +123,8 @@ repo = 'rhysd/github-complete.vim'
 on_ft = 'markdown'
 lazy = 1
 
-
+[[plugins]]
+name = 'lang/clang/compl'
+repo = 'Rip-Rip/clang_complete'
 
 
