@@ -1,4 +1,8 @@
-let s:dein_path = expand('~/.cache/dein')
+if has('nvim')
+    let s:dein_cache_path = expand('~/.cache/nvim/dein')
+else
+    let s:dein_cache_path = expand('~/.cache/vim/dein')
+endif
 let s:dein_toml_path = '~/.config/nvim/dein.toml'
 let s:dein_runtime_path = expand('~/.config/nvim/dein.vim')
 
@@ -8,6 +12,11 @@ augroup END
 
 if &compatible
   set nocompatible
+endif
+
+if has('vim_starting')
+    let &runtimepath.=',~/.config/nvim/dein.vim'
+    let &runtimepath.=',~/.config/nvim'
 endif
 
 
@@ -24,10 +33,8 @@ if empty(glob(s:dein_runtime_path.'/README.md'))
     finish
 endif
 
-let &runtimepath.=',~/.config/nvim/dein.vim'
-
-if dein#load_state(s:dein_path)
-    call dein#begin(s:dein_path)
+if dein#load_state(s:dein_cache_path)
+    call dein#begin(s:dein_cache_path)
     if dein#load_cache([ expand('<sfile>'), s:dein_toml_path ])
         call dein#load_toml(s:dein_toml_path)
     endif
