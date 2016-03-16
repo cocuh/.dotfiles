@@ -21,10 +21,6 @@ name = 'basic/vimref'
 repo = 'thinca/vim-ref'
 
 [[plugins]]
-name = 'basic/unite'
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
 name = 'basic/vimshell'
 repo = 'Shougo/vimshell'
 
@@ -35,6 +31,7 @@ repo = 'Shougo/vinarise.vim'
 [[plugins]]
 name = 'basic/quickrun'
 repo = 'thinca/vim-quickrun'
+
 
 [[plugins]]
 name = 'basic/neosnippet'
@@ -52,6 +49,18 @@ repo = 'Shougo/neosnippet-snippets'
 name = 'basic/eskk'
 repo = 'tyru/eskk.vim'
 on_i = 1
+
+
+#===========
+# unite
+
+[[plugins]]
+name = 'unite/unite-build'
+repo = 'Shougo/unite-build'
+
+[[plugins]]
+name = 'unite/unite'
+repo = 'Shougo/unite.vim'
 
 
 #===========
