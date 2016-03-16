@@ -11,11 +11,13 @@ endfunction
 
 function! s:apply_config(plugin)
     let l:name = a:plugin['name']
-    execute "runtime! ".s:_conf_path(l:name)
-    let l:path = s:_hook_path(l:name)
-    if filereadable(l:path)
-        execute 'autocmd plugin_hook User' 'dein#source#'.l:name
-                        \ 'source '.l:path
+    if dein#tap(l:name)
+        execute "runtime! ".s:_conf_path(l:name)
+        let l:path = s:_hook_path(l:name)
+        if filereadable(l:path)
+            execute 'autocmd plugin_hook User' 'dein#source#'.l:name
+                            \ 'source '.l:path
+    endif
     endif
 endfunction
 
