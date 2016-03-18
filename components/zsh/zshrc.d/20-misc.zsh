@@ -5,7 +5,6 @@ bindkey -e
 stty stop undef
 
 export LESS='--tabs=4 --no-init --LONG-PROMPT --ignore-case'
-export EDITOR='vim'
 
 function up(){
     echo

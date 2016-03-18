@@ -49,6 +49,9 @@ alias hogehoge='git commit -m "hogehoge" && git push'
 
 if [ -n "$(builtin command -v nvim)" ];then
     alias vim='nvim'
+    export EDITOR='nvim'
+elif [ -n "$(builtin command -v vim)" ];then
+    export EDITOR='vim'
 fi
 
 refresh(){
