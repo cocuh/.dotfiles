@@ -35,9 +35,7 @@ endif
 
 if dein#load_state(s:dein_cache_path)
     call dein#begin(s:dein_cache_path)
-    if dein#load_cache([ expand('<sfile>'), s:dein_toml_path ])
-        call dein#load_toml(s:dein_toml_path)
-    endif
+    call dein#load_toml(s:dein_toml_path)
     call dein#end()
 
     call dein#save_state()
