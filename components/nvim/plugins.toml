@@ -121,4 +121,9 @@ lazy = 1
 name = 'lang/clang/compl'
 repo = 'Rip-Rip/clang_complete'
 
+[[plugins]]
+name = 'lang/dockerfile'
+repo = 'docker/docker'
+rpc = '/contrib/syntax/vim'
+
 
