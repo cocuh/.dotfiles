@@ -3,7 +3,7 @@ if has('nvim')
 else
     let s:dein_cache_path = expand('~/.cache/vim/dein')
 endif
-let s:dein_toml_path = '~/.config/nvim/dein.toml'
+let s:dein_toml_path = '~/.config/nvim/plugins.toml'
 let s:dein_runtime_path = expand('~/.config/nvim/dein.vim')
 let s:hook_path = expand('~/.config/nvim/rc.plugins')
 
