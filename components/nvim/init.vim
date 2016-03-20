@@ -7,6 +7,8 @@ let s:dein_toml_path = '~/.config/nvim/plugins.toml'
 let s:dein_runtime_path = expand('~/.config/nvim/dein.vim')
 let s:hook_path = expand('~/.config/nvim/rc.plugins')
 
+let g:dein#types#git#clone_depth = 1
+
 augroup plugin_hook
     autocmd!
 augroup END
