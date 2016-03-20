@@ -5,6 +5,7 @@ else
 endif
 let s:dein_toml_path = '~/.config/nvim/dein.toml'
 let s:dein_runtime_path = expand('~/.config/nvim/dein.vim')
+let s:hook_path = expand('~/.config/nvim/rc.plugins')
 
 augroup plugin_hook
     autocmd!
@@ -36,6 +37,11 @@ endif
 if dein#load_state(s:dein_cache_path)
     call dein#begin(s:dein_cache_path)
     call dein#load_toml(s:dein_toml_path)
+    for plugin_name in keys(dein#get())
+        let s:plugin = dein#get(plugin_name)
+        let s:plugin['hook_add'] = "runtime! rc.plugins/". plugin_name .".vim"
+        let s:plugin['hook_post_source'] = 'execute "runtime! rc.plugins/'. plugin_name .'-post.vim"'
+    endfor
     call dein#end()
 
     call dein#save_state()

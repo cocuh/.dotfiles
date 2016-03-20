@@ -85,12 +85,6 @@ repo = 'nathanaelkane/vim-indent-guides'
 name = 'ui/airline'
 repo = 'vim-airline/vim-airline'
 
-[[plugins]]
-name = 'ui/airline-themes'
-repo = 'vim-airline/vim-airline-themes'
-depends = 'ui/airline'
-lazy = 1
-
 
 #===========
 # lang
