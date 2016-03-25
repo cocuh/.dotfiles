@@ -127,3 +127,7 @@ repo = 'docker/docker'
 rpc = '/contrib/syntax/vim'
 
 
+[[plugins]]
+name = 'lang/toml'
+repo = 'cespare/vim-toml'
+
