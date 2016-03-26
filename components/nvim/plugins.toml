@@ -102,13 +102,10 @@ lazy = 1
 [[plugins]]
 name = 'lang/rust/ft'
 repo = 'rust-lang/rust.vim'
-on_ft = 'rust'
-lazy = 1
 
 [[plugins]]
 name = 'lang/rust/compl-racer'
 repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
 
 [[plugins]]
 name = 'lang/markdown/compl-github'

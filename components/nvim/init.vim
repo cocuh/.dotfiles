@@ -49,6 +49,11 @@ if dein#load_state(s:dein_cache_path)
     call dein#save_state()
 endif
 
+for plugin_name in keys(dein#get())
+    let s:plugin = dein#get(plugin_name)
+    exec "runtime! rc.plugins/". plugin_name .".vim"
+endfor
+
 runtime! rc.basics.vim
 runtime! rc.plugins.vim
 
