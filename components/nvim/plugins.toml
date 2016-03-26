@@ -107,8 +107,7 @@ lazy = 1
 
 [[plugins]]
 name = 'lang/rust/compl-racer'
-repo = 'phildawes/racer'
-build = 'cargo build --release'
+repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
 
 [[plugins]]
