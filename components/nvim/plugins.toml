@@ -127,3 +127,9 @@ rpc = '/contrib/syntax/vim'
 name = 'lang/toml'
 repo = 'cespare/vim-toml'
 
+[[plugins]]
+name = 'lang/vimscript/compl'
+repo = 'Shougo/neco-vim'
+on_i = 1
+on_ft = 'vim'
+lazy = 1
