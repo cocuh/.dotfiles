@@ -17,6 +17,9 @@ command! W w
 nmap <silent> <Leader><Leader> :<C-u>update<CR>
 nmap <silent> <Space>ec :<C-u>edit ~/.dotfiles/components<CR>
 nmap <silent> <Space>rc :<C-u>source $MYVIMRC\|echo "re-source ".$MYVIMRC<CR>
+nmap <silent>bp :bprevious<CR>
+nmap <silent>bn :bnext<CR>
+nmap <silent>bb :b#<CR>
 
 " encoding
 if has('vim_starting') && &encoding !=# 'utf-8'
