@@ -16,3 +16,6 @@
 	tool = vimdiff
 #[push]
 #	default = simple
+[hub]
+    user = cocuh
+    protocol = https
