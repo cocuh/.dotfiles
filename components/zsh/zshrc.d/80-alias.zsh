@@ -44,6 +44,8 @@ alias mitmproxy-p9999='mitmproxy -p 9999'
 alias simplehttpserver='python -m http.server'
 alias cgihttpserver='python -m http.server --cgi'
 
+alias gcal='gcalcli agenda'
+
 alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
 alias hogehoge='git commit -m "hogehoge" && git push'
 
