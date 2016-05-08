@@ -99,12 +99,13 @@ def main():
         raw_paths += conf.items(component)
 
     target_paths = []
-    for from_path, to_path in raw_paths:
+    for from_path, to_pathes in raw_paths:
         from_path = from_path.format(**{
             'path': COMPONENT_PATH,
         })
-        to_path = os.path.expanduser(to_path)
-        target_paths.append((from_path, to_path))
+        to_pathes = [os.path.expanduser(path)for path in to_pathes.splitlines() if path]
+        for to_path in to_pathes:
+            target_paths.append((from_path, to_path))
 
     if test_install(target_paths):
         install(target_paths, is_debug=args.debug)
