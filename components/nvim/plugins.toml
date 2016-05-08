@@ -133,3 +133,8 @@ repo = 'Shougo/neco-vim'
 on_i = 1
 on_ft = 'vim'
 lazy = 1
+
+[[plugins]]
+name = 'lang/vim-ansible-yaml'
+repo = 'chase/vim-ansible-yaml'
+
