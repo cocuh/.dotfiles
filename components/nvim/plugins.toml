@@ -118,12 +118,6 @@ name = 'lang/clang/compl'
 repo = 'Rip-Rip/clang_complete'
 
 [[plugins]]
-name = 'lang/dockerfile'
-repo = 'docker/docker'
-rpc = '/contrib/syntax/vim'
-
-
-[[plugins]]
 name = 'lang/toml'
 repo = 'cespare/vim-toml'
 
@@ -133,3 +127,7 @@ repo = 'Shougo/neco-vim'
 on_i = 1
 on_ft = 'vim'
 lazy = 1
+
+[[plugins]]
+name = 'lang/elixir'
+repo = 'elixir-lang/vim-elixir'
