@@ -129,5 +129,11 @@ on_ft = 'vim'
 lazy = 1
 
 [[plugins]]
+<<<<<<< HEAD
 name = 'lang/elixir'
 repo = 'elixir-lang/vim-elixir'
+=======
+name = 'lang/vim-ansible-yaml'
+repo = 'chase/vim-ansible-yaml'
+
+>>>>>>> 636d730ac23f0073cc0f7f7945966058c6128874
