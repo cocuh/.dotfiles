@@ -9,4 +9,8 @@ autocmd FileType python call jedi#configure_call_signatures()
 if !exists("g:neocomplete#sources#omni#input_patterns")
     let g:neocomplete#sources#omni#input_patterns = {}
 endif
+if !exists("g:deoplete#omni#sources#omni#input_patterns")
+    let g:deoplete#sources#omni#input_patterns = {}
+endif
 let g:neocomplete#sources#omni#input_patterns.python ='[^. \t]\.\w*\|\(from .* \|\)import \w*'
+let g:deoplete#sources#omni#input_patterns.python ='[^. \t]\.\w*\|\(from .* \|\)import \w*'
