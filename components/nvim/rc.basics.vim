@@ -41,6 +41,7 @@ set ignorecase
 set smartcase
 
 " line number
+set relativenumber
 set number
 set numberwidth=5
 set backspace=indent,eol,start
