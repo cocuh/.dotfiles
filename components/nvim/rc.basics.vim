@@ -54,6 +54,7 @@ set listchars=eol:~,tab:>-
 set foldmethod=marker
 filetype plugin indent on
 let g:netrw_home=expand('~/.cache/vim')
+set mouse=
 
 
 " clipboard
