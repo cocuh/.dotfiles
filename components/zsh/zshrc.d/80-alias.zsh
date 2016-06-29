@@ -47,7 +47,10 @@ alias cgihttpserver='python -m http.server --cgi'
 alias gcal='gcalcli agenda --color_owner=green --color_date=white'
 
 alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
-alias hogehoge='git commit -m "hogehoge" && git push'
+hogehoge() {
+    local hogehoge_commit_msgs=(':beer:' ':cooktail:' ':lolipop:' ':cookie:' ':shaved_ice:' ':oden:' ':ramen:' ':sake:' ':wine:' ':beers:' ':coffee:' ':tea:' ':dango:' ':pizza:' ':bento:' ':sushi:')
+    git commit -m "${hogehoge_commit_msgs[$RANDOM%$#hogehoge_commit_msgs+1]}" && git push
+}
 
 if [ -n "$(builtin command -v nvim)" ];then
     alias vim='nvim'
