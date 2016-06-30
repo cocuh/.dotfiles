@@ -48,7 +48,7 @@ alias gcal='gcalcli agenda --color_owner=green --color_date=white'
 
 alias virtualenvwrapper='source /usr/bin/virtualenvwrapper.sh'
 hogehoge() {
-    local hogehoge_commit_msgs=(':beer:' ':cooktail:' ':lolipop:' ':cookie:' ':shaved_ice:' ':oden:' ':ramen:' ':sake:' ':wine:' ':beers:' ':coffee:' ':tea:' ':dango:' ':pizza:' ':bento:' ':sushi:')
+    local hogehoge_commit_msgs=(':beer:' ':cooktail:' ':lolipop:' ':cookie:' ':shaved_ice:' ':oden:' ':ramen:' ':sake:' ':wine_glass:' ':beers:' ':coffee:' ':tea:' ':dango:' ':pizza:' ':bento:' ':sushi:')
     git commit -m "${hogehoge_commit_msgs[$RANDOM%$#hogehoge_commit_msgs+1]}" && git push
 }
 
