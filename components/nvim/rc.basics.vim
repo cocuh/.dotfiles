@@ -20,6 +20,12 @@ nmap <silent> <Space>rc :<C-u>source $MYVIMRC\|echo "re-source ".$MYVIMRC<CR>
 nmap <silent>bp :bprevious<CR>
 nmap <silent>bn :bnext<CR>
 nmap <silent>bb :b#<CR>
+imap <silent> <C-c> <C-[>
+
+if has('nvim')
+    tnoremap <silent> <ESC> <C-\><C-n>
+    tnoremap <silent> <C-[> <C-\><C-n>
+endif
 
 " encoding
 if has('vim_starting') && &encoding !=# 'utf-8'
