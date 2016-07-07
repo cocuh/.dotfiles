@@ -44,6 +44,11 @@ lazy = 1
 name = 'basic/neosnippet-snippets'
 repo = 'Shougo/neosnippet-snippets'
 
+[[plugins]]
+name = 'basic/neoterm'
+repo = 'cocuh/neoterm'
+if = 'has("nvim")'
+
 # # disable 2016/03/17, hang when in insert mode
 #[[plugins]]
 #name = 'basic/eskk'

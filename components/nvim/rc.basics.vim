@@ -1,5 +1,7 @@
 colorscheme molokai-cocuh
 
+" sh
+set sh=zsh
 
 " color
 syntax on
@@ -22,7 +24,7 @@ nmap <silent>bn :bnext<CR>
 nmap <silent>bb :b#<CR>
 imap <silent> <C-c> <C-[>
 
-if has('nvim')
+if has('nvim') " for terminal
     tnoremap <silent> <ESC> <C-\><C-n>
     tnoremap <silent> <C-[> <C-\><C-n>
 endif
