@@ -13,6 +13,9 @@ atom-workspace{
     background-size: cover;
 }
 
+atom-pane-container atom-pane .item-views, atom-panel-container, .pane-item{
+  background-color: transparent!important;
+}
 
 atom-pane {
   .background-transparent(@background-image-alpha);
@@ -20,6 +23,9 @@ atom-pane {
   padding: 0!important;
 }
 
+atom-text-editor[mini] .text, atom-text-editor[mini]::shadow .text, atom-text-editor[mini] .source, atom-text-editor[mini]::shadow .source{
+  color: white!important;
+}
 
 atom-text-editor {
   .background-transparent();
