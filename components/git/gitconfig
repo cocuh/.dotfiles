@@ -1,6 +1,7 @@
 [alias]
 	st = status
 	today = log --since=midnight --author='Kosuke Kusano' --oneline
+	com = commit
 [color]
 	ui = auto
 [user]
