@@ -27,6 +27,7 @@ imap <silent> <C-c> <C-[>
 if has('nvim') " for terminal
     tnoremap <silent> <ESC> <C-\><C-n>
     tnoremap <silent> <C-[> <C-\><C-n>
+    nmap TT :terminal<CR>
 endif
 
 " encoding
