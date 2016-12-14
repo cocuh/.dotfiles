@@ -71,7 +71,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --,((modm,            xK_p     ),spawn "dmenu_run")
     ,((modm,            xK_d     ),spawn "rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85")
     ,((modm,            xK_n     ),spawn "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85")
-    ,((modm,            xK_Tab   ),spawn "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85")
     ,((modm.|.shiftMask,xK_c     ),kill)
     ,((modm.|.shiftMask,xK_q     ),kill)
     ,((modm,            xK_f     ),sendMessage NextLayout)
@@ -104,7 +103,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         (windows . W.greedyView) "-")
     --Scratchpad
     ,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
-    ,((modm,            xK_t     ),namedScratchpadAction scratchpads "tmp")
+    ,((modm,            xK_Tab   ),namedScratchpadAction scratchpads "tmp")
     ,((modm,            xK_e     ),namedScratchpadAction scratchpads "stardict")
     ,((modm,            xK_slash ),spawn "import ~/hoge.png && mogrify +repage ~/hoge.png")
     ,((modm.|.shiftMask,xK_slash ),spawn "import -window \"$(xdotool getwindowfocus -f)\" ~/hoge.png && mogrify +repage ~/hoge.png")
