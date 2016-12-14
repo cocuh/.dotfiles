@@ -72,10 +72,10 @@ manageScratchpad = namedScratchpadManageHook scratchpads
 
 --Keybinding
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-	[((modm.|.shiftMask,xK_Return),spawn "urxvt")
+	[((modm.|.shiftMask,xK_Return),spawn "mlterm")
 	,((modm,            xK_Return),spawn $ XMonad.terminal  conf)
-	,((modm,            xK_p     ),spawn "dmenu_run")
-	,((modm,            xK_d     ),spawn "xboomx")
+    ,((modm,            xK_d     ),spawn "rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85")
+    ,((modm,            xK_n     ),spawn "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85")
 	,((modm,            xK_c     ),spawn "/home/cocu/bin/bin-git/utils/toggle_xcompmgr")
 	,((modm.|.shiftMask,xK_c     ),kill)
 	,((modm.|.shiftMask,xK_q     ),kill)
@@ -116,7 +116,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 		(windows . W.greedyView) "1")
 	--scratchpad
     ,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
-    ,((modm,            xK_g     ),namedScratchpadAction scratchpads "tmp")
+    ,((modm,            xK_Tab   ),namedScratchpadAction scratchpads "tmp")
     ,((modm,            xK_e     ),namedScratchpadAction scratchpads "stardict")
 	--screen shot 
 	,((modm,            xK_slash ),spawn "import ~/hoge.png")
