@@ -4,11 +4,10 @@ Config { font = "-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "grey"
 --       , position = Top
-       , position = Static { xpos = 1920, ypos = 0, width = 1280, height = 15}
+       , position = Static { xpos = 1920, ypos = 0, width = 1080, height = 15}
        , lowerOnStart = True
        , persistent = False
-       , commands = [
-                    , Run Network "eno1" ["-L","0","-H","32","--normal","green","--high","red"] 10
+       , commands = [ Run Network "eno1" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
