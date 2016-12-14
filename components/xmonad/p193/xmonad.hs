@@ -2,6 +2,8 @@ import XMonad
 import Data.Monoid
 import System.Exit
 
+import XMonad.Actions.WindowBringer
+
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
@@ -64,30 +66,31 @@ manageScratchpad = namedScratchpadManageHook scratchpads
 
 --Keybinding
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    [((modm.|.shiftMask,xK_Return),spawn "urxvt")
+    [((modm.|.shiftMask,xK_Return),spawn "mlterm")
     ,((modm,            xK_Return),spawn $ XMonad.terminal  conf)
     --,((modm,            xK_p     ),spawn "dmenu_run")
-    ,((modm,            xK_d     ),spawn "xboomx")
+    ,((modm,            xK_d     ),spawn "rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85")
+    ,((modm,            xK_n     ),spawn "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85")
+    ,((modm,            xK_Tab   ),spawn "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85")
     ,((modm.|.shiftMask,xK_c     ),kill)
     ,((modm.|.shiftMask,xK_q     ),kill)
     ,((modm,            xK_f     ),sendMessage NextLayout)
     --,((modm,            xK_f     ),sendMessage $ Toggle FULL) ---なぜかできない
-    ,((modm,            xK_n     ),refresh)
+    ,((modm,            xK_comma ),refresh)
     ,((modm,            xK_t     ),withFocused $ windows . W.sink)
     --Restart and Quit
     ,((modm.|.shiftMask,xK_r     ),spawn "xmonad --recompile; xmonad --restart")
     ,((modm.|.shiftMask,xK_Escape),io(exitWith ExitSuccess))
 
     --wallpaper change
-    ,((modm,            xK_w     ),spawn "python /home/cocu/bin/WallpaperChanger/wallpaperchanger.py")
+    ,((modm,            xK_w     ),spawn "python /home/cocuh/bin/WallpaperChanger/wallpaperchanger.py")
     ,((modm.|.shiftMask,xK_w     ),spawn "feh --bg-fill ~/picture/wallpaper/saya.jpg")
-    ,((modm,            xK_m     ),spawn "python /home/cocu/bin/utils/minecraft-input_helper")
 
     --move focus
-    ,((modm,            xK_j     ),sendMessage $ Go D)
-    ,((modm,            xK_k     ),sendMessage $ Go U)
-    ,((modm,            xK_h     ),sendMessage $ Go L)
-    ,((modm,            xK_l     ),sendMessage $ Go R)
+    ,((modm,            xK_j     ),windows W.focusDown)
+    ,((modm,            xK_k     ),windows W.focusUp)
+    ,((modm,            xK_h     ),sendMessage Shrink)
+    ,((modm,            xK_l     ),sendMessage Expand)
     --move window
     ,((modm.|.shiftMask,xK_j     ),windows W.swapDown)
     ,((modm.|.shiftMask,xK_k     ),windows W.swapUp)
@@ -101,7 +104,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         (windows . W.greedyView) "-")
     --Scratchpad
     ,((modm,            xK_grave ),namedScratchpadAction scratchpads "htop")
-    ,((modm,            xK_g     ),namedScratchpadAction scratchpads "tmp")
+    ,((modm,            xK_t     ),namedScratchpadAction scratchpads "tmp")
     ,((modm,            xK_e     ),namedScratchpadAction scratchpads "stardict")
     ,((modm,            xK_slash ),spawn "import ~/hoge.png && mogrify +repage ~/hoge.png")
     ,((modm.|.shiftMask,xK_slash ),spawn "import -window \"$(xdotool getwindowfocus -f)\" ~/hoge.png && mogrify +repage ~/hoge.png")
