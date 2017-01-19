@@ -40,6 +40,9 @@ def install(target_paths, is_debug=False):
         if not is_debug:
             if os.path.islink(to_path):
                 os.remove(to_path)
+            to_dir = os.path.dirname(to_path)
+            if not os.path.exists(to_dir):
+                os.makedirs(to_dir)
             os.symlink(from_path, to_path)
 
 
