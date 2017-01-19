@@ -440,7 +440,7 @@ client.connect_signal("manage", function (c, startup)
     end
     if _is_first_run then
         local current_time = os.time()
-        if current_time - _start_time > 1 then
+        if current_time - _start_time > 3 then
             _is_first_run = false
             awful.client.movetoscreen(c, mouse.screen)
         end
