@@ -93,12 +93,8 @@ local layouts =
 
 
 -- {{{ Wallpaper
-awful.util.spawn("feh --bg-fill ~/picture/wallpaper/materials.png --bg-fill ~/picture/wallpaper/materials1.png")
---if beautiful.wallpaper then
---    for s = 1, screen.count() do
---        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
---    end
---end
+gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/materials.png", 1, false)
+gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/materials.png", 2, false)
 -- }}}
 
 -- {{{ Tags
@@ -254,7 +250,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey, "Shift"   }, "w", function () mymainmenu:show() end),
+    awful.key({ modkey, "Shift"   }, "m", function () mymainmenu:show() end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -264,6 +260,11 @@ globalkeys = awful.util.table.join(
     -- Screen focus
     awful.key({ modkey,           }, "[", function () awful.screen.focus(1) end),
     awful.key({ modkey,           }, "]", function () awful.screen.focus(2) end),
+    awful.key({ modkey,           }, "r",
+        function ()
+            awful.tag.viewonly(tags[2][#tags[2]])
+            awful.tag.viewonly(tags[1][1])
+        end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
@@ -303,8 +304,9 @@ globalkeys = awful.util.table.join(
         {description="toggle bar", group="bar"}),
 
     -- program
-    awful.key({ modkey,           }, "r", function() awful.util.spawn("rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85") end),
-    awful.key({ modkey,           }, "w", function() awful.util.spawn("rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85") end)
+    awful.key({ modkey, "Shift"   }, "d", function() awful.util.spawn("rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85") end),
+    awful.key({ modkey,           }, "w", function() awful.util.spawn("rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85") end),
+    awful.key({ modkey, "Shift"   }, "w", function() awful.spawn.with_shell("python ~/workspace/wallpaperchanger/wallpaperchanger.py") end)
 )
 
 clientkeys = awful.util.table.join(
