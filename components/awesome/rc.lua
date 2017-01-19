@@ -92,7 +92,6 @@ local layouts =
 -- }}}
 
 
-
 -- {{{ Wallpaper
 awful.util.spawn("feh --bg-fill ~/picture/wallpaper/materials.png --bg-fill ~/picture/wallpaper/materials1.png")
 --if beautiful.wallpaper then
@@ -315,7 +314,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space",  function (c) c:swap(awful.client.getmaster()) end),
 
     -- screen moving
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
+    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen() end              ),
     awful.key({ modkey, "Shift"   }, "[",
         function (c)
             local screen = mouse.screen
@@ -369,12 +368,14 @@ for screen, tag_names in ipairs({left_tag_names, right_tag_names}) do
             -- Move client to tag.
             awful.key({ modkey, "Shift" }, t,
                       function ()
+                          local scr = mouse.screen
                           if client.focus then
                               local tag = awful.tag.gettags(screen)[i]
                               if tag then
                                   awful.client.movetotag(tag)
                               end
                          end
+                         awful.screen.focus(scr)
                       end))
     end
 end
@@ -415,7 +416,6 @@ awful.rules.rules = {
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
-local _is_first_run = true
 local _start_time = os.time()
 
 client.connect_signal("manage", function (c, startup)
@@ -438,14 +438,11 @@ client.connect_signal("manage", function (c, startup)
             awful.placement.no_offscreen(c)
         end
     end
-    if _is_first_run then
-        local current_time = os.time()
-        if current_time - _start_time > 3 then
-            _is_first_run = false
-            awful.client.movetoscreen(c, mouse.screen)
-        end
-    else
-        awful.client.movetoscreen(c, mouse.screen)
+
+    local current_time = os.time()
+    if current_time - _start_time > 3 then
+        _is_first_run = false
+        c:move_to_screen(mouse.screen)
     end
 
     local titlebars_enabled = false
