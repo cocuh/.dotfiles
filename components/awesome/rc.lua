@@ -91,12 +91,15 @@ local layouts =
 }
 -- }}}
 
+
+
 -- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
-end
+awful.util.spawn("feh --bg-fill ~/picture/wallpaper/materials.png --bg-fill ~/picture/wallpaper/materials1.png")
+--if beautiful.wallpaper then
+--    for s = 1, screen.count() do
+--        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+--    end
+--end
 -- }}}
 
 -- {{{ Tags
@@ -436,7 +439,6 @@ client.connect_signal("manage", function (c, startup)
         end
     end
     if _is_first_run then
-        naughty.notify({title="youjo", text=current_time})
         local current_time = os.time()
         if current_time - _start_time > 1 then
             _is_first_run = false
