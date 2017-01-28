@@ -23,31 +23,38 @@ pomodoro.on_work_pomodoro_finish_callbacks = {
         awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
     end
 }
+pomodoro.on_pause_pomodoro_finish_callbacks = {
+    function()
+        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
+    end
+}
+
+
 
 local naughty = require('naughty')
 naughty.config.defaults.opacity = 0.8
 
-local mpdicon = wibox.widget.imagebox(beautiful.widget_music)
-mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
 local mpdwidget = lain.widgets.mpd({
     music_dir="/home/cocuh/music",
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
             title  = mpd_now.title  .. " "
-            mpdicon:set_image(beautiful.widget_music_on)
         elseif mpd_now.state == "pause" then
             artist = " mpd "
             title  = "paused "
         else
-            artist = ""
-            title  = ""
-            mpdicon:set_image(beautiful.widget_music)
+            artist = " mpd "
+            title  = "unknown "
         end
 
         widget:set_markup(markup("#EA6F81", artist) .. title)
     end
 })
+mpdwidget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.spawn("mpc toggle") end)
+))
+
 
 beautiful.graph_fg = "#7F9F7F"
 beautiful.graph_border_color = "#7F9F7F"
