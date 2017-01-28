@@ -7,6 +7,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -14,6 +15,9 @@ local menubar = require("menubar")
 local lain = require("lain")
 local markup = lain.util.markup
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+local vicious = require('vicious')
+local pomodoro = require('pomodoro')
+pomodoro.init()
 
 local naughty = require('naughty')
 naughty.config.defaults.opacity = 0.8
@@ -39,6 +43,9 @@ local mpdwidget = lain.widgets.mpd({
         widget:set_markup(markup("#EA6F81", artist) .. title)
     end
 })
+
+beautiful.graph_fg = "#7F9F7F"
+beautiful.graph_border_color = "#7F9F7F"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -67,7 +74,6 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal
 terminal = "mlterm"
@@ -212,6 +218,22 @@ for s = 1, screen.count() do
     if s == 1 then
         right_layout:add(wibox.widget.systray())
         right_layout:add(wibox.container.background(mpdwidget, beautiful.bg_focus))
+        right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
+        right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
+    else
+        memtext = wibox.widget.textbox()
+        vicious.register(memtext, vicious.widgets.mem, '<b><span color="#7F9F7F"> mem: $2 kB($1%)</span><span color="#cccccc"> | </span></b>', 2)
+        right_layout:add(wibox.container.background(memtext, beautiful.bg_focus))
+
+        nettext = wibox.widget.textbox()
+        vicious.register(nettext, vicious.widgets.net, '<b><span color="#CC9933">down: ${eno1 down_kb} kB/s</span> <span color="#7F9F7F"> up: ${eno1 up_kb} kB/s</span></b> ', 2)
+        right_layout:add(wibox.container.background(nettext, beautiful.bg_focus))
+
+        cpuwidget = wibox.widget.graph()
+        cpuwidget:set_width(50)
+        cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
+        vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 1)
+        right_layout:add(wibox.container.background(cpuwidget, beautiful.bg_focus))
     end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
@@ -410,6 +432,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { class = "wmail" },
+      properties = { tag = "7" } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
