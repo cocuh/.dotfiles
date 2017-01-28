@@ -18,6 +18,11 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local vicious = require('vicious')
 local pomodoro = require('pomodoro')
 pomodoro.init()
+pomodoro.on_work_pomodoro_finish_callbacks = {
+    function()
+        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
+    end
+}
 
 local naughty = require('naughty')
 naughty.config.defaults.opacity = 0.8

@@ -7,3 +7,6 @@
 [submodule "components/awesome/vicious"]
 	path = components/awesome/vicious
 	url = https://github.com/mic92/vicious.git
+[submodule "components/awesome/pomodoro"]
+	path = components/awesome/pomodoro
+	url = https://github.com/cocuh/awesome-pomodoro.git
