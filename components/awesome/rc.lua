@@ -136,6 +136,14 @@ else
     tags[1] = awful.tag(left_tag_names, 1, layouts[1])
     tags[2] = awful.tag(right_tag_names, 2, awful.layout.suit.max)
 end
+
+function focus_home_position()
+    if is_double_screen then
+        awful.tag.viewonly(tags[2][#tags[2]])
+    end
+    awful.tag.viewonly(tags[1][1])
+end
+
 -- }}}
 
 -- {{{ Wibox
@@ -220,7 +228,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then
-        right_layout:add(wibox.widget.systray())
+        right_layout:add(wibox.container.background(wibox.widget.systray(), beautiful.bg_focus))
         --right_layout:add(wibox.container.background(mpdwidget, beautiful.bg_focus))
         right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
         right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
@@ -289,12 +297,7 @@ globalkeys = awful.util.table.join(
             awful.screen.focus(2)
         end
     end),
-    awful.key({ modkey,           }, "r", function ()
-        if is_double_screen then
-            awful.tag.viewonly(tags[2][#tags[2]])
-        end
-        awful.tag.viewonly(tags[1][1])
-    end),
+    awful.key({ modkey,           }, "r", focus_home_position),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
@@ -544,3 +547,6 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
+focus_home_position()
