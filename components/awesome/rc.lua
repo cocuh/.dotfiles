@@ -3,61 +3,25 @@ local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
+
 -- Widget and layout library
 local wibox = require("wibox")
+local lain = require("lain")
+local markup = lain.util.markup
+local vicious = require('vicious')
+
 -- Theme handling library
 local beautiful = require("beautiful")
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.graph_fg = "#7F9F7F"
+beautiful.graph_border_color = "#7F9F7F"
+
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
 
-local lain = require("lain")
-local markup = lain.util.markup
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-local vicious = require('vicious')
 local pomodoro = require('pomodoro')
-pomodoro.init()
-pomodoro.on_work_pomodoro_finish_callbacks = {
-    function()
-        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
-    end
-}
-pomodoro.on_pause_pomodoro_finish_callbacks = {
-    function()
-        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
-    end
-}
-
-
-
-local naughty = require('naughty')
-naughty.config.defaults.opacity = 0.8
-
-local mpdwidget = lain.widgets.mpd({
-    music_dir="/home/cocuh/music",
-    settings = function()
-        if mpd_now.state == "play" then
-            artist = " " .. mpd_now.artist .. " "
-            title  = mpd_now.title  .. " "
-        elseif mpd_now.state == "pause" then
-            artist = " mpd "
-            title  = "paused "
-        else
-            artist = " mpd "
-            title  = "unknown "
-        end
-
-        widget:set_markup(markup("#EA6F81", artist) .. title)
-    end
-})
-mpdwidget:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.spawn("mpc toggle") end)
-))
-
-
-beautiful.graph_fg = "#7F9F7F"
-beautiful.graph_border_color = "#7F9F7F"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -83,6 +47,49 @@ do
     end)
 end
 -- }}}
+
+
+--{{{ Notification
+naughty.config.defaults.opacity = 0.8
+--}}}
+
+--- {{{ mpd wiget
+local mpdwidget = lain.widgets.mpd({
+    music_dir="/home/cocuh/music",
+    settings = function()
+        if mpd_now.state == "play" then
+            artist = " " .. mpd_now.artist .. " "
+            title  = mpd_now.title  .. " "
+        elseif mpd_now.state == "pause" then
+            artist = " mpd "
+            title  = "paused "
+        else
+            artist = " mpd "
+            title  = "unknown "
+        end
+
+        widget:set_markup(markup("#EA6F81", artist) .. title)
+    end
+})
+mpdwidget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.spawn("mpc toggle") end)
+))
+---}}}
+
+--{{{ pomodoro timer
+pomodoro.init()
+pomodoro.on_work_pomodoro_finish_callbacks = {
+    function()
+        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
+    end
+}
+pomodoro.on_pause_pomodoro_finish_callbacks = {
+    function()
+        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
+    end
+}
+--}}}
+
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -110,39 +117,21 @@ local layouts =
 -- }}}
 
 
--- {{{ Wallpaper
-gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/materials.png", 1, false)
-gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/materials.png", 2, false)
--- }}}
-
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 local left_tag_names = { "1", "2", "3", "4", "5", "6", "7" }
 local right_tag_names = { "8", "9", "0", "-", "="}
-tags = {}
-tags[1] = awful.tag(left_tag_names, 1, layouts[1])
-tags[2] = awful.tag(right_tag_names, 2, awful.layout.suit.max)
--- }}}
+local tag_names = awful.util.table.clone(left_tag_names)
+awful.util.table.merge(tag_names, right_tag_names)
 
--- {{{ Menu
--- Create a laucher widget and a main menu
-myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end },
-    { "manual", terminal .. " -e man awesome" },
-    { "restart", awesome.restart },
-    { "quit", awesome.quit }
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
-
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+if screen.count() == 1 then
+    tags = {}
+    tags[1] = awful.tag(tag_names, 1, layouts[1])
+else
+    tags = {}
+    tags[1] = awful.tag(left_tag_names, 1, layouts[1])
+    tags[2] = awful.tag(right_tag_names, 2, awful.layout.suit.max)
+end
 -- }}}
 
 -- {{{ Wibox
@@ -221,7 +210,6 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
 
@@ -284,7 +272,6 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey, "Shift"   }, "m", function () mymainmenu:show() end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -293,10 +280,16 @@ globalkeys = awful.util.table.join(
 
     -- Screen focus
     awful.key({ modkey,           }, "[", function () awful.screen.focus(1) end),
-    awful.key({ modkey,           }, "]", function () awful.screen.focus(2) end),
+    awful.key({ modkey,           }, "]", function ()
+        if screen.count() > 1 then
+            awful.screen.focus(2)
+        end
+    end),
     awful.key({ modkey,           }, "r",
         function ()
-            awful.tag.viewonly(tags[2][#tags[2]])
+            if screen.count() > 1 then
+                awful.tag.viewonly(tags[2][#tags[2]])
+            end
             awful.tag.viewonly(tags[1][1])
         end),
 
@@ -359,9 +352,11 @@ clientkeys = awful.util.table.join(
         end),
     awful.key({ modkey, "Shift"   }, "]",
         function (c)
-            local screen = mouse.screen
-            awful.client.movetoscreen(c, 2)
-            awful.screen.focus(screen)
+            if screen.count() > 1 then
+                local screen = mouse.screen
+                awful.client.movetoscreen(c, 2)
+                awful.screen.focus(screen)
+            end
         end),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -380,42 +375,56 @@ clientkeys = awful.util.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for screen, tag_names in ipairs({left_tag_names, right_tag_names}) do
-    for i, t in ipairs(tag_names) do
-        globalkeys = awful.util.table.join(globalkeys,
-            -- View tag only.
-            awful.key({ modkey }, t,
-                      function ()
-                            local tag = awful.tag.gettags(screen)[i]
-                            if tag then
-                               awful.tag.viewonly(tag)
-                            end
-                      end,
-                      {description="", group="tag"}
-                      ),
-            -- Toggle tag.
-            awful.key({ modkey, "Control" }, t,
-                      function ()
-                          local tag = awful.tag.gettags(screen)[i]
+function gen_tag_key_binds(screen_id, tag_idx, tag_name)
+    return awful.util.table.join(
+        -- View tag only.
+        awful.key({ modkey }, tag_name,
+                  function ()
+                        local tag = awful.tag.gettags(screen_id)[tag_idx]
+                        if tag then
+                           awful.tag.viewonly(tag)
+                        end
+                  end,
+                  {description="", group="tag"}
+                  ),
+        -- Toggle tag.
+        awful.key({ modkey, "Control" }, tag_name,
+                  function ()
+                      local tag = awful.tag.gettags(screen_id)[tag_idx]
+                      if tag then
+                         awful.tag.viewtoggle(tag)
+                      end
+                  end),
+        -- Move client to tag.
+        awful.key({ modkey, "Shift" }, tag_name,
+                  function ()
+                      local scr = mouse.screen
+                      if client.focus then
+                          local tag = awful.tag.gettags(screen_id)[tag_idx]
                           if tag then
-                             awful.tag.viewtoggle(tag)
+                              awful.client.movetotag(tag)
                           end
-                      end),
-            -- Move client to tag.
-            awful.key({ modkey, "Shift" }, t,
-                      function ()
-                          local scr = mouse.screen
-                          if client.focus then
-                              local tag = awful.tag.gettags(screen)[i]
-                              if tag then
-                                  awful.client.movetotag(tag)
-                              end
-                         end
-                         awful.screen.focus(scr)
-                      end))
-    end
+                     end
+                     awful.screen.focus(scr)
+                  end))
 end
 
+
+if screen.count() == 1 then
+    for i, t in ipairs(tag_names) do
+        globalkeys = awful.util.table.join(globalkeys,
+            gen_tag_key_binds(1, i, t)
+        )
+    end
+else
+    for screen_id, _tag_names in ipairs({left_tag_names, right_tag_names}) do
+        for i, t in ipairs(_tag_names) do
+            globalkeys = awful.util.table.join(globalkeys,
+                gen_tag_key_binds(screen_id, i, t)
+            )
+        end
+    end
+end
 
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
