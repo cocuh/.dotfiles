@@ -99,10 +99,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	,((modm.|.shiftMask,xK_w     ),spawn "feh --bg-fill ~/picture/wallpaper/saya.jpg")
 
 	--move focus
-	,((modm,            xK_j     ),sendMessage $ Go D)
-	,((modm,            xK_k     ),sendMessage $ Go U)
-	,((modm,            xK_h     ),sendMessage $ Go L)
-	,((modm,            xK_l     ),sendMessage $ Go R)
+    	,((modm,            xK_j     ),windows W.focusDown)
+    	,((modm,            xK_k     ),windows W.focusUp)
+    	,((modm,            xK_h     ),sendMessage Shrink)
+    	,((modm,            xK_l     ),sendMessage Expand)
 	--move window
 	,((modm.|.shiftMask,xK_j     ),windows W.swapDown)
 	,((modm.|.shiftMask,xK_k     ),windows W.swapUp)
