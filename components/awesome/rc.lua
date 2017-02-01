@@ -23,6 +23,8 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local pomodoro = require('pomodoro')
 
+local is_double_screen = screen.count() == 2
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -124,7 +126,7 @@ local right_tag_names = { "8", "9", "0", "-", "="}
 local tag_names = awful.util.table.clone(left_tag_names)
 awful.util.table.merge(tag_names, right_tag_names)
 
-if screen.count() == 1 then
+if not is_double_screen then
     tags = {}
     tags[1] = awful.tag(tag_names, 1, layouts[1])
 else
@@ -281,17 +283,16 @@ globalkeys = awful.util.table.join(
     -- Screen focus
     awful.key({ modkey,           }, "[", function () awful.screen.focus(1) end),
     awful.key({ modkey,           }, "]", function ()
-        if screen.count() > 1 then
+        if is_double_screen then
             awful.screen.focus(2)
         end
     end),
-    awful.key({ modkey,           }, "r",
-        function ()
-            if screen.count() > 1 then
-                awful.tag.viewonly(tags[2][#tags[2]])
-            end
-            awful.tag.viewonly(tags[1][1])
-        end),
+    awful.key({ modkey,           }, "r", function ()
+        if is_double_screen then
+            awful.tag.viewonly(tags[2][#tags[2]])
+        end
+        awful.tag.viewonly(tags[1][1])
+    end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
@@ -352,7 +353,7 @@ clientkeys = awful.util.table.join(
         end),
     awful.key({ modkey, "Shift"   }, "]",
         function (c)
-            if screen.count() > 1 then
+            if is_double_screen then
                 local screen = mouse.screen
                 awful.client.movetoscreen(c, 2)
                 awful.screen.focus(screen)
@@ -410,7 +411,7 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
 end
 
 
-if screen.count() == 1 then
+if not is_double_screen then
     for i, t in ipairs(tag_names) do
         globalkeys = awful.util.table.join(globalkeys,
             gen_tag_key_binds(1, i, t)
