@@ -25,6 +25,8 @@ local pomodoro = require('pomodoro')
 
 local is_double_screen = screen.count() == 2
 
+local homedir = os.getenv("HOME")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -57,7 +59,7 @@ naughty.config.defaults.opacity = 0.8
 
 --- {{{ mpd wiget
 local mpdwidget = lain.widgets.mpd({
-    music_dir="/home/cocuh/music",
+    music_dir = homedir .. "/music",
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
