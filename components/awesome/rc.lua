@@ -75,7 +75,7 @@ local mpdwidget = lain.widgets.mpd({
         widget:set_markup(markup("#EA6F81", artist) .. title)
     end
 })
-mpdwidget:buttons(awful.util.table.join(
+mpdwidget.widget:buttons(awful.util.table.join(
     awful.button({ }, 1, function () awful.spawn("mpc toggle") end)
 ))
 ---}}}
