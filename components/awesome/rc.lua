@@ -58,26 +58,26 @@ naughty.config.defaults.opacity = 0.8
 --}}}
 
 --- {{{ mpd wiget
-local mpdwidget = lain.widgets.mpd({
-    music_dir = homedir .. "/music",
-    settings = function()
-        if mpd_now.state == "play" then
-            artist = " " .. mpd_now.artist .. " "
-            title  = mpd_now.title  .. " "
-        elseif mpd_now.state == "pause" then
-            artist = " mpd "
-            title  = "paused "
-        else
-            artist = " mpd "
-            title  = "unknown "
-        end
-
-        widget:set_markup(markup("#EA6F81", artist) .. title)
-    end
-})
-mpdwidget.widget:buttons(awful.util.table.join(
-    awful.button({ }, 1, function () awful.spawn("mpc toggle") end)
-))
+--local mpdwidget = lain.widgets.mpd({
+--    music_dir = homedir .. "/music",
+--    settings = function()
+--        if mpd_now.state == "play" then
+--            artist = " " .. mpd_now.artist .. " "
+--            title  = mpd_now.title  .. " "
+--        elseif mpd_now.state == "pause" then
+--            artist = " mpd "
+--            title  = "paused "
+--        else
+--            artist = " mpd "
+--            title  = "unknown "
+--        end
+--
+--        widget:set_markup(markup("#EA6F81", artist) .. title)
+--    end
+--})
+--mpdwidget:buttons(awful.util.table.join(
+--    awful.button({ }, 1, function () awful.spawn("mpc toggle") end)
+--))
 ---}}}
 
 --{{{ pomodoro timer
@@ -221,7 +221,7 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then
         right_layout:add(wibox.widget.systray())
-        right_layout:add(wibox.container.background(mpdwidget, beautiful.bg_focus))
+        --right_layout:add(wibox.container.background(mpdwidget, beautiful.bg_focus))
         right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
         right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
     else
