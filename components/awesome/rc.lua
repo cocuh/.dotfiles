@@ -269,6 +269,7 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
+local cmd_rofi_window_selector = "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85"
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -338,7 +339,8 @@ globalkeys = awful.util.table.join(
 
     -- program
     awful.key({ modkey, "Shift"   }, "d", function() awful.util.spawn("rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85") end),
-    awful.key({ modkey,           }, "w", function() awful.util.spawn("rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85") end),
+    awful.key({ modkey,           }, "w", function() awful.util.spawn(cmd_rofi_window_selector) end),
+    awful.key({ modkey,           }, "m", function() awful.util.spawn(cmd_rofi_window_selector) end),
     awful.key({ modkey, "Shift"   }, "w", function() awful.spawn.with_shell("python ~/workspace/wallpaperchanger/wallpaperchanger.py") end)
 )
 
@@ -460,6 +462,8 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "wmail" },
+      properties = { tag = "7" } },
+    { rule = { class = "Slack" },
       properties = { tag = "7" } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
