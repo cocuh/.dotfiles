@@ -27,6 +27,17 @@ local is_double_screen = screen.count() == 2
 
 local homedir = os.getenv("HOME")
 
+local hostname = (
+    function ()
+        local f = io.popen ("/bin/hostname")
+        local hostname = f:read("*a") or ""
+        f:close()
+        hostname =string.gsub(hostname, "\n$", "")
+        return hostname
+    end
+)()
+local is_laptop = hostname == "saya"
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -232,6 +243,29 @@ for s = 1, screen.count() do
         --right_layout:add(wibox.container.background(mpdwidget, beautiful.bg_focus))
         right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
         right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
+        if is_laptop then
+            local battext = wibox.widget.textbox()
+            local formatter = function(widget, args)
+                local status = args[1]
+                local percent = args[2]
+                local str =
+                    "<span weight='bold' color='%s'>" ..
+                    "%s</span>%d "
+                if percent > 75 then
+                    return string.format(str, "#00CC00", status, percent)
+                elseif percent > 50 then
+                    return string.format(str, "#66CC00", status, percent)
+                elseif percent > 25 then
+                    return string.format(str, "#CCCC00", status, percent)
+                elseif percent > 10 then
+                    return string.format(str, "#CC6600", status, percent)
+                else
+                    return string.format(str, "#CC0000", status, percent)
+                end
+            end
+            vicious.register(battext, vicious.widgets.bat, formatter, 3, "BAT0")
+            right_layout:add(battext)
+        end
     else
         memtext = wibox.widget.textbox()
         vicious.register(memtext, vicious.widgets.mem, '<b><span color="#7F9F7F"> mem: $2 kB($1%)</span><span color="#cccccc"> | </span></b>', 2)
