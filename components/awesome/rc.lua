@@ -476,13 +476,13 @@ awful.rules.rules = {
 local _start_time = os.time()
 
 client.connect_signal("manage", function (c, startup)
-    -- Enable sloppy focus
-    c:connect_signal("mouse::enter", function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-            and awful.client.focus.filter(c) then
-            client.focus = c
-        end
-    end)
+    -- -- Enable sloppy focus
+    -- c:connect_signal("mouse::enter", function(c)
+    --     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+    --         and awful.client.focus.filter(c) then
+    --         client.focus = c
+    --     end
+    -- end)
 
     if not startup then
         -- Set the windows at the slave,
