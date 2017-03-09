@@ -24,7 +24,7 @@ def gen_tensorflow_session(gpus=[], keras=True):
     config.gpu_options.allow_growth = True
     if gpus:
         if not isinstance(gpus, list):
-            gpus = list(gpus)
+            gpus = [gpus]
         config.gpu_options.visible_device_list = ','.join(map(str, gpus))
     sess = tf.Session(config=config)
 
