@@ -1,6 +1,7 @@
 # vim: fileencoding=utf-8
 
 import readline
+import rlcompleter
 import atexit
 import os
 
@@ -15,4 +16,4 @@ except IOError:
     pass
 
 atexit.register(readline.write_history_file,histfile)
-del os, histfile, readline, atexit
+del os, histfile, readline, atexit, rlcompleter
