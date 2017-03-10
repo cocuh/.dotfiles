@@ -82,7 +82,7 @@ const SPEED_DIAL = [
   ['4', 'http://www.weblio.jp/', 'weblio'],
 
   ['5', null, ''],
-  ['6', 'https://github.com/cocuh?tab=repositories', 'github'],
+  ['6', null, ''],
   ['7', null, ''],
   ['8', 'https://www.amazon.co.jp/', 'amazon'],
 
@@ -91,8 +91,8 @@ const SPEED_DIAL = [
   ['11', 'http://docs.python.jp/3/library/index.html', 'python'],
   ['12', 'http://docs.python.jp/2/library/index.html', 'python_old'],
 
-  ['13', null],
-  ['14', null],
+  ['13', 'https://github.com/cocuh?tab=repositories', 'github'],
+  ['14', 'https://twitter.com/', 'twitter'],
   ['15', null],
   ['16', null],
 
@@ -135,8 +135,8 @@ SPEED_DIAL
         vim.window.switchToTabHavingURI(url, true);
       }
     );
-    vimfx.set(`custom.mode.normal.speed_dial_${name}`, `${key}<Enter>`);
-    vimfx.set(`custom.mode.normal.speed_dial_${name}_newtab`, `${key_shift}<Enter>`);
+    vimfx.set(`custom.mode.normal.speed_dial_${name}`, `${key}<Space>`);
+    vimfx.set(`custom.mode.normal.speed_dial_${name}_newtab`, `${key_shift}<Space>`);
   }
 );
 
