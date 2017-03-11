@@ -363,7 +363,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
         {description="show help", group="awesome"}),
 
-    awful.key({ modkey,           }, "b",
+    awful.key({ modkey,           }, "e",
         function ()
             for s = 1, screen.count() do
                 mywibox[s].visible = not mywibox[s].visible
@@ -371,7 +371,11 @@ globalkeys = awful.util.table.join(
         end,
         {description="toggle bar", group="bar"}),
 
+    awful.key({ modkey,           }, "b", function() awful.util.spawn("xbacklight =10") end),
+    awful.key({ modkey, "Shift"   }, "b", function() awful.util.spawn("xbacklight +5") end),
+
     -- program
+    awful.key({ modkey, "Shift"   }, "l", function() awful.util.spawn("xscreensaver-command -lock") end),
     awful.key({ modkey, "Shift"   }, "d", function() awful.util.spawn("rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85") end),
     awful.key({ modkey,           }, "w", function() awful.util.spawn(cmd_rofi_window_selector) end),
     awful.key({ modkey,           }, "m", function() awful.util.spawn(cmd_rofi_window_selector) end),
