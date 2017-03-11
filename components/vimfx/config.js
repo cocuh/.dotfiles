@@ -75,6 +75,7 @@ CUSTOM_COMMANDS.forEach(
 );
 
 
+/*
 const SPEED_DIAL = [
   ['1', 'https://google.com/', 'google'],
   ['2', 'http://www.alc.co.jp/', 'alc'],
@@ -139,7 +140,7 @@ SPEED_DIAL
     vimfx.set(`custom.mode.normal.speed_dial_${name}_newtab`, `${key_shift}<Space>`);
   }
 );
-
+*/
 
 
 
