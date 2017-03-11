@@ -94,9 +94,9 @@ repo = 'vim-airline/vim-airline'
 #===========
 # lang
 [[plugins]]
-name = 'lang/crystal/ft'
-repo = 'rhysd/vim-crystal'
-on_ft = 'crystal'
+name = 'lang/javascript/ft'
+repo = 'pangloss/vim-javascript'
+on_ft = 'javascript'
 
 [[plugins]]
 name = 'lang/python/compl-jedi'

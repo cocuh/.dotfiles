@@ -1,6 +1,7 @@
 # vim: fileencoding=utf-8
 
 import readline
+import rlcompleter
 import atexit
 import os
 
@@ -15,4 +16,22 @@ except IOError:
     pass
 
 atexit.register(readline.write_history_file,histfile)
-del os, histfile, readline, atexit
+del os, histfile, readline, atexit, rlcompleter
+
+def gen_tensorflow_session(gpus=[], keras=True):
+    import tensorflow as tf
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    if gpus:
+        if not isinstance(gpus, list):
+            gpus = [gpus]
+        config.gpu_options.visible_device_list = ','.join(map(str, gpus))
+    sess = tf.Session(config=config)
+
+    if keras:
+        try:
+            import keras.backend as K
+            K.set_section(sess)
+        except:
+            pass
+    return sess
