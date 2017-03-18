@@ -1,0 +1,9 @@
+#!/bin/zsh
+# This hook is run before a virtualenv is deleted.
+# argument: full path to environment directory
+
+
+version=$(~/.virtualenvs/$1/bin/python -c 'import sys;print(sys.version[0])')
+vname=$1
+jupyter kernelspec uninstall -y "python${version}-${vname}"
+

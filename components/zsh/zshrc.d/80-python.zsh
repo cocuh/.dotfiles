@@ -7,4 +7,11 @@ for vwpath in $(where virtualenvwrapper.sh);do
     fi
 done
 
+install_jupyter_in_virtualenv() {
+    pip install ipykernel
+    version=$(python -c 'import sys;print(sys.version[0])')
+    vname=$(basename ${VIRTUAL_ENV})
+    python -m ipykernel install --user --name="python${version}-${vname}"
+}
+
 
