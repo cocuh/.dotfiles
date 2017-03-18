@@ -47,9 +47,20 @@ Components define how to make symbolic links on each software.
 * ipython
 * xdefaults
 * xresources
-* vimperator
+* vimfx
 * python
-* qtile
+  * virtualenvwrapper
+* awesome
+  * lain
+  * vicious
+  * pomodoro
+  * rofi
+  * feh
+  * wallpaperchanger.py
+* ~~vimperator~~
+  * change to `vimfx`(2017/03/11)
+* ~~qtile~~
+  * change to `awesome`(2017/01/20)
   * rofi
   * xboomx
   * feh
@@ -59,6 +70,10 @@ Components define how to make symbolic links on each software.
 
 screenshots
 -----------
+
+### awesome
+![](https://raw.github.com/wiki/cocuh/.dotfiles/screenshots/awesome.jpg)
+
 
 ### qtile
 #### saya
