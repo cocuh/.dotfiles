@@ -371,7 +371,7 @@ globalkeys = awful.util.table.join(
         end,
         {description="toggle bar", group="bar"}),
 
-    awful.key({ modkey,           }, "b", function() awful.util.spawn("xbacklight =10") end),
+    awful.key({ modkey,           }, "b", function() awful.util.spawn("xbacklight =5") end),
     awful.key({ modkey, "Shift"   }, "b", function() awful.util.spawn("xbacklight +5") end),
 
     -- program
