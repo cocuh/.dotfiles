@@ -58,6 +58,9 @@ setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set matchpairs& matchpairs+=<:> " add matcha pair highlight
 
 " misc
+if !filewritable($HOME."/.cache/nvim/swp")
+    call mkdir($HOME."/.cache/nvim/swp", "p")
+endif
 set directory=~/.cache/nvim/swp
 set listchars=eol:~,tab:>-
 set foldmethod=marker

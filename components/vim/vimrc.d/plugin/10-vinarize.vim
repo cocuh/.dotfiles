@@ -1,1 +1,0 @@
-NeoBundle 'Shougo/vinarise.vim'
