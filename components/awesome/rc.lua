@@ -244,6 +244,16 @@ for s = 1, screen.count() do
         right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
         right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
         if is_laptop then
+            local memtext = wibox.widget.textbox()
+            vicious.register(memtext, vicious.widgets.mem, '<b><span color="#7F9F7F"> mem: $2 kB($1%)</span><span color="#cccccc"> | </span></b>', 2)
+            right_layout:add(wibox.container.background(memtext, beautiful.bg_focus))
+
+            cpuwidget = wibox.widget.graph()
+            cpuwidget:set_width(50)
+            cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
+            vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 1)
+            right_layout:add(wibox.container.background(cpuwidget, beautiful.bg_focus))
+
             local battext = wibox.widget.textbox()
             local formatter = function(widget, args)
                 local status = args[1]
