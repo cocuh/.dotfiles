@@ -19,6 +19,9 @@ stern)
 saya)
   the_prompt="_(:3｣_)_"
   ;;
+shiina)
+  the_prompt="%{${fg_bold[green]}%}_(:3｣_)_"
+  ;;
 *)
   the_prompt="%{${fg_bold[cyan]}%}%n@${host_formats[host_int]}%m%{${reset_color}%}"
   ;;
