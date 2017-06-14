@@ -1,0 +1,10 @@
+#DEFAULT = /usr/share/fonts/X11/misc/unifont.pcf.gz:100
+
+#ISO8859_1 = /usr/share/fonts/X11/misc/mplus_f12r.pcf.gz
+#JISX0208_1983 = /usr/share/fonts/X11/misc/mplus_j12r.pcf.gz
+JISC6226_1978 = &JISX0208_1983
+JISX0208_1990 = &JISX0208_1983
+JISX0213_2000_1 = &JISX0208_1983
+
+#ISO10646_UCS4_1 = /usr/share/fonts/X11/misc/unifont.pcf.gz:100
+ISO10646_UCS4_1_FULLWIDTH = &ISO10646_UCS4_1
