@@ -1,0 +1,37 @@
+#DEFAULT=Kochi Gothic
+
+#ISO8859_1=Courier 10 Pitch
+#ISO8859_2=Thryomanes
+#ISO8859_3=Thryomanes
+#ISO8859_4=Thryomanes
+#ISO8859_5=Thryomanes
+#ISO8859_7=Thryomanes
+#ISO8859_9=Thryomanes
+#ISO8859_10=Thryomanes
+#ISO8859_13=Thryomanes
+#ISO8859_14=Thryomanes
+#ISO8859_15=Thryomanes
+#KOI8_R=Nimbus Mono L
+#KOI8_U=Nimbus Mono L
+#JISX0208_1978=Kochi Gothic
+#JISX0208_1983=Kochi Gothic
+#JISX0208_1990=Kochi Gothic
+#KSX1001_1997=dotum
+#BIG5=AR PL Mingti2L Big5
+#GB2312_80=AR PL SungtiL GB
+#GBK=AR PL SungtiL GB
+
+#ISO10646_UCS4_1=Courier 10 Pitch
+#ISO10646_UCS4_1=Thryomanes
+
+# Japanese speakers may want to enable the following setting.
+#ISO10646_UCS4_1_FULLWIDTH=Kochi Gothic
+
+# Korean speakers may want to enable the following setting.
+#ISO10646_UCS4_1_FULLWIDTH=dotum
+
+# Traditional Chinese speakers may want to enable the following setting.
+#ISO10646_UCS4_1_FULLWIDTH=AR PL Mingti2L Big5
+
+# Simplified Chinese speakers may want to enable the following setting.
+#ISO10646_UCS4_1_FULLWIDTH=AR PL SungtiL GB

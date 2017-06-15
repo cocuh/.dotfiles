@@ -1,0 +1,32 @@
+#### Default settings
+# UNUSED=IM_HOTKEY
+# Control+F1=OPEN_SCREEN
+# Control+F2=OPEN_PTY
+# Control+F3=NEXT_PTY
+# Control+F4=PREV_PTY
+# Shift+Prior=PAGE_UP
+# Shift+Up=SCROLL_UP
+# Shift+Insert=INSERT_SELECTION
+# UNUSED=SWITCH_OSC52
+# UNUSED=EXIT_PROGRAM
+# Control+Button1="menu:mlterm-menu"
+# Control+Shift+C="menu:mlconfig"
+
+#### Examples
+# Control+Right=NEXT_PTY
+# Control+Left=PREV_PTY
+# Button7=NEXT_PTY
+# Button6=PREV_PTY
+# Control+F5="proto:mlclient --serv localhost -e screen -xR"
+# Control+F6="w3m http://www.google.co.jp/\n"
+# Control+F7="proto:font_size=12;encoding=utf8"
+# Control+F8="proto:input_method=ibus"
+# Control+F9="proto:aafont:DEFAULT=Kochi Gothic"
+# Control+F10="proto:color:black=rgb:ff/00/00"
+# Control+F11="proto:use_local_echo=true"
+# Control+F12="proto:use_local_echo=false"
+# Button3="exesel:mlclient -e w3m"
+# Button3="exesel:\"/cygdrive/c/Program Files/Internet Explorer/iexplore.exe\""
+# Button3="exesel:/cygdrive/c/Program\\ Files/Internet\\ Explorer/iexplore.exe"
+# Button4="\x1bOA\x1bOA"
+# Button5="\x1bOB\x1bOB"
