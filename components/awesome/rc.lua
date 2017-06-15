@@ -250,9 +250,15 @@ for s = 1, screen.count() do
 
             cpuwidget = wibox.widget.graph()
             cpuwidget:set_width(50)
+            cpuwidget:set_background_color(beautiful.bg_focus)
             cpuwidget_t = awful.tooltip({ objects = { cpuwidget.widget },})
             vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 1)
-            right_layout:add(wibox.container.background(cpuwidget, beautiful.bg_focus))
+            right_layout:add(
+                wibox.container.mirror(
+                    cpuwidget,
+                    { horizontal = true }
+                )
+            )
 
             local battext = wibox.widget.textbox()
             local formatter = function(widget, args)
