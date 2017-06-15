@@ -36,7 +36,7 @@ local hostname = (
         return hostname
     end
 )()
-local is_laptop = hostname == "saya"
+local is_laptop = (hostname == "saya" or hostname == "shiina")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
