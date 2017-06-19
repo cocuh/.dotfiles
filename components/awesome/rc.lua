@@ -281,6 +281,28 @@ for s = 1, screen.count() do
             end
             vicious.register(battext, vicious.widgets.bat, formatter, 3, "BAT0")
             right_layout:add(battext)
+
+            local battext = wibox.widget.textbox()
+            local formatter = function(widget, args)
+                local status = args[1]
+                local percent = args[2]
+                local str =
+                    "<span weight='bold' color='%s'>" ..
+                    "%s</span>%d "
+                if percent > 75 then
+                    return string.format(str, "#00CC00", status, percent)
+                elseif percent > 50 then
+                    return string.format(str, "#66CC00", status, percent)
+                elseif percent > 25 then
+                    return string.format(str, "#CCCC00", status, percent)
+                elseif percent > 10 then
+                    return string.format(str, "#CC6600", status, percent)
+                else
+                    return string.format(str, "#CC0000", status, percent)
+                end
+            end
+            vicious.register(battext, vicious.widgets.bat, formatter, 3, "BAT1")
+            right_layout:add(battext)
         end
     else
         memtext = wibox.widget.textbox()
