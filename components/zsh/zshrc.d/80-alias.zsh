@@ -26,6 +26,8 @@ alias dc='cd'
 alias pingg='ping -c 3 www.google.co.jp'
 alias less='less -R'
 
+alias ssh-add='ssh-add -t 1h'
+
 alias sozsh='source ~/.zshrc'
 alias :q='exit'
 alias :Q='exit'
