@@ -12,12 +12,12 @@ $ cd ~
 $ git clone http://github.com/cocuh/.dotfiles.git
 $ cd .dotfiles
 $ ./install.py [PROFILE]
-$ ./regenzshrc.sh
+$ ./regenzshrc.py
 ```
 
 ### warning
 This install script doesn't generate `.zshrc`.
-You must run `regenzshrc.sh` to generate `.zshrc` after calling install script.
+You must run `regenzshrc.py` to generate `.zshrc` after calling install script.
 After first zsh script generation, `.zshrc` watches `.zshrc.d/*/*.zsh` files to re-generate itself.
 
 できればzcompileでやりたかったぽよ
