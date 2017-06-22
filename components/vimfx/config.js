@@ -146,4 +146,6 @@ SPEED_DIAL
 
 Preferences.set(FIREFOX_PREFS);
 
+prevent_autofocus
+
 
