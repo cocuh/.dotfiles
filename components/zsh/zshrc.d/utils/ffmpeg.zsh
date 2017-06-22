@@ -1,5 +1,3 @@
-
-# ffmpeg
 function ffmpeg-conv2ogg(){
     cmd=$0
     Usage() {
@@ -31,7 +29,7 @@ function ffmpeg-conv2ogg(){
             inputfile=$1
             outputfile=$2
             ;;
-        * ) 
+        * )
             Usage
             return 1
             ;;
@@ -71,7 +69,7 @@ function ffmpeg-conv2mp3(){
             inputfile=$1
             outputfile=$2
             ;;
-        * ) 
+        * )
             Usage
             return 1
             ;;

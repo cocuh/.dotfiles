@@ -11,5 +11,3 @@ if ssh-add -l >&/dev/null ; then
 else
     ssh-add
 fi
-
-
