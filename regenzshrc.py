@@ -3,11 +3,11 @@ import os
 import sys
 import datetime
 
-def open_file(path):
+def open_file(path, mode='r'):
     if sys.version_info[0] == 3:
-        return open(path, encoding='utf-8')
+        return open(path, mode=mode, encoding='utf-8')
     else:
-        return open(path)
+        return open(path, mode=mode)
 
 
 class ZshRc(object):
@@ -69,7 +69,7 @@ class ZshRc(object):
         return data
 
     def update(self):
-        with open(self.zshrc_path, 'w') as fp:
+        with open_file(self.zshrc_path, 'w') as fp:
             fp.write(self.generate())
 
 def main():
