@@ -1,6 +1,3 @@
-# set emacs keybinding
-bindkey -e
-
 # disable ctrl-s suspend
 stty stop undef
 
