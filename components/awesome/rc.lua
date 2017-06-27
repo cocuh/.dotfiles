@@ -527,7 +527,7 @@ awful.rules.rules = {
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
-                     placement = awful.placement.under_mouse+awful.placement.no_overlap+awful.placement.no_offscreen,
+                     --placement = awful.placement.under_mouse+awful.placement.no_overlap+awful.placement.no_offscreen,
                      focus = awful.client.focus.filter,
                      size_hints_honor = false,
                      raise = true,
