@@ -530,6 +530,7 @@ awful.rules.rules = {
                      --placement = awful.placement.under_mouse+awful.placement.no_overlap+awful.placement.no_offscreen,
                      focus = awful.client.focus.filter,
                      raise = true,
+                     size_hints_honor = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
