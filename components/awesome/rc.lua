@@ -110,7 +110,7 @@ pomodoro.on_pause_pomodoro_finish_callbacks = {
 -- Themes define colours, icons, font and wallpapers.
 
 -- This is used later as the default terminal
-terminal = "termite"
+terminal = "urxvt"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

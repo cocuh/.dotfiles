@@ -1,15 +1,15 @@
 URxvt.depth: 32
-URxvt.background: rgba:0000/0000/0000/BBBB
+URxvt.background: rgba:0000/0000/0000/CCCC
 URxvt.scrollBar: False
 !URxvt.font: xft:Ricty for Powerline:size=
-URxvt.font: xft:Ricty for Powerline:size=16
+URxvt.font: xft:Ricty for Powerline:size=15
 URxvt.termName: rxvt-256color
 URxvt.loginShell: True
-URxvt.fading: 10
-URxvt.shading: 80
+URxvt.fading: 0
+URxvt.shading: 0
 URxvt.inputMethod: fcitx
 URxvt.preeditType: OverTheSpot
-URxvt.saveLines: 20000
+URxvt.saveLines: 10000
 URxvt.perl-ext-common:default, clipboard
 URxvt.iso14755: False
 URxvt.iso14755_52: False
