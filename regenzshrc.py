@@ -25,25 +25,35 @@ class ZshRc(object):
         else:
             return True
 
-    def __init__(self):
+    def __init__(self, debug_mode=False):
         module_names = [
             name.strip()
             for name in open_file(self.config_path).readlines()
             if self.is_module_name(name)
         ]
         self.module_names = module_names
+        self.debug_mode = debug_mode
 
     def generate_module_data(self, name):
         path = os.path.join(self.directory_path, name)
         _data = open_file(path).read().strip()
-        data = '\n'.join([
+        data_list = [
             '##################################',
             '# {}'.format(name),
             '##################################',
+        ]
+
+        if self.debug_mode:
+            data_list.append("echo 'DEBUG: {}'".format(name))
+
+        data_list += [
             '() {',
             '{}'.format(_data),
             '}',
-        ])
+        ]
+
+        data = '\n'.join(data_list)
+
         return data
 
     def generate(self):
@@ -74,7 +84,11 @@ class ZshRc(object):
 
 def main():
     print('regenzshrc')
-    zshrc = ZshRc()
+    debug_mode = False
+    if len(sys.argv) >= 2:
+        print('debug mode')
+        debug_mode = True
+    zshrc = ZshRc(debug_mode=debug_mode)
     zshrc.update()
 
 if __name__ == '__main__':
