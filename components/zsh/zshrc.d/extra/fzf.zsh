@@ -1,4 +1,4 @@
-function peco--insert-commandline() {
+function fzf--insert-commandline() {
   local filepath="$1"
   [ -z "$filepath" ] && return
   if [ -n "$LBUFFER" ]; then
@@ -13,17 +13,17 @@ function peco--insert-commandline() {
   CURSOR=$#BUFFER
 }
 
-function peco-find() {
-  local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
-  peco--insert-commandline $filepath
+function fzf-find() {
+  local filepath="$(find . | grep -v '/\.' | fzf --prompt 'PATH>')"
+  fzf--insert-commandline $filepath
 }
 
-function peco-find_dep2() {
-  local filepath="$(find . -maxdepth 2 | grep -v '/\.' | peco --prompt 'PATH>')"
-  peco--insert-commandline $filepath
+function fzf-find_dep2() {
+  local filepath="$(find . -maxdepth 2 | grep -v '/\.' | fzf --prompt 'PATH>')"
+  fzf--insert-commandline $filepath
 }
 
-function peco-ls() {
+function fzf-ls() {
   function custom-ls() {
     case $(uname) in
     Darwin*)
@@ -39,25 +39,25 @@ function peco-ls() {
       ;;
     esac
   }
-  local filepath="./$(custom-ls | peco --prompt 'PATH>')"
-  peco--insert-commandline $filepath
+  local filepath="./$(custom-ls | fzf --prompt 'PATH>')"
+  fzf--insert-commandline $filepath
   return
 }
 
-zle -N peco-find
+zle -N fzf-find
 bindkey -r '^D'
-bindkey '^D' peco-find
+bindkey '^D' fzf-find
 
-zle -N peco-find_dep2
+zle -N fzf-find_dep2
 bindkey -r '^F'
-bindkey '^F' peco-find_dep2
+bindkey '^F' fzf-find_dep2
 
-zle -N peco-ls
+zle -N fzf-ls
 bindkey -r '^L'
-bindkey '^L' peco-ls
+bindkey '^L' fzf-ls
 
 function agvim() {
-  local data="$(ag $@ | peco)"
+  local data="$(ag $@ | fzf)"
   local filepath="$(echo $data | awk -F : '{print $1}')"
   local lineno="$(echo $data | awk -F : '{print $2}')"
   [ -z "$filepath" ] && return
