@@ -72,10 +72,14 @@ class ZshRc(object):
             '',
             '',
         ])
-        data += '\n\n\n\n'.join(
-            self.generate_module_data(name)
-            for name in self.module_names
-        )
+        module_data = []
+        for name in self.module_names:
+            try:
+                module_data.append(self.generate_module_data(name))
+            except Exception as exp:
+                print("Exception catch module name:{}".format(name), exp)
+
+        data += '\n\n\n\n'.join(module_data)
         return data
 
     def update(self):
