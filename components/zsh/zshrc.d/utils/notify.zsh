@@ -4,7 +4,7 @@ function notify_preexec {
 }
 
 function notify_precmd {
-  if [ $TTYIDLE -gt 5 ] && [ $(which notify-send) ]; then
+  if [ $TTYIDLE -gt 30 ] && [ $(which notify-send) ]; then
     notify-send -i ~/.zshrc.d/resources/zsh.svg "<big><b>$notify_prev_command</b></big> <br/>$notify_prev_executed_at"
   fi
 }
