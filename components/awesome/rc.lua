@@ -428,7 +428,10 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space",  function (c) c:swap(awful.client.getmaster()) end),
 
     -- screen moving
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen() end              ),
+    awful.key({ modkey,           }, "o",
+        function (c)
+            c.no_opacity = (not c.no_opacity)
+        end),
     awful.key({ modkey, "Shift"   }, "[",
         function (c)
             local screen = mouse.screen
@@ -532,13 +535,8 @@ awful.rules.rules = {
                      raise = true,
                      size_hints_honor = false,
                      keys = clientkeys,
+                     no_opacity = false,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
     { rule = { class = "wmail" },
       properties = { tag = "7" } },
     { rule = { class = "Slack" },
@@ -632,7 +630,9 @@ client.connect_signal("focus", function(c)
 end)
 client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
-    c.opacity = 0.95
+    if (not c.no_opacity) then
+        c.opacity = 0.95
+    end
 end)
 -- }}}
 
