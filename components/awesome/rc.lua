@@ -16,8 +16,12 @@ beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 beautiful.graph_fg = "#7F9F7F"
 beautiful.graph_border_color = "#7F9F7F"
 
--- Notification library
+-- Notification
+awful.util.spawn("dunst")
+_dbus = dbus
+dbus = nil
 local naughty = require("naughty")
+dbus = _dbus
 local menubar = require("menubar")
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
@@ -56,7 +60,7 @@ do
         in_error = true
 
         naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
+                         title = "Oops, there were errors during startup!",
                          text = err })
         in_error = false
     end)
@@ -64,8 +68,6 @@ end
 -- }}}
 
 
---{{{ Notification
-naughty.config.defaults.opacity = 0.8
 --}}}
 
 --- {{{ mpd wiget
