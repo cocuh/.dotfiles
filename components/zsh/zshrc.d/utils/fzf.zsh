@@ -1,3 +1,6 @@
+FZF="fzf-tmux"
+FZF_OPTION="-u 70%"
+
 function fzf--insert-commandline() {
   local filepath="$1"
   [ -z "$filepath" ] && return
@@ -14,12 +17,12 @@ function fzf--insert-commandline() {
 }
 
 function fzf-find() {
-  local filepath="$(find . | grep -v '/\.' | fzf --prompt 'PATH>')"
+  local filepath="$(find . | grep -v '/\.' | $FZF $FZF_OPTION --prompt 'PATH>')"
   fzf--insert-commandline $filepath
 }
 
 function fzf-find_dep2() {
-  local filepath="$(find . -maxdepth 2 | grep -v '/\.' | fzf --prompt 'PATH>')"
+  local filepath="$(find . -maxdepth 2 | grep -v '/\.' | $FZF $FZF_OPTION --prompt 'PATH>')"
   fzf--insert-commandline $filepath
 }
 
@@ -39,7 +42,7 @@ function fzf-ls() {
       ;;
     esac
   }
-  local filepath="./$(custom-ls | fzf --prompt 'PATH>')"
+  local filepath="./$(custom-ls | $FZF $FZF_OPTION --prompt 'PATH>')"
   fzf--insert-commandline $filepath
   return
 }
