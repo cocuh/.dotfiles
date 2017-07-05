@@ -5,9 +5,9 @@ function notify_preexec {
 
 function notify_precmd {
   notify_prev_status=$?
-  KEYBOARD_INTERRUPT_STATUS=130
+  EXIT_CODE_KEYBOARD_INTERRUPT=130
   if [ $TTYIDLE -gt 30 ] &&
-    [ $notify_prev_status -ne $KEYBOARD_INTERRUPT_STATUS ] &&
+    [ $notify_prev_status -ne $EXIT_CODE_KEYBOARD_INTERRUPT ] &&
     [ $(which notify-send) ]; then
     notify-send -i ~/.zshrc.d/resources/zsh.svg "<big><b>Done: $notify_prev_command</b></big> <br/>$notify_prev_executed_at"
   fi
