@@ -146,6 +146,6 @@ SPEED_DIAL
 
 Preferences.set(FIREFOX_PREFS);
 
-prevent_autofocus
+vimfx.set('prevent_autofocus', true);
 
 
