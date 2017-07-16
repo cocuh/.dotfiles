@@ -47,6 +47,7 @@ alias simplehttpserver='python -m http.server'
 alias cgihttpserver='python -m http.server --cgi'
 
 alias gcal='gcalcli agenda --color_owner=green --color_date=white'
+alias unzip-cp932='unzip -O cp932'
 
 hogehoge() {
     local hogehoge_commit_msgs=(':beer:' ':cocktail:' ':lollipop:' ':cookie:' ':shaved_ice:' ':oden:' ':ramen:' ':sake:' ':wine_glass:' ':beers:' ':coffee:' ':tea:' ':dango:' ':pizza:' ':bento:' ':sushi:')
