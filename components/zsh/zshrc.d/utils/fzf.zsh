@@ -1,5 +1,10 @@
-FZF="fzf-tmux"
-FZF_OPTION="-u 70%"
+if [ -v TMUX ]; then
+  FZF="fzf-tmux"
+  FZF_OPTION="-u 70%"
+else
+  FZF="fzf"
+  FZF_OPTION=""
+fi
 
 function fzf--insert-commandline() {
   local filepath="$1"
