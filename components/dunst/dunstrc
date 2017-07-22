@@ -246,3 +246,7 @@
 #    urgency = normal
 #
 # vim: ft=cfg
+
+[play_sound]
+    summary = "*"
+    script = ~/.dotfiles/components/dunst/message.sh
