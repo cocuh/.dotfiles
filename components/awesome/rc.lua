@@ -97,12 +97,12 @@ end
 pomodoro.init()
 pomodoro.on_work_pomodoro_finish_callbacks = {
     function()
-        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
+        awful.spawn('ogg123 /usr/share/sounds/freedesktop/stereo/complete.oga')
     end
 }
 pomodoro.on_pause_pomodoro_finish_callbacks = {
     function()
-        awful.spawn('ogg123 /usr/share/sounds/KDE-Im-Phone-Ring.ogg')
+        awful.spawn('ogg123 /usr/share/sounds/freedesktop/stereo/complete.oga')
     end
 }
 --}}}
