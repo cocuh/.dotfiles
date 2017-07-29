@@ -74,3 +74,26 @@ function agvim() {
   fi
 }
 
+function fdr() {
+  local declare dirs=()
+  get_parent_dirs() {
+    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
+    if [[ "${1}" == '/' ]]; then
+      for _dir in "${dirs[@]}"; do echo $_dir; done
+    else
+      get_parent_dirs $(dirname "$1")
+    fi
+  }
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+  cd "$DIR"
+}
+
+function fh() {
+  LBUFFER=$(history 0 | fzf +s --tac | sed "s/ *[0-9]* *//")
+  zle redisplay
+}
+if type $FZF &> /dev/null; then
+  zle -N fh
+  bindkey -r '^R'
+  bindkey '^R' fh
+fi
