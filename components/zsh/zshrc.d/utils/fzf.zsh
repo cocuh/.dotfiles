@@ -1,4 +1,4 @@
-if [ -v TMUX ]; then
+if ((${+TMUX})) && (type fzf-tmux &> /dev/null); then
   FZF="fzf-tmux"
   FZF_OPTION="-u 70%"
 else
