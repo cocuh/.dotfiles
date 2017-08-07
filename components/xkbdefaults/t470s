@@ -1419,12 +1419,14 @@ xkb_symbols "pc_us_inet(evdev)" {
     key <LNFD> {         [        Linefeed ] };
     key <HOME> {         [            Home ] };
     key   <UP> {         [              Up ] };
-    key <PGUP> {         [           Prior ] };
+    // key <PGUP> {         [           Prior ] };
+    key <PGUP> {         [            Home,           Prior ] };
     key <LEFT> {         [            Left ] };
     key <RGHT> {         [           Right ] };
     key  <END> {         [             End ] };
     key <DOWN> {         [            Down ] };
-    key <PGDN> {         [            Next ] };
+    // key <PGDN> {         [            Next ] };
+    key <PGDN> {         [             End,            Next ] };
     key  <INS> {         [          Insert ] };
     key <DELE> {         [          Delete ] };
     key <MUTE> {         [   XF86AudioMute ] };
