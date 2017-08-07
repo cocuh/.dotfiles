@@ -54,10 +54,10 @@ hogehoge() {
     git commit -m "${hogehoge_commit_msgs[$RANDOM%$#hogehoge_commit_msgs+1]}" && git push
 }
 
-if [ -n "$(builtin command -v nvim)" ];then
+if (type nvim &> /dev/null);then
     alias vim='nvim'
     export EDITOR='nvim'
-elif [ -n "$(builtin command -v vim)" ];then
+elif (type vim &> /dev/null);then
     export EDITOR='vim'
 fi
 
