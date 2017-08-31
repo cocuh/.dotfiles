@@ -14,4 +14,6 @@ install_jupyter_in_virtualenv() {
     python -m ipykernel install --user --name="python${version}-${vname}"
 }
 
+alias mkvirtualenv-with-sys=makevirtualenv --system-site-packages
+
 

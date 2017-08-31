@@ -53,16 +53,16 @@ function fzf-ls() {
 }
 
 zle -N fzf-find
-bindkey -r '^D'
-bindkey '^D' fzf-find
+bindkey -r '^S'
+bindkey '^S' fzf-find
 
 zle -N fzf-find_dep2
-bindkey -r '^F'
-bindkey '^F' fzf-find_dep2
+bindkey -r '^D'
+bindkey '^D' fzf-find_dep2
 
 zle -N fzf-ls
-bindkey -r '^L'
-bindkey '^L' fzf-ls
+bindkey -r '^F'
+bindkey '^F' fzf-ls
 
 function agvim() {
   local data="$(ag $@ | fzf)"
