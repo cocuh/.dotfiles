@@ -27,6 +27,16 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local pomodoro = require('pomodoro')
 
 local is_double_screen = screen.count() == 2
+local is_secondary_main = true
+local screen_id_main
+local screen_id_secondary
+if is_secondary_main then
+    screen_id_main = 2
+    screen_id_secondary = 1
+else
+    screen_id_main = 1
+    screen_id_secondary = 2
+end
 
 local homedir = os.getenv("HOME")
 
@@ -145,8 +155,8 @@ if not is_double_screen then
     tags[1] = awful.tag(tag_names, 1, layouts[1])
 else
     tags = {}
-    tags[1] = awful.tag(left_tag_names, 1, layouts[1])
-    tags[2] = awful.tag(right_tag_names, 2, awful.layout.suit.max)
+    tags[1] = awful.tag(left_tag_names, screen_id_main, layouts[1])
+    tags[2] = awful.tag(right_tag_names, screen_id_secondary, awful.layout.suit.max)
 end
 
 function focus_home_position()
@@ -499,6 +509,15 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
 end
 
 
+function gen_globalkeys_by_screen_id(globalkeys, screen_id, tag_names)
+    for i, t in ipairs(tag_names) do
+        globalkeys = awful.util.table.join(globalkeys,
+            gen_tag_key_binds(screen_id, i, t)
+        )
+    end
+    return globalkeys
+end
+
 if not is_double_screen then
     for i, t in ipairs(tag_names) do
         globalkeys = awful.util.table.join(globalkeys,
@@ -506,13 +525,9 @@ if not is_double_screen then
         )
     end
 else
-    for screen_id, _tag_names in ipairs({left_tag_names, right_tag_names}) do
-        for i, t in ipairs(_tag_names) do
-            globalkeys = awful.util.table.join(globalkeys,
-                gen_tag_key_binds(screen_id, i, t)
-            )
-        end
-    end
+    local _tag_names_list
+    globalkeys = gen_globalkeys_by_screen_id(globalkeys, 1, right_tag_names)
+    globalkeys = gen_globalkeys_by_screen_id(globalkeys, 2, left_tag_names)
 end
 
 clientbuttons = awful.util.table.join(
