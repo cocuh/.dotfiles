@@ -46,7 +46,7 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 name = 'basic/neoterm'
-repo = 'cocuh/neoterm'
+repo = 'kassio/neoterm'
 if = 'has("nvim")'
 
 [[plugins]]
