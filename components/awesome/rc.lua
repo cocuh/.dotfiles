@@ -50,6 +50,12 @@ local hostname = (
     end
 )()
 local is_laptop = (hostname == "saya" or hostname == "shiina")
+local nic_id;
+if is_laptop then
+    nic_id = 'enp0s31f6'
+else
+    nic_id = 'eno1'
+end
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -321,7 +327,7 @@ for s = 1, screen.count() do
         right_layout:add(wibox.container.background(memtext, beautiful.bg_focus))
 
         nettext = wibox.widget.textbox()
-        vicious.register(nettext, vicious.widgets.net, '<b><span color="#CC9933">down: ${eno1 down_kb} kB/s</span> <span color="#7F9F7F"> up: ${eno1 up_kb} kB/s</span></b> ', 2)
+        vicious.register(nettext, vicious.widgets.net, '<b><span color="#CC9933">down: ${' .. nic_id .. ' down_kb} kB/s</span> <span color="#7F9F7F"> up: ${' .. nic_id .. ' up_kb} kB/s</span></b> ', 2)
         right_layout:add(wibox.container.background(nettext, beautiful.bg_focus))
 
         cpuwidget = wibox.widget.graph()
