@@ -381,10 +381,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
 
     -- Screen focus
-    awful.key({ modkey,           }, "[", function () awful.screen.focus(1) end),
+    awful.key({ modkey,           }, "[", function () awful.screen.focus(screen_id_main) end),
     awful.key({ modkey,           }, "]", function ()
         if is_double_screen then
-            awful.screen.focus(2)
+            awful.screen.focus(screen_id_secondary)
         end
     end),
     awful.key({ modkey,           }, "r", focus_home_position),
