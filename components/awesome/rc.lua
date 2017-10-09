@@ -540,7 +540,7 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
     { rule = { class = "wmail" },
       properties = { tag = "7" } },
-    { rule = { class = "Slack" },
+    { rule = { class = "slack" },
       properties = { tag = "7" } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
