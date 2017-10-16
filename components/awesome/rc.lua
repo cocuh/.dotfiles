@@ -30,13 +30,6 @@ local is_double_screen = screen.count() == 2
 local is_secondary_main = true
 local screen_id_main
 local screen_id_secondary
-if is_secondary_main then
-    screen_id_main = 2
-    screen_id_secondary = 1
-else
-    screen_id_main = 1
-    screen_id_secondary = 2
-end
 
 local homedir = os.getenv("HOME")
 
@@ -55,6 +48,14 @@ if is_laptop then
     nic_id = 'enp0s31f6'
 else
     nic_id = 'eno1'
+end
+
+if is_laptop and is_secondary_main then
+    screen_id_main = 2
+    screen_id_secondary = 1
+else
+    screen_id_main = 1
+    screen_id_secondary = 2
 end
 
 -- {{{ Error handling
@@ -151,18 +152,18 @@ local layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-local left_tag_names = { "1", "2", "3", "4", "5", "6", "7" }
-local right_tag_names = { "8", "9", "0", "-", "="}
-local tag_names = awful.util.table.clone(left_tag_names)
-awful.util.table.merge(tag_names, right_tag_names)
+local tag_names_main = { "1", "2", "3", "4", "5", "6", "7" }
+local tag_names_secondary = { "8", "9", "0", "-", "="}
+local tag_names = awful.util.table.clone(tag_names_main)
+awful.util.table.merge(tag_names, tag_names_secondary)
 
 if not is_double_screen then
     tags = {}
     tags[1] = awful.tag(tag_names, 1, layouts[1])
 else
     tags = {}
-    tags[1] = awful.tag(left_tag_names, screen_id_main, layouts[1])
-    tags[2] = awful.tag(right_tag_names, screen_id_secondary, awful.layout.suit.max)
+    tags[1] = awful.tag(tag_names_main, screen_id_main, layouts[1])
+    tags[2] = awful.tag(tag_names_secondary, screen_id_secondary, awful.layout.suit.max)
 end
 
 function focus_home_position()
@@ -532,8 +533,8 @@ if not is_double_screen then
     end
 else
     local _tag_names_list
-    globalkeys = gen_globalkeys_by_screen_id(globalkeys, 1, right_tag_names)
-    globalkeys = gen_globalkeys_by_screen_id(globalkeys, 2, left_tag_names)
+    globalkeys = gen_globalkeys_by_screen_id(globalkeys, screen_id_main, tag_names_main)
+    globalkeys = gen_globalkeys_by_screen_id(globalkeys, screen_id_secondary, tag_names_secondary)
 end
 
 clientbuttons = awful.util.table.join(
@@ -561,7 +562,7 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
     { rule = { class = "wmail" },
       properties = { tag = "7" } },
-    { rule = { class = "Slack" },
+    { rule = { class = "slack" },
       properties = { tag = "7" } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
