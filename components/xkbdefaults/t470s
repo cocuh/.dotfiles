@@ -1,5 +1,7 @@
 // no caps
 // alt <-> win
+// PgUp -> Home
+// PgDown -> End
 xkb_keymap {
 xkb_keycodes "evdev_aliases(qwerty)" {
     minimum = 8;
@@ -1420,13 +1422,13 @@ xkb_symbols "pc_us_inet(evdev)" {
     key <HOME> {         [            Home ] };
     key   <UP> {         [              Up ] };
     // key <PGUP> {         [           Prior ] };
-    key <PGUP> {         [            Home,           Prior ] };
+    key <PGUP> {         [            Home ] };
     key <LEFT> {         [            Left ] };
     key <RGHT> {         [           Right ] };
     key  <END> {         [             End ] };
     key <DOWN> {         [            Down ] };
     // key <PGDN> {         [            Next ] };
-    key <PGDN> {         [             End,            Next ] };
+    key <PGDN> {         [             End ] };
     key  <INS> {         [          Insert ] };
     key <DELE> {         [          Delete ] };
     key <MUTE> {         [   XF86AudioMute ] };

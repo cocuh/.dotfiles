@@ -140,10 +140,10 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.bottom,
     awful.layout.suit.magnifier,
     awful.layout.suit.floating,
 }
@@ -453,14 +453,14 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "[",
         function (c)
             local screen = mouse.screen
-            awful.client.movetoscreen(c, 1)
+            awful.client.movetoscreen(c, screen_id_main)
             awful.screen.focus(screen)
         end),
     awful.key({ modkey, "Shift"   }, "]",
         function (c)
             if is_double_screen then
                 local screen = mouse.screen
-                awful.client.movetoscreen(c, 2)
+                awful.client.movetoscreen(c, screen_id_secondary)
                 awful.screen.focus(screen)
             end
         end),
