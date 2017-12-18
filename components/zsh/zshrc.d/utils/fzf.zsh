@@ -89,7 +89,7 @@ function fdr() {
 }
 
 function fh() {
-  LBUFFER=$(history 0 | $FZF +s --tac -e | sed "s/ *[0-9]* *(\* )?//")
+  LBUFFER=$(history 0 | fzf +s --tac -e | sed "s/ *[0-9]* *(\* )?//")
   zle redisplay
 }
 if type $FZF &> /dev/null; then
