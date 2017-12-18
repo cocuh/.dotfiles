@@ -84,12 +84,12 @@ function fdr() {
       get_parent_dirs $(dirname "$1")
     fi
   }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | $FZF --tac)
   cd "$DIR"
 }
 
 function fh() {
-  LBUFFER=$(history 0 | fzf +s --tac | sed "s/ *[0-9]* *//")
+  LBUFFER=$(history 0 | $FZF +s --tac -e | sed "s/ *[0-9]* *(\* )?//")
   zle redisplay
 }
 if type $FZF &> /dev/null; then
