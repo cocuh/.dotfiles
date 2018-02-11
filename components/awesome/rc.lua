@@ -42,7 +42,7 @@ local hostname = (
         return hostname
     end
 )()
-local is_laptop = (hostname == "saya" or hostname == "shiina")
+local is_laptop = (hostname == "shiina")
 local nic_id;
 if is_laptop then
     nic_id = 'enp0s31f6'
@@ -85,29 +85,6 @@ end
 
 
 --}}}
-
---- {{{ mpd wiget
---local mpdwidget = lain.widgets.mpd({
---    music_dir = homedir .. "/music",
---    settings = function()
---        if mpd_now.state == "play" then
---            artist = " " .. mpd_now.artist .. " "
---            title  = mpd_now.title  .. " "
---        elseif mpd_now.state == "pause" then
---            artist = " mpd "
---            title  = "paused "
---        else
---            artist = " mpd "
---            title  = "unknown "
---        end
---
---        widget:set_markup(markup("#EA6F81", artist) .. title)
---    end
---})
---mpdwidget:buttons(awful.util.table.join(
---    awful.button({ }, 1, function () awful.spawn("mpc toggle") end)
---))
----}}}
 
 --{{{ pomodoro timer
 pomodoro.init()
@@ -555,6 +532,7 @@ awful.rules.rules = {
                      --border_color = beautiful.border_normal,
                      placement = awful.placement.under_mouse+awful.placement.no_overlap+awful.placement.no_offscreen,
                      focus = awful.client.focus.filter,
+                     screen = awful.screen.focused,
                      raise = true,
                      size_hints_honor = false,
                      keys = clientkeys,
@@ -595,56 +573,15 @@ client.connect_signal("manage", function (c, startup)
         end
     end
 
-    local current_time = os.time()
-    if current_time - _start_time > 3 then
-        _is_first_run = false
-        c:move_to_screen(mouse.screen)
-    end
-
-    local titlebars_enabled = false
-    if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
-        -- buttons for the titlebar
-        local buttons = awful.util.table.join(
-                awful.button({ }, 1, function()
-                    client.focus = c
-                    c:raise()
-                    awful.mouse.client.move(c)
-                end),
-                awful.button({ }, 3, function()
-                    client.focus = c
-                    c:raise()
-                    awful.mouse.client.resize(c)
-                end)
-                )
-
-        -- Widgets that are aligned to the left
-        local left_layout = wibox.layout.fixed.horizontal()
-        left_layout:add(awful.titlebar.widget.iconwidget(c))
-        left_layout:buttons(buttons)
-
-        -- Widgets that are aligned to the right
-        local right_layout = wibox.layout.fixed.horizontal()
-        right_layout:add(awful.titlebar.widget.floatingbutton(c))
-        right_layout:add(awful.titlebar.widget.maximizedbutton(c))
-        right_layout:add(awful.titlebar.widget.stickybutton(c))
-        right_layout:add(awful.titlebar.widget.ontopbutton(c))
-        right_layout:add(awful.titlebar.widget.closebutton(c))
-
-        -- The title goes in the middle
-        local middle_layout = wibox.layout.flex.horizontal()
-        local title = awful.titlebar.widget.titlewidget(c)
-        title:set_align("center")
-        middle_layout:add(title)
-        middle_layout:buttons(buttons)
-
-        -- Now bring it all together
-        local layout = wibox.layout.align.horizontal()
-        layout:set_left(left_layout)
-        layout:set_right(right_layout)
-        layout:set_middle(middle_layout)
-
-        awful.titlebar(c):set_widget(layout)
-    end
+    -- local current_time = os.time()
+    -- if current_time - _start_time > 3 then
+    --     -- _is_first_run = false
+    --     local src = mouse.screen
+    --     awful.screen.focus(src)
+    --     c:move_to_screen(src)
+    --     client.focus = c
+    --     awful.screen.focus(src)
+    -- end
 end)
 
 client.connect_signal("focus", function(c)
