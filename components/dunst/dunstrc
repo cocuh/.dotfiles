@@ -144,6 +144,8 @@
     # Align icons left/right/off
     icon_position = left
 
+    max_icon_size = 64
+
     # Paths to default icons.
     icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
