@@ -48,7 +48,10 @@ class ZshRc(object):
 
         data_list += [
             '() {',
+            # '_start=`date +%s%N`',
             '{}'.format(_data),
+            # '_end=`date +%s%N`',
+            # 'echo {} $((_end - _start))'.format(name),
             '}',
         ]
 
