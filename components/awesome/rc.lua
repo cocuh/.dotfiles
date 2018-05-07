@@ -373,12 +373,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "Escape", awesome.quit),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
+
+    -- awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
+    -- awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+    -- awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
+    -- awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
+    -- awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
+    -- awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "Tab", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "Tab", function () awful.layout.inc(layouts, -1) end),
 
@@ -409,6 +410,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "b", function() awful.util.spawn("xbacklight +5") end),
 
     -- program
+    awful.key({ modkey,           }, "l", function() awful.util.spawn("xscreensaver-command -lock") end),
     awful.key({ modkey, "Shift"   }, "l", function() awful.util.spawn("xscreensaver-command -lock") end),
     awful.key({ modkey, "Shift"   }, "d", function() awful.util.spawn("rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85") end),
     awful.key({ modkey,           }, "w", function() awful.util.spawn(cmd_rofi_window_selector) end),
