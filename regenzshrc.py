@@ -46,14 +46,21 @@ class ZshRc(object):
         if self.debug_mode:
             data_list.append("echo 'DEBUG: {}'".format(name))
 
-        data_list += [
-            '() {',
-            # '_start=`date +%s%N`',
-            '{}'.format(_data),
-            # '_end=`date +%s%N`',
-            # 'echo {} $((_end - _start))'.format(name),
-            '}',
-        ]
+        if debug_mode:
+            data_list += [
+                '() {',
+                '_start=`date +%s%N`',
+                '{}'.format(_data),
+                '_end=`date +%s%N`',
+                'echo {} $((_end - _start))'.format(name),
+                '}',
+            ]
+        else:
+            data_list += [
+                '() {',
+                '{}'.format(_data),
+                '}',
+            ]
 
         data = '\n'.join(data_list)
 
