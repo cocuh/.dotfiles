@@ -46,7 +46,7 @@ class ZshRc(object):
         if self.debug_mode:
             data_list.append("echo 'DEBUG: {}'".format(name))
 
-        if debug_mode:
+        if self.debug_mode:
             data_list += [
                 '() {',
                 '_start=`date +%s%N`',
