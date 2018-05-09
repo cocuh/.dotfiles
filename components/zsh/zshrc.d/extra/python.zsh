@@ -16,4 +16,5 @@ install_jupyter_in_virtualenv() {
 
 alias mkvirtualenv-with-sys=makevirtualenv --system-site-packages
 
+export PIPENV_VENV_IN_PROJECT=1
 
