@@ -13,8 +13,10 @@ URxvt.saveLines: 10000
 URxvt.perl-ext-common:default, clipboard
 URxvt.iso14755: False
 URxvt.iso14755_52: False
-
-URxvt*shading: 15
+URxvt.shading: 15
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 
 vmplayer.scrollBar: False
 
