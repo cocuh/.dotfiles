@@ -129,8 +129,8 @@ local layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-local tag_names_main = { "1", "2", "3", "4", "5", "6", "7" }
-local tag_names_secondary = { "8", "9", "0", "-", "="}
+local tag_names_main = { "1", "2", "3", "4", "5", "6" }
+local tag_names_secondary = { "7", "8", "9", "0", "-", "="}
 local tag_names = awful.util.table.clone(tag_names_main)
 awful.util.table.merge(tag_names, tag_names_secondary)
 
@@ -540,10 +540,10 @@ awful.rules.rules = {
                      keys = clientkeys,
                      no_opacity = false,
                      buttons = clientbuttons } },
-    { rule = { class = "wmail" },
-      properties = { tag = "7" } },
-    { rule = { class = "slack" },
-      properties = { tag = "7" } },
+    { rule = { class = "Spotify" },
+      properties = { tag = awful.tag.find_by_name(nil, "7") } },
+    { rule = { role = "browser" },
+      properties = { tag = awful.tag.find_by_name(nil, "=") } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
@@ -665,3 +665,4 @@ client.connect_signal("property::sticky",    check_focus_delayed)
 
 
 focus_home_position()
+
