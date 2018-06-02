@@ -27,6 +27,7 @@ local pomodoro = require('pomodoro')
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 beautiful.hotkeys_font = "Ricty 15"
 beautiful.hotkeys_description_font = "Ricty 15"
+beautiful.hotkeys_modifiers_fg = "#CDEE69"
 
 local is_double_screen = screen.count() == 2
 local is_secondary_main = true
@@ -375,6 +376,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "Escape", awesome.quit),
 
+
     awful.key({ modkey,           }, "Tab", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "Tab", function () awful.layout.inc(layouts, -1) end),
 
@@ -465,8 +467,7 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
                            awful.tag.viewonly(tag)
                         end
                   end,
-                  {description="", group="tag"}
-                  ),
+                  {description="change tag", group="tag"}),
         -- Toggle tag.
         awful.key({ modkey, "Control" }, tag_name,
                   function ()
@@ -474,7 +475,8 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
                       if tag then
                          awful.tag.viewtoggle(tag)
                       end
-                  end),
+                  end,
+                  {description="toggle tag", group="tag"}),
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, tag_name,
                   function ()
@@ -486,7 +488,8 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
                           end
                      end
                      awful.screen.focus(scr)
-                  end))
+                 end,
+                {description="move window to specified tag", group="tag"}))
 end
 
 
