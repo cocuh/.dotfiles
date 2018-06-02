@@ -23,8 +23,10 @@ local naughty = require("naughty")
 dbus = _dbus
 local menubar = require("menubar")
 
-local hotkeys_popup = require("awful.hotkeys_popup").widget
 local pomodoro = require('pomodoro')
+local hotkeys_popup = require("awful.hotkeys_popup").widget
+beautiful.hotkeys_font = "Ricty 15"
+beautiful.hotkeys_description_font = "Ricty 15"
 
 local is_double_screen = screen.count() == 2
 local is_secondary_main = true
