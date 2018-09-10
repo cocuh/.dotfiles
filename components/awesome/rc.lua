@@ -42,7 +42,7 @@ local is_laptop = const.get("is_laptop", false)
 local nic_id = const.get("nic_id", "eno1")
 
 local screen_ids = const.get("screen_ids", {left=3, center=1, right=2})
-local screen_id_main = const.get("screen_id_main", 1)
+local screen_id_primary = const.get("screen_id_primary", 1)
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -119,12 +119,13 @@ local layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tag_names = const.get('tag_names', function(_)return {center={"1"}} end)(screen.count())
+tag_names = myconfig.tag.get_tag_names(screen.count())
 
 
 local tags = {}
 for screen_name, tags_data in pairs(tag_names)do
-  tags[screen_name] = awful.tag(tags_data["names"], screen_ids[screen_name], awful.layout.suit.max)
+  local layout = tags_data.layout or awful.layout.suit.max
+  tags[screen_name] = awful.tag(tags_data.names, screen_ids[screen_name], layout)
 end
 
 function focus_home_position()
@@ -133,6 +134,7 @@ function focus_home_position()
     local t = awful.tag.find_by_name(s, tags_data.home)
     awful.tag.viewonly(t)
   end
+  awful.screen.focus(screen_ids.center)
 end
 
 -- }}}
@@ -313,6 +315,8 @@ root.buttons(awful.util.table.join(awful.button({}, 3, function() mymainmenu:tog
 
 -- {{{ Key bindings
 local cmd_rofi_window_selector = "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85"
+local cmd_rofi_launcher = "rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85"
+
 globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "Left", awful.tag.viewprev),
   awful.key({ modkey, }, "Right", awful.tag.viewnext),
@@ -384,11 +388,11 @@ globalkeys = awful.util.table.join(
 
   -- program
   awful.key({ modkey, }, "l", 
-    function() awful.util.spawn("xscreensaver-command -lock") end),
+    function() awful.util.spawn(const.get("command_screenlock", "echo")) end),
   awful.key({ modkey, "Shift" }, "l",
-    function() awful.util.spawn("xscreensaver-command -lock") end),
+    function() awful.util.spawn(const.get("command_screenlock", "echo")) end),
   awful.key({ modkey, "Shift" }, "d", 
-    function() awful.util.spawn("rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85") end),
+    function() awful.util.spawn(cmd_rofi_launcher) end),
   awful.key({ modkey, }, "w",
     function() awful.util.spawn(cmd_rofi_window_selector) end),
   awful.key({ modkey, }, "m",
@@ -414,7 +418,7 @@ clientkeys = awful.util.table.join(
   awful.key({ modkey, "Shift" }, "[",
     function(c)
       local screen = mouse.screen
-      awful.client.movetoscreen(c, screen_id_main)
+      awful.client.movetoscreen(c, screen_id_primary)
       awful.screen.focus(screen)
     end,
     { description = "move window to the screen", group = "screen" }),

@@ -1,5 +1,9 @@
 local myconfig = {}
 
 local const = require('myconfig.const')
+local tag = require('myconfig.tag')
 
-return {}
+return {
+  const = const,
+  tag = tag,
+}

@@ -1,41 +1,3 @@
-local common = require("myconfig.const.common")
-local awful = require("awful")
-
-function get_tag_names(num_display)
-  if num_display == 1 then
-    local tag_names = awful.util.table.clone(common.tag_names_main)
-    awful.util.table.merge(tag_names, common.tag_names_secondary)
-    return {
-      center = {
-        names = tag_names,
-        home = tag_names[1], -- "1"
-      },
-    }
-  elseif num_display == 2 then
-    return {
-      center = {
-        names = common.tag_names_main,
-        home  = common.tag_names_main[1],  -- "1"
-      },
-      right = {
-        names = common.tag_names_secondary,
-        home  = common.tag_names_secondary[#common.tag_names_secondary], -- "="
-      }
-    }
-  else
-    return {
-      center = {
-        names = common.tag_names_main,
-        home  = common.tag_names_main[1],  -- "1"
-      },
-      right = {
-        names = common.tag_names_secondary,
-        home  = common.tag_names_secondary[#common.tag_names_secondary], -- "="
-      }
-    }
-  end
-end
-
 return {
   nic_id = "eno1",
   screen_ids = {
@@ -43,6 +5,6 @@ return {
     center=1,
     right=2,
   },
-  screen_id_main = 1,
-  tag_names = get_tag_names,
+  screen_id_primary = 1,
+  command_screenlock = "xscreensaver-command -lock",
 }

@@ -14,7 +14,7 @@ local consts = {
 
 local const = consts[hostname]
 if const == nil then
-  const = require("myconfig.const.default")
+  const = require("myconfig.const.shiina") -- default setting
 end
 
 return {
@@ -25,4 +25,5 @@ return {
       return const[key]
     end
   end,
+  hostname = hostname,
 }
