@@ -134,7 +134,7 @@ function focus_home_position()
     local t = awful.tag.find_by_name(s, tags_data.home)
     awful.tag.viewonly(t)
   end
-  awful.screen.focus(screen_ids.center)
+  awful.screen.focus(screen_id_primary)
 end
 
 -- }}}
@@ -478,7 +478,7 @@ local screen_key_mapping = {
 }
 for key, value in pairs(screen_key_mapping) do
   -- screen focus
-  awful.util.table.join(globalkeys,
+  globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey, }, key,
       function()
         if screen_ids[value] ~= nil then
@@ -488,7 +488,7 @@ for key, value in pairs(screen_key_mapping) do
     )
   )
   -- screen move
-  awful.util.table.join(clientkeys,
+  clientkeys = awful.util.table.join(clientkeys,
     awful.key({ modkey, "Shift" }, key,
       function(c)
         if screen_ids[value] ~= nil then
@@ -532,6 +532,18 @@ awful.rules.rules = {
   {
     rule = { class = "Spotify" },
     properties = { tag = awful.tag.find_by_name(nil, "0") }
+  },
+  {
+    rule = { class = "Steam" },
+    properties = { tag = awful.tag.find_by_name(nil, "6") }
+  },
+  {
+    rule = { class = "jetbrains-pycharm" },
+    properties = { tag = awful.tag.find_by_name(nil, "2") }
+  },
+  {
+    rule = { class = "Chromium" },
+    properties = { tag = awful.tag.find_by_name(nil, "=") }
   },
 }
 -- }}}
