@@ -26,6 +26,8 @@ local menubar = require("menubar")
 local pomodoro = require('pomodoro')
 
 local myconfig = require('myconfig')
+myconfig.initialize(screen)
+
 local const = require('myconfig.const')
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
@@ -645,9 +647,6 @@ client.connect_signal("property::minimized", check_focus_delayed)
 client.connect_signal("property::sticky", check_focus_delayed)
 -- }}}
 
-
-
-gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/materials.png", screen[1])
-gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/saya.png", screen[2])
+myconfig.wallpaper.set_default_wallpaper()
 
 focus_home_position()

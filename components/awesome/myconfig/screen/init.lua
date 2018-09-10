@@ -1,4 +1,4 @@
-local hostname = require("myconfig.const").hostname 
+local hostname = require("myconfig.sysconst").hostname 
 
 
 local screens = {}
