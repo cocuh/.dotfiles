@@ -41,8 +41,8 @@ local homedir = os.getenv("HOME")
 local is_laptop = const.get("is_laptop", false)
 local nic_id = const.get("nic_id", "eno1")
 
-local screen_ids = const.get("screen_ids", {left=3, center=1, right=2})
-local screen_id_primary = const.get("screen_id_primary", 1)
+local screen_ids = myconfig.screen.get_screen_ids(screen.count())
+local screen_id_primary = myconfig.screen.get_primary_screen_id(screen.count())
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -338,13 +338,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end),
   awful.key({ modkey, }, "u", awful.client.urgent.jumpto),
 
-  -- Screen focus
-  awful.key({ modkey, }, "[", function() awful.screen.focus(screen_ids.center) end),
-  awful.key({ modkey, }, "]", function()
-    if is_double_screen then
-      awful.screen.focus(screen_ids.right)
-    end
-  end),
+  -- Screen reset
   awful.key({ modkey, }, "r", focus_home_position),
 
   -- Standard program
@@ -414,23 +408,6 @@ clientkeys = awful.util.table.join(
     function(c) c:swap(awful.client.getmaster()) end,
     { description = "set master window", group = "window" }),
 
-  -- screen moving
-  awful.key({ modkey, "Shift" }, "[",
-    function(c)
-      local screen = mouse.screen
-      awful.client.movetoscreen(c, screen_id_primary)
-      awful.screen.focus(screen)
-    end,
-    { description = "move window to the screen", group = "screen" }),
-  awful.key({ modkey, "Shift" }, "]",
-    function(c)
-      if is_double_screen then
-        local screen = mouse.screen
-        awful.client.movetoscreen(c, screen_ids.right)
-        awful.screen.focus(screen)
-      end
-    end,
-    { description = "move window to the screen", group = "screen" }),
   awful.key({ modkey, }, "n",
     function(c) c.minimized = true end,
     { description = "minimize the window", group = "window" }),
@@ -494,6 +471,36 @@ for screen_name, tags_data in pairs(tag_names) do
   end
 end
 
+local screen_key_mapping = {
+  ["P"] = "left",
+  ["["] = "center",
+  ["]"] = "right",
+}
+for key, value in pairs(screen_key_mapping) do
+  -- screen focus
+  awful.util.table.join(globalkeys,
+    awful.key({ modkey, }, key,
+      function()
+        if screen_ids[value] ~= nil then
+          awful.screen.focus(screen_ids[value])
+        end
+      end
+    )
+  )
+  -- screen move
+  awful.util.table.join(clientkeys,
+    awful.key({ modkey, "Shift" }, key,
+      function(c)
+        if screen_ids[value] ~= nil then
+          local screen = mouse.screen
+          awful.client.movetoscreen(c, screen_ids[value])
+          awful.screen.focus(screen)
+        end
+      end,
+      { description = "move window to the screen", group = "screen" })
+  )
+end
+
 clientbuttons = awful.util.table.join(
   awful.button({}, 1, function(c) client.focus = c; c:raise() end),
   awful.button({ modkey }, 1, awful.mouse.client.move),
@@ -524,11 +531,7 @@ awful.rules.rules = {
   },
   {
     rule = { class = "Spotify" },
-    properties = { tag = awful.tag.find_by_name(nil, "7") }
-  },
-  {
-    rule = { role = "browser" },
-    properties = { tag = awful.tag.find_by_name(nil, "=") }
+    properties = { tag = awful.tag.find_by_name(nil, "0") }
   },
 }
 -- }}}
@@ -630,5 +633,9 @@ client.connect_signal("property::minimized", check_focus_delayed)
 client.connect_signal("property::sticky", check_focus_delayed)
 -- }}}
 
+
+
+gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/materials.png", screen[1])
+gears.wallpaper.maximized("/home/cocuh/picture/wallpaper/saya.png", screen[2])
 
 focus_home_position()

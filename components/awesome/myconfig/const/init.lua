@@ -14,7 +14,7 @@ local consts = {
 
 local const = consts[hostname]
 if const == nil then
-  const = require("myconfig.const.shiina") -- default setting
+  const = require("myconfig.const.stern") -- default setting
 end
 
 return {
