@@ -24,6 +24,10 @@ dbus = _dbus
 local menubar = require("menubar")
 
 local pomodoro = require('pomodoro')
+
+local myconfig = require('myconfig')
+local const = require('myconfig.const')
+
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 beautiful.hotkeys_font = "Ricty 15"
 beautiful.hotkeys_description_font = "Ricty 15"
@@ -31,33 +35,14 @@ beautiful.hotkeys_modifiers_fg = "#CDEE69"
 
 local is_double_screen = screen.count() == 2
 local is_secondary_main = true
-local screen_id_main
-local screen_id_secondary
 
 local homedir = os.getenv("HOME")
 
-local hostname = (function()
-  local f = io.popen("/bin/hostname")
-  local hostname = f:read("*a") or ""
-  f:close()
-  hostname = string.gsub(hostname, "\n$", "")
-  return hostname
-end)()
-local is_laptop = (hostname == "shiina")
-local nic_id;
-if is_laptop then
-  nic_id = 'enp0s31f6'
-else
-  nic_id = 'eno1'
-end
+local is_laptop = const.get("is_laptop", false)
+local nic_id = const.get("nic_id", "eno1")
 
-if is_laptop and is_secondary_main then
-  screen_id_main = 2
-  screen_id_secondary = 1
-else
-  screen_id_main = 1
-  screen_id_secondary = 2
-end
+local screen_ids = const.get("screen_ids", {left=3, center=1, right=2})
+local screen_id_main = const.get("screen_id_main", 1)
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -134,25 +119,20 @@ local layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-local tag_names_main = { "1", "2", "3", "4", "5", "6" }
-local tag_names_secondary = { "7", "8", "9", "0", "-", "=" }
-local tag_names = awful.util.table.clone(tag_names_main)
-awful.util.table.merge(tag_names, tag_names_secondary)
+tag_names = const.get('tag_names', function(_)return {center={"1"}} end)(screen.count())
 
-if not is_double_screen then
-  tags = {}
-  tags[1] = awful.tag(tag_names, 1, layouts[1])
-else
-  tags = {}
-  tags[1] = awful.tag(tag_names_main, screen_id_main, layouts[1])
-  tags[2] = awful.tag(tag_names_secondary, screen_id_secondary, awful.layout.suit.max)
+
+local tags = {}
+for screen_name, tags_data in pairs(tag_names)do
+  tags[screen_name] = awful.tag(tags_data["names"], screen_ids[screen_name], awful.layout.suit.max)
 end
 
 function focus_home_position()
-  if is_double_screen then
-    awful.tag.viewonly(tags[2][#tags[2]])
+  for screen_name, tags_data in pairs(tag_names) do
+    local s = screen[screen_ids[screen_name]]
+    local t = awful.tag.find_by_name(s, tags_data.home)
+    awful.tag.viewonly(t)
   end
-  awful.tag.viewonly(tags[1][1])
 end
 
 -- }}}
@@ -238,7 +218,6 @@ for s = 1, screen.count() do
   local right_layout = wibox.layout.fixed.horizontal()
   if s == 1 then
     right_layout:add(wibox.container.background(wibox.widget.systray(), beautiful.bg_focus))
-    --right_layout:add(wibox.container.background(mpdwidget, beautiful.bg_focus))
     right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
     right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
     if is_laptop then
@@ -356,10 +335,10 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "u", awful.client.urgent.jumpto),
 
   -- Screen focus
-  awful.key({ modkey, }, "[", function() awful.screen.focus(screen_id_main) end),
+  awful.key({ modkey, }, "[", function() awful.screen.focus(screen_ids.center) end),
   awful.key({ modkey, }, "]", function()
     if is_double_screen then
-      awful.screen.focus(screen_id_secondary)
+      awful.screen.focus(screen_ids.right)
     end
   end),
   awful.key({ modkey, }, "r", focus_home_position),
@@ -443,7 +422,7 @@ clientkeys = awful.util.table.join(
     function(c)
       if is_double_screen then
         local screen = mouse.screen
-        awful.client.movetoscreen(c, screen_id_secondary)
+        awful.client.movetoscreen(c, screen_ids.right)
         awful.screen.focus(screen)
       end
     end,
@@ -504,23 +483,11 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
 end
 
 
-function gen_globalkeys_by_screen_id(globalkeys, screen_id, tag_names)
-  for i, t in ipairs(tag_names) do
+for screen_name, tags_data in pairs(tag_names) do
+  for i, t in ipairs(tags_data.names) do
     globalkeys = awful.util.table.join(globalkeys,
-      gen_tag_key_binds(screen_id, i, t))
+      gen_tag_key_binds(screen_ids[screen_name], i, t))
   end
-  return globalkeys
-end
-
-if not is_double_screen then
-  for i, t in ipairs(tag_names) do
-    globalkeys = awful.util.table.join(globalkeys,
-      gen_tag_key_binds(1, i, t))
-  end
-else
-  local _tag_names_list
-  globalkeys = gen_globalkeys_by_screen_id(globalkeys, screen_id_main, tag_names_main)
-  globalkeys = gen_globalkeys_by_screen_id(globalkeys, screen_id_secondary, tag_names_secondary)
 end
 
 clientbuttons = awful.util.table.join(
@@ -661,4 +628,3 @@ client.connect_signal("property::sticky", check_focus_delayed)
 
 
 focus_home_position()
-
