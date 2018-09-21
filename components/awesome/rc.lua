@@ -352,16 +352,7 @@ globalkeys = awful.util.table.join(
 
   awful.key({ modkey, }, "Tab", function() awful.layout.inc(layouts, 1) end),
   awful.key({ modkey, "Shift" }, "Tab", function() awful.layout.inc(layouts, -1) end),
-  awful.key({ modkey, "Shift" }, "n",
-    awful.client.restore),
-  awful.key({ modkey }, "x",
-    function()
-      awful.prompt.run({ prompt = "Run Lua code: " },
-        mypromptbox[mouse.screen].widget,
-        awful.util.eval, nil,
-        awful.util.getdir("cache") .. "/history_eval")
-    end,
-    { description = "Run Lua code", group = "awesome" }),
+  awful.key({ modkey, "Shift" }, "n", awful.client.restore),
 
   -- menuber/toolbar/help
   awful.key({ modkey, }, "d", 
@@ -433,7 +424,7 @@ clientkeys = awful.util.table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 function gen_tag_key_binds(screen_id, tag_idx, tag_name)
   return awful.util.table.join(-- View tag only.
-    awful.key({ modkey }, tag_name,
+    awful.key({ modkey }, tag_name:lower(),
       function()
         local tag = awful.tag.gettags(screen_id)[tag_idx]
         if tag then
@@ -442,7 +433,7 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
       end,
       { description = "change tag", group = "tag" }),
     -- Toggle tag.
-    awful.key({ modkey, "Control" }, tag_name,
+    awful.key({ modkey, "Control" }, tag_name:lower(),
       function()
         local tag = awful.tag.gettags(screen_id)[tag_idx]
         if tag then
@@ -451,7 +442,7 @@ function gen_tag_key_binds(screen_id, tag_idx, tag_name)
       end,
       { description = "toggle tag", group = "tag" }),
     -- Move client to tag.
-    awful.key({ modkey, "Shift" }, tag_name,
+    awful.key({ modkey, "Shift" }, tag_name:lower(),
       function()
         local scr = mouse.screen
         if client.focus then
@@ -474,14 +465,14 @@ for screen_name, tags_data in pairs(tag_names) do
 end
 
 local screen_key_mapping = {
-  ["P"] = "left",
+  ["p"] = "left",
   ["["] = "center",
   ["]"] = "right",
 }
 for key, value in pairs(screen_key_mapping) do
   -- screen focus
   globalkeys = awful.util.table.join(globalkeys,
-    awful.key({ modkey, }, key,
+    awful.key({ modkey, }, key:lower(),
       function()
         if screen_ids[value] ~= nil then
           awful.screen.focus(screen_ids[value])
@@ -491,7 +482,7 @@ for key, value in pairs(screen_key_mapping) do
   )
   -- screen move
   clientkeys = awful.util.table.join(clientkeys,
-    awful.key({ modkey, "Shift" }, key,
+    awful.key({ modkey, "Shift" }, key:lower(),
       function(c)
         if screen_ids[value] ~= nil then
           local screen = mouse.screen
