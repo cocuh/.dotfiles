@@ -1,7 +1,9 @@
 local hostname = require("myconfig.sysconst").hostname 
 
 
-local screens = {}
+local screens = {
+  shiina = require("myconfig.screen.shiina")
+}
 
 local screen = screens[hostname]
 if screen == nil then
