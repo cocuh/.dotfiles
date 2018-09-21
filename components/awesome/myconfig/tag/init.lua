@@ -1,5 +1,7 @@
 local hostname = require("myconfig.sysconst").hostname
-local tags = {}
+local tags = {
+  shiina = require("myconfig.tag.shiina"),
+}
 
 local tag = tags[hostname]
 if tag == nil then
