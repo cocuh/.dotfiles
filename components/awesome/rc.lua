@@ -76,8 +76,6 @@ end
 -- }}}
 
 
---}}}
-
 --{{{ pomodoro timer
 pomodoro.init()
 pomodoro.on_work_pomodoro_finish_callbacks = {
