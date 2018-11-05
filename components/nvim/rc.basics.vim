@@ -21,7 +21,6 @@ nmap <silent> <Space>ec :<C-u>edit ~/.dotfiles/components<CR>
 nmap <silent> <Space>rc :<C-u>source $MYVIMRC\|echo "re-source ".$MYVIMRC<CR>
 nmap <silent>bp :bprevious<CR>
 nmap <silent>bn :bnext<CR>
-nmap <silent>bb :b#<CR>
 imap <silent> <C-c> <C-[>
 
 if has('nvim') " for terminal
