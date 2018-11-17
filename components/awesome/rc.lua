@@ -543,10 +543,6 @@ awful.rules.rules = {
     rule = { class = "jetbrains-pycharm" },
     properties = { tag = awful.tag.find_by_name(nil, "2") }
   },
-  {
-    rule = { class = "Chromium" },
-    properties = { tag = awful.tag.find_by_name(nil, "=") }
-  },
 }
 -- }}}
 
