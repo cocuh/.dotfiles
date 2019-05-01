@@ -1,7 +1,7 @@
 [alias]
 	st = status -sb
 	today = log --since=midnight --author='Kosuke Kusano' --oneline
-	com = commit
+	c = commit
     log-better = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [color]
 	ui = auto
