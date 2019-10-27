@@ -529,10 +529,6 @@ awful.rules.rules = {
     rule = { class = "Steam" },
     properties = { tag = awful.tag.find_by_name(nil, "6") }
   },
-  {
-    rule = { class = "jetbrains-pycharm" },
-    properties = { tag = awful.tag.find_by_name(nil, "2") }
-  },
 }
 -- }}}
 
