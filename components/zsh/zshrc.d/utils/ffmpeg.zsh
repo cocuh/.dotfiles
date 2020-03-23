@@ -76,3 +76,7 @@ function ffmpeg-conv2mp3(){
     esac
     ffmpeg -i $inputfile ${=metadata} -acodec mp3 -vn -ab 256k $outputfile
 }
+
+function ffmpeg-conv2twitter(){
+  ffmpeg -i $1 -vcodec h264 $2
+}
