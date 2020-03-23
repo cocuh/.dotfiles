@@ -191,6 +191,8 @@ end),
     if client.focus then client.focus:raise() end
   end))
 
+local systray = wibox.widget.systray()
+systray:set_screen(screen[screen.count()])
 for s = 1, screen.count() do
   -- Create a promptbox for each screen
   mypromptbox[s] = awful.widget.prompt()
@@ -218,8 +220,8 @@ for s = 1, screen.count() do
 
   -- Widgets that are aligned to the right
   local right_layout = wibox.layout.fixed.horizontal()
+  right_layout:add(wibox.container.background(systray, beautiful.bg_focus))
   if s == 1 then
-    right_layout:add(wibox.container.background(wibox.widget.systray(), beautiful.bg_focus))
     right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
     right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
     if is_laptop then
