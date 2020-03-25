@@ -2,7 +2,6 @@ URxvt.depth: 32
 URxvt.background: rgba:0000/0000/0000/BBBB
 URxvt.foreground: rgba:DDDD/DDDD/DDDD/FFFF
 URxvt.scrollBar: False
-!URxvt.font: xft:Ricty for Powerline:size=
 URxvt.font: xft:Jetbrains Mono:size=11:antialias=true:hinting=true, xft:Cica:size=11, xft:Noto Emoji:pixelsize=11
 URxvt.termName: rxvt-256color
 URxvt.loginShell: True
