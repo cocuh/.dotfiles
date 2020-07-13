@@ -1,7 +1,9 @@
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 3
 let g:deoplete#sources = {}
+call deoplete#custom#option({
+            \   'auto_complete_start_length': 3,
+            \   'auto_complete_delay': 200,
+            \   'smart_case': v:true,
+            \})
 
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
