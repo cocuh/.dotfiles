@@ -50,6 +50,10 @@ repo = 'kassio/neoterm'
 if = 'has("nvim")'
 
 [[plugins]]
+name = 'basic/sonictemplate'
+repo = 'mattn/vim-sonictemplate'
+
+[[plugins]]
 name = 'basic/sudoedit'
 repo = 'chrisbra/SudoEdit.vim'
 
