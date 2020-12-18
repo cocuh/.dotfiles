@@ -1,3 +1,5 @@
+colorscheme molokai-cocuh
+
 syntax enable
 set cursorline
 
@@ -43,8 +45,8 @@ setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set matchpairs& matchpairs+=<:> " enable to highlight < and >
 
 " swp directory
-if !filewritable('$HOME/.cache/nvim/swp')
-	call mkdir('$HOME/.cache/nvim/swp', 'p')
+if !filewritable($HOME . '/.cache/nvim/swp')
+	call mkdir($HOME . '/.cache/nvim/swp', 'p')
 endif
 set directory=~/.cache/nvim/swp
 
@@ -54,3 +56,5 @@ set foldmethod=marker
 " clipboard
 set clipboard& clipboard^=unnamedplus " use x11 clipboard
 
+" do not create .netrwhist file
+let g:netrw_dirhistmax=0
