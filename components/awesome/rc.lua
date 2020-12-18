@@ -23,8 +23,6 @@ local naughty = require("naughty")
 dbus = _dbus
 local menubar = require("menubar")
 
-local pomodoro = require('pomodoro')
-
 local myconfig = require('myconfig')
 myconfig.initialize(screen)
 
@@ -74,21 +72,6 @@ do
   end)
 end
 -- }}}
-
-
---{{{ pomodoro timer
-pomodoro.init()
-pomodoro.on_work_pomodoro_finish_callbacks = {
-  function()
-    awful.spawn('ogg123 /usr/share/sounds/freedesktop/stereo/complete.oga')
-  end
-}
-pomodoro.on_pause_pomodoro_finish_callbacks = {
-  function()
-    awful.spawn('ogg123 /usr/share/sounds/freedesktop/stereo/complete.oga')
-  end
-}
---}}}
 
 
 -- {{{ Variable definitions
@@ -222,8 +205,6 @@ for s = 1, screen.count() do
   local right_layout = wibox.layout.fixed.horizontal()
   right_layout:add(wibox.container.background(systray, beautiful.bg_focus))
   if s == 1 then
-    right_layout:add(wibox.container.background(pomodoro.icon_widget, beautiful.bg_focus))
-    right_layout:add(wibox.container.background(pomodoro.widget, beautiful.bg_focus))
     if is_laptop then
       local memtext = wibox.widget.textbox()
       vicious.register(memtext, vicious.widgets.mem, '<b><span color="#7F9F7F"> mem: $2 kB($1%)</span><span color="#cccccc"> | </span></b>', 2)
