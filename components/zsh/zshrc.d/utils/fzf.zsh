@@ -10,12 +10,12 @@ function fzf--insert-commandline() {
   local filepath="$1"
   [ -z "$filepath" ] && return
   if [ -n "$LBUFFER" ]; then
-    BUFFER="${LBUFFER}${filepath}"
+    BUFFER="${LBUFFER}$filepath:q"
   else
     if [ -d "$filepath" ]; then
-      BUFFER="cd $filepath"
+      BUFFER="cd $filepath:q"
     elif [ -f "$filepath" ]; then
-      BUFFER="$EDITOR $filepath"
+      BUFFER="$EDITOR $filepath:q"
     fi
   fi
   CURSOR=$#BUFFER
