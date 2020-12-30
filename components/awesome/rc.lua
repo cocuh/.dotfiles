@@ -512,6 +512,14 @@ awful.rules.rules = {
     rule = { class = "Steam" },
     properties = { tag = awful.tag.find_by_name(nil, "6") }
   },
+  {
+    rule = { class = "VirtualBox Manager" },
+    properties = { tag = awful.tag.find_by_name(nil, "7") }
+  },
+  {
+    rule = { class = "VirtualBox Machine" },
+    properties = { tag = awful.tag.find_by_name(nil, "7") }
+  },
 }
 -- }}}
 
