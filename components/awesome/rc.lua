@@ -44,8 +44,6 @@ local nic_id = const.get("nic_id", "eno1")
 local screen_ids = myconfig.screen.get_screen_ids(screen.count())
 local screen_id_primary = myconfig.screen.get_primary_screen_id(screen.count())
 
-local quake = lain.util.quake({ app="urxvt", height=1, width=1 })
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -88,7 +86,6 @@ terminal = "urxvt"
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
-modkeyAlt = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -402,8 +399,7 @@ clientkeys = awful.util.table.join(
     function(c)
       c.no_opacity = (not c.no_opacity)
     end,
-    { description = "toggle window transparency", group = "screen" }),
-  awful.key({ modkeyAlt, }, "c", function () quake:toggle() end))
+    { description = "toggle window transparency", group = "screen" }))
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
@@ -515,18 +511,6 @@ awful.rules.rules = {
   {
     rule = { class = "Steam" },
     properties = { tag = awful.tag.find_by_name(nil, "6") }
-  },
-  {
-    rule = { class = "guake" },
-    properties = { floating = true, maximized = true }
-  },
-  {
-    rule = { class = "VirtualBox Machine" },
-    properties = { tag = awful.tag.find_by_name(nil, "7") }
-  },
-  {
-    rule = { class = "VirtualBox Manager" },
-    properties = { tag = awful.tag.find_by_name(nil, "7") }
   },
 }
 -- }}}
