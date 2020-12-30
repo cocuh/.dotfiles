@@ -2,7 +2,7 @@ URxvt.depth: 32
 URxvt.background: rgba:0000/0000/0000/BBBB
 URxvt.foreground: rgba:DDDD/DDDD/DDDD/FFFF
 URxvt.scrollBar: False
-URxvt.font: xft:Jetbrains Mono:size=11:antialias=true:hinting=true, xft:Cica:size=11, xft:Noto Emoji:pixelsize=11
+URxvt.font: xft:Jetbrains Mono:size=8:antialias=true:hinting=true, xft:Cica:size=8, xft:Noto Emoji:pixelsize=8
 URxvt.termName: rxvt-256color
 URxvt.loginShell: True
 URxvt.fading: 0
