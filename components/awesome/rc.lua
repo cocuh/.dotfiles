@@ -519,6 +519,10 @@ awful.rules.rules = {
     rule = { class = "VirtualBox Machine" },
     properties = { tag = awful.tag.find_by_name(nil, "7") }
   },
+  {
+    rule = { name = "Guake!" },
+    properties = { floating = true, maximized = true}
+  },
 }
 -- }}}
 
