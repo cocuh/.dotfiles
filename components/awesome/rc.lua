@@ -23,6 +23,7 @@ local naughty = require("naughty")
 dbus = _dbus
 local menubar = require("menubar")
 
+local mylayout = require("mylayout")
 local myconfig = require('myconfig')
 myconfig.initialize(screen)
 
@@ -91,10 +92,8 @@ modkey = "Mod4"
 local layouts =
 {
   awful.layout.suit.max,
-  awful.layout.suit.max.fullscreen,
+  mylayout.tricol,
   awful.layout.suit.tile,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.magnifier,
   awful.layout.suit.floating,
 }
 -- }}}
