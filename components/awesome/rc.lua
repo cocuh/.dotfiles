@@ -94,6 +94,7 @@ local layouts =
   awful.layout.suit.max,
   mylayout.tricol,
   awful.layout.suit.tile,
+  awful.layout.suit.tile.bottom,
   awful.layout.suit.floating,
 }
 -- }}}
