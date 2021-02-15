@@ -341,7 +341,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "Tab", function()
       awful.layout.inc(layouts, -1)
     end),
-    awful.key({ modkey, "Shift" }, "n", awful.client.restore),
 
 -- menuber/toolbar/help
     awful.key({ modkey, }, "d",
@@ -385,7 +384,7 @@ globalkeys = awful.util.table.join(
         function()
           awful.util.spawn(cmd_rofi_window_selector)
         end),
-    awful.key({ modkey, }, "m",
+    awful.key({ modkey, }, "n",
         function()
           awful.util.spawn(cmd_rofi_window_selector)
         end),
@@ -414,17 +413,12 @@ clientkeys = awful.util.table.join(
         end,
         { description = "set master window", group = "window" }),
 
-    awful.key({ modkey, }, "n",
-        function(c)
-          c.minimized = true
-        end,
-        { description = "minimize the window", group = "window" }),
     awful.key({ modkey, }, "t",
         function(c)
           c.ontop = not c.ontop
         end,
         { description = "fix the window to the top", group = "window" }),
-    awful.key({ modkey, "Shift" }, "m",
+    awful.key({ modkey, }, "m",
         function(c)
           c.maximized = not c.maximized
           c.maximized_horizontal = false
