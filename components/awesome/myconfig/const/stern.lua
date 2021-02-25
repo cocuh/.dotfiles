@@ -6,5 +6,5 @@ return {
     right=2,
   },
   screen_id_primary = 1,
-  command_screenlock = "xscreensaver-command -lock",
+  command_screenlock = "xsecurelock",
 }
