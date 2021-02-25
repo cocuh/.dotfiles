@@ -388,6 +388,14 @@ globalkeys = awful.util.table.join(
         function()
           awful.util.spawn(cmd_rofi_window_selector)
         end),
+    awful.key({ modkey, }, "x",
+        function()
+          awful.util.spawn("~/bin/xrandr-setup.sh")
+        end),
+    awful.key({ modkey, "Shift" }, "x",
+        function()
+          awful.util.spawn("xrandr --auto")
+        end),
     awful.key({ modkey, "Shift" }, "w",
         function()
           awful.spawn.with_shell("python ~/workspace/wallpaperchanger/wallpaperchanger.py")
