@@ -87,8 +87,6 @@ local layouts = {
   awful.layout.suit.max,
   mylayout.tricol,
   awful.layout.suit.tile,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.floating,
 }
 -- }}}
 
@@ -427,9 +425,14 @@ clientkeys = awful.util.table.join(
         { description = "maximize the window", group = "window" }),
     awful.key({ modkey, }, "o",
         function(c)
-          c.no_opacity = (not c.no_opacity)
+          c.opacity = math.min(c.opacity + 0.05, 1)
         end,
-        { description = "toggle window transparency", group = "screen" }))
+        { description = "Increase window transparency", group = "screen" }),
+    awful.key({ modkey, "Shift", }, "o",
+        function(c)
+          c.opacity = math.max(c.opacity - 0.05, 0)
+        end,
+        { description = "Decrease window transparency", group = "screen" }))
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
@@ -531,8 +534,8 @@ awful.rules.rules = {
       screen = awful.screen.focused,
       raise = true,
       size_hints_honor = false,
+      opacity = 1,
       keys = clientkeys,
-      no_opacity = false,
       buttons = clientbuttons
     }
   },
@@ -577,13 +580,9 @@ end)
 
 client.connect_signal("focus", function(c)
   c.border_color = beautiful.border_focus
-  c.opacity = 1
 end)
 client.connect_signal("unfocus", function(c)
   c.border_color = beautiful.border_normal
-  if (not c.no_opacity) then
-    c.opacity = 1
-  end
 end)
 -- }}}
 
