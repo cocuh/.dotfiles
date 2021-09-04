@@ -7,7 +7,7 @@
 	ui = auto
 [user]
 	name = koku
-	email = koku@koku.dev
+	email = koku+gc@koku.dev
 [github]
 	user = cocuh
 [core]
