@@ -84,9 +84,9 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts = {
-  awful.layout.suit.max,
   mylayout.tricol,
   awful.layout.suit.tile,
+  awful.layout.suit.tile.bottom,
 }
 -- }}}
 
@@ -418,9 +418,7 @@ clientkeys = awful.util.table.join(
         { description = "fix the window to the top", group = "window" }),
     awful.key({ modkey, }, "m",
         function(c)
-          c.maximized = not c.maximized
-          c.maximized_horizontal = false
-          c.maximized_vertical = false
+          awful.layout.set(awful.layout.suit.max)
         end,
         { description = "maximize the window", group = "window" }),
     awful.key({ modkey, }, "o",
