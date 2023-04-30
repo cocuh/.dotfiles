@@ -10,4 +10,7 @@ function up(){
     zle reset-prompt
 }
 zle -N up
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 bindkey '^Z^Z' up
