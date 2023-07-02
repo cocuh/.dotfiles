@@ -389,7 +389,7 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ modkey, "Shift" }, "w",
         function()
-          awful.spawn.with_shell("python ~/workspace/wallpaperchanger/wallpaperchanger.py")
+          awful.spawn.with_shell("feh --bg-fill ~/picture/wallpaper/saya.png")
         end))
 
 clientkeys = awful.util.table.join(
@@ -537,26 +537,6 @@ awful.rules.rules = {
       keys = clientkeys,
       buttons = clientbuttons
     }
-  },
-  {
-    rule = { class = "Spotify" },
-    properties = { tag = awful.tag.find_by_name(nil, "0") }
-  },
-  {
-    rule = { class = "Steam" },
-    properties = { tag = awful.tag.find_by_name(nil, "6") }
-  },
-  {
-    rule = { class = "VirtualBox Manager" },
-    properties = { tag = awful.tag.find_by_name(nil, "7") }
-  },
-  {
-    rule = { class = "VirtualBox Machine" },
-    properties = { tag = awful.tag.find_by_name(nil, "7") }
-  },
-  {
-    rule = { name = "Guake!" },
-    properties = { floating = true, maximized = true }
   },
 }
 -- }}}
