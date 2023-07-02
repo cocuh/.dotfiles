@@ -538,6 +538,10 @@ awful.rules.rules = {
       buttons = clientbuttons
     }
   },
+  {
+    rule = { name = "Guake!" },
+    properties = { floating = true, maximized = true }
+  },
 }
 -- }}}
 
