@@ -416,6 +416,7 @@ clientkeys = awful.util.table.join(
         { description = "fix the window to the top", group = "window" }),
     awful.key({ modkey, }, "m",
         function(c)
+          c.maximized = false
           awful.layout.set(awful.layout.suit.max)
         end,
         { description = "maximize the window", group = "window" }),
