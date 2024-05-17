@@ -1,13 +1,6 @@
-if [ -e ~/.ssh-agent-info ]; then
-    source ~/.ssh-agent-info
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
 fi
-
-ssh-add -l >&/dev/null
-if [ $? = 2 ] ; then
-    ssh-agent | sed -e 's/^echo/\# echo/g' > ~/.ssh-agent-info
-    source ~/.ssh-agent-info
-fi
-if ssh-add -l >& /dev/null ; then
-else
-    ssh-add >& /dev/null
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi

@@ -27,8 +27,9 @@ myconfig.initialize(screen)
 local const = require('myconfig.const')
 
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-beautiful.hotkeys_font = "Ricty 15"
-beautiful.hotkeys_description_font = "Ricty 15"
+beautiful.font = "JetBrains Mono 8"
+beautiful.hotkeys_font = "JetBrains Mono 12"
+beautiful.hotkeys_description_font = "JetBrains Mono 12"
 beautiful.hotkeys_modifiers_fg = "#CDEE69"
 
 local is_laptop = const.get("is_laptop", false)
@@ -177,17 +178,17 @@ local bat_text_formatter = function(widget, args)
   local status = args[1]
   local percent = args[2]
   local str = "<span weight='bold' color='%s'>" ..
-      "%s</span>%d "
+      "BAT</span>:%d "
   if percent > 75 then
-    return string.format(str, "#00CC00", status, percent)
+    return string.format(str, "#00CC00", percent)
   elseif percent > 50 then
-    return string.format(str, "#66CC00", status, percent)
+    return string.format(str, "#66CC00", percent)
   elseif percent > 25 then
-    return string.format(str, "#CCCC00", status, percent)
+    return string.format(str, "#CCCC00", percent)
   elseif percent > 10 then
-    return string.format(str, "#CC6600", status, percent)
+    return string.format(str, "#CC6600", percent)
   else
-    return string.format(str, "#CC0000", status, percent)
+    return string.format(str, "#CC0000", percent)
   end
 end
 
@@ -246,10 +247,6 @@ for s = 1, screen.count() do
       local bat0text = wibox.widget.textbox()
       vicious.register(bat0text, vicious.widgets.bat, bat_text_formatter, 3, "BAT0")
       right_layout:add(bat0text)
-
-      local bat1text = wibox.widget.textbox()
-      vicious.register(bat1text, vicious.widgets.bat, bat_text_formatter, 3, "BAT1")
-      right_layout:add(bat1text)
     end
   else
     memtext = wibox.widget.textbox()
@@ -280,8 +277,8 @@ end
 -- }}}
 
 -- {{{ Key bindings
-local cmd_rofi_window_selector = "rofi -show window -font 'Ricty 14' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85"
-local cmd_rofi_launcher = "rofi -show run -font 'Ricty 14' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85"
+local cmd_rofi_window_selector = "rofi -show window -font 'JetBrains Mono 16' -fg '#a0a0a0' -bg '#000000' -hlfg '#ffb964' -hlbg '#303030' -fg-active '#ffb0b0' -opacity 85"
+local cmd_rofi_launcher = "rofi -show run -font 'JetBrains Mono 16' -fg '#00ff00' -bg '#000000' -hlfg '#b9ff64' -hlbg '#303030' -opacity 85"
 
 globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "Left", awful.tag.viewprev),
