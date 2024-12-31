@@ -1,24 +1,19 @@
-if &compatible
-  set nocompatible
+let $CACHE = expand('~/.cache')
+if !($CACHE->isdirectory())
+  call mkdir($CACHE, 'p')
 endif
 
-
-" Special handing for no dein.vim
-if empty(glob('~/.vim/dein.vim/README.md'))
-  echo 'dein.vim not installed!!(run :DotfilesSubmoduleUpdate)'
-  function! DotfilesSubmoduleUpdate()
-    cd ~/.dotfiles
-    !git submodule init
-    !git submodule update
-    q
-  endfunction
-  command DotfilesSubmoduleUpdate :call DotfilesSubmoduleUpdate()
-  runtime! core.vim
-  finish
+if &runtimepath !~# '/dein.vim'
+  let s:dein_dir = fnamemodify('dein.vim', ':p')
+  if !isdirectory(s:dein_dir)
+    let s:dein_dir = $CACHE .. '/dein/repos/github.com/Shougo/dein.vim'
+    if !isdirectory(s:dein_dir)
+      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+    endif
+  endif
+  execute 'set runtimepath^=' .. substitute(
+        \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
 endif
-
-" dein
-set runtimepath+=~/.vim/dein.vim
 
 call dein#begin('~/.cache/nvim/dein', '~/.vim/plugins/*.vim')
 

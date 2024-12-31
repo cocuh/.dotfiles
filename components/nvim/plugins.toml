@@ -19,18 +19,8 @@ name = 'deoplete'
 repo = 'Shougo/deoplete.nvim'
 
 [[plugins]]
-name = 'dein-ui'
-repo = 'wsdjeg/dein-ui.vim'
-
-[[plugins]]
 name = 'compl/vimscript'
 repo = 'Shougo/neco-vim'
 on_ft = 'vim'
-on_i = 1
-
-[[plugins]]
-name = 'compl/python'
-repo = 'davidhalter/jedi-vim'
-on_ft = 'python'
 on_i = 1
 

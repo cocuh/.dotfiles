@@ -3,6 +3,8 @@ colorscheme molokai-cocuh
 syntax enable
 set cursorline
 
+set mouse=
+
 " keybinding
 nmap <C-w>: :split<CR>
 nmap <C-w>" :vsplit<CR>
