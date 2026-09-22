@@ -1,5 +1,13 @@
 autoload -Uz compinit
-compinit
+local zcompdump=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
+local zcompdump_fresh=($zcompdump(N.mh-24))
+if (( $#zcompdump_fresh )); then
+  compinit -C -d $zcompdump
+else
+  mkdir -p ${zcompdump:h}
+  compinit -d $zcompdump
+  touch $zcompdump
+fi
 
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:messages' format '%F{yellow}%d%f'

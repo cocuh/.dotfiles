@@ -1,4 +1,4 @@
-if ((${+TMUX})) && (type fzf-tmux &> /dev/null); then
+if (( ${+TMUX} && $+commands[fzf-tmux] )); then
   FZF="fzf-tmux"
   FZF_OPTION=(-u 70%)
 else
@@ -71,7 +71,7 @@ function fh() {
   LBUFFER=$(history 0 | fzf +s --tac -e | sed -e 's/\s*[0-9]\+\s\+\(\*\s\+\)\?//')
   zle redisplay
 }
-if type $FZF &> /dev/null; then
+if (( $+commands[$FZF] )); then
   zle -N fh
   bindkey -r '^R'
   bindkey '^R' fh

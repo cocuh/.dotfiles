@@ -1,5 +1,7 @@
-if [ -z $_PATH ]; then
-  export _PATH="$PATH"
-else
-  export PATH="$_PATH"
-fi
+typeset -gU path
+path+=(
+  ~/bin(N-/)
+  ~/.local/bin(N-/)
+  ~/.cargo/bin(N-/)
+  ~/.local/share/JetBrains/Toolbox/scripts(N-/)
+)

@@ -1,3 +1,3 @@
-if (which zprof > /dev/null) ;then
+if (( $+functions[zprof] )); then
   zprof | less
 fi

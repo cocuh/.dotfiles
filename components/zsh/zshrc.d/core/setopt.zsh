@@ -1,5 +1,3 @@
-autoload colors
-colors
 setopt auto_cd
 setopt auto_pushd
 setopt auto_list
