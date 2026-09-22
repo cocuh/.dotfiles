@@ -2,7 +2,7 @@
 ---- MONITORS ----
 ------------------
 
-require("monitors")
+local roles = require("roles")
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -22,7 +22,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(terminal)
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("waybar")
+	roles.apply()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("fcitx5")
 end)
@@ -215,12 +215,17 @@ hl.bind("SUPER + bracketright", hl.dsp.focus({ monitor = "r" }))
 
 -- Workspaces
 local register_key_workspace = function(name, key)
-	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = "name:" .. name, on_current_monitor = true }))
-	hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = "name:" .. name, follow = false }))
+	hl.bind("SUPER + " .. key, function() roles.focus_workspace(name) end)
+	hl.bind("SUPER + SHIFT + " .. key, function() roles.move_window(name) end)
 end
 for i = 1, 9 do -- [0, -, =] is scratchpad
 	register_key_workspace(i, i)
 end
+
+-- Sub monitor: a single dedicated workspace
+hl.bind("SUPER + grave", roles.focus_sub)
+hl.bind("SUPER + SHIFT + grave", roles.move_window_to_sub)
+hl.bind("SUPER + SHIFT + P", roles.apply)
 
 -- Scratchpads
 local register_key_scratchpad = function(name, key)
