@@ -1,0 +1,72 @@
+* {
+  transition: none;
+  box-shadow: none;
+}
+
+#waybar {
+  font-family: "JetBrainsMono Nerd Font Propo", sans-serif;
+  font-weight: 400;
+  color: #b8b8b8;
+  background: #2b2e37;
+}
+
+#workspaces {
+  margin-left: 4px;
+  letter-spacing: -1px;
+}
+
+#workspaces button {
+  margin: 4px 0;
+  padding: 0 2px;
+  color: #d8d8d8;
+  min-width: 18px;
+}
+
+#workspaces button.visible {
+}
+
+#workspaces button.active {
+  border-radius: 4px;
+  background-color: #3b3e47;
+}
+
+#workspaces button.urgent {
+  color: rgba(238, 46, 36, 1);
+}
+
+#workspaces button.special {
+  border-bottom: 1px solid #b8b8b8;
+}
+
+
+#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #temperature, #language, #window, #tray {
+  margin: 2px 0px;
+  padding: 0 4px;
+  background-color: #3b3e47;
+  border-radius: 4px;
+  min-width: 20px;
+}
+
+#pulseaudio.muted, #pulseaudio.source-muted {
+  color: #a16946;
+}
+
+#pulseaudio.bluetooth {
+  color: #86c1b9;
+}
+
+#clock {
+  margin-right: 4px;
+}
+
+#temperature.critical {
+  color: #a16946;
+}
+
+#window {
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: transparent;
+  font-family: sans-serif;
+  font-size: 0.9em;
+}

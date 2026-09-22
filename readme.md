@@ -51,6 +51,7 @@ Components define how to make symbolic links on each dotfiles.
 * git
 * dunst
 * hypr
+* waybar
 
 screenshots
 -----------
