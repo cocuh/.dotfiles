@@ -1,16 +1,16 @@
-function ffmpeg-conv2ogg(){
-    cmd=$0
-    Usage() {
-        echo "USAGE: $cmd [-s] [-m] input output"
-    }
-    inputfile= outputfile= symmetry=false
-    metadata="-map_metadata -1"
+function ffmpeg-conv() {
+    local cmd=$1 ext=$2 codec=$3
+    shift 3
+    local symmetry=false metadata=(-map_metadata -1)
+    local opt OPTIND=1
+    local inputfile outputfile
 
     while getopts sm opt
     do
         case "$opt" in
             "s") symmetry=true;;
-            "m") metadata="";;
+            "m") metadata=();;
+            *) echo "USAGE: $cmd [-s] [-m] input output"; return 1;;
         esac
     done
 
@@ -19,64 +19,32 @@ function ffmpeg-conv2ogg(){
     case $# in
         1 )
             if ! $symmetry; then
-                Usage
+                echo "USAGE: $cmd [-s] [-m] input output"
                 return 1
             fi
             inputfile=$1
-            outputfile=${inputfile%.*}.ogg
+            outputfile=${inputfile%.*}.$ext
             ;;
         2 )
             inputfile=$1
             outputfile=$2
             ;;
         * )
-            Usage
+            echo "USAGE: $cmd [-s] [-m] input output"
             return 1
             ;;
     esac
-    ffmpeg -i $inputfile ${=metadata} -acodec libvorbis -vn -ab 256k $outputfile
+    ffmpeg -i "$inputfile" $metadata -acodec $codec -vn -ab 256k "$outputfile"
+}
+
+function ffmpeg-conv2ogg(){
+    ffmpeg-conv $0 ogg libvorbis "$@"
 }
 
 function ffmpeg-conv2mp3(){
-    cmd=$0
-    Usage() {
-        echo "USAGE: $cmd [-s] [-m] input output"
-        return 1
-    }
-    inputfile= outputfile= symmetry=false
-    metadata="-map_metadata -1"
-
-    while getopts sm opt
-    do
-        case "$opt" in
-            "s") symmetry=true;;
-            "m") metadata="";;
-        esac
-    done
-
-    shift $((OPTIND -1))
-
-    case $# in
-        1 )
-            if ! $symmetry; then
-                Usage
-                return 1
-            fi
-            inputfile=$1
-            outputfile=${inputfile%.*}.mp3
-            ;;
-        2 )
-            inputfile=$1
-            outputfile=$2
-            ;;
-        * )
-            Usage
-            return 1
-            ;;
-    esac
-    ffmpeg -i $inputfile ${=metadata} -acodec mp3 -vn -ab 256k $outputfile
+    ffmpeg-conv $0 mp3 mp3 "$@"
 }
 
 function ffmpeg-conv2twitter(){
-  ffmpeg -i $1 -vcodec h264 $2
+  ffmpeg -i "$1" -vcodec h264 "$2"
 }
