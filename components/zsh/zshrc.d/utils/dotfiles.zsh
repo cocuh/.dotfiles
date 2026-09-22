@@ -1,18 +1,10 @@
 function dotfiles-update(){
-  pwd=$(pwd)
-  cd ~/.dotfiles
-  git stash
-  git pull --recurse-submodules
-  git stash pop
-  cd $pwd
+  git -C ~/.dotfiles stash
+  git -C ~/.dotfiles pull --recurse-submodules
+  git -C ~/.dotfiles stash pop
 }
 
 function dotfiles-update-submodules(){
-  pwd=$(pwd)
-  cd ~/.dotfiles
-  git submodule foreach 'git pull origin master'
-  git submodule foreach 'git checkout master'
-  cd $pwd
+  git -C ~/.dotfiles submodule foreach 'git pull origin master'
+  git -C ~/.dotfiles submodule foreach 'git checkout master'
 }
-
-

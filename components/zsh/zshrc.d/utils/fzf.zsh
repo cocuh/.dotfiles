@@ -1,9 +1,9 @@
 if ((${+TMUX})) && (type fzf-tmux &> /dev/null); then
   FZF="fzf-tmux"
-  FZF_OPTION="-u 70%"
+  FZF_OPTION=(-u 70%)
 else
   FZF="fzf"
-  FZF_OPTION=""
+  FZF_OPTION=()
 fi
 
 function fzf--insert-commandline() {
@@ -54,7 +54,7 @@ bindkey -r '^F'
 bindkey '^F' fzf-ls
 
 function fdr() {
-  local declare dirs=()
+  local dirs=()
   get_parent_dirs() {
     if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
     if [[ "${1}" == '/' ]]; then

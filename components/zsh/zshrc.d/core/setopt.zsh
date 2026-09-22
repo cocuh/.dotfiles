@@ -1,6 +1,3 @@
-set wildmenu
-set wrap
-set showmatch
 autoload colors
 colors
 setopt auto_cd

@@ -1,5 +1,5 @@
 function expandpath() {
-  cd $(pwd -P)
+  cd -P .
 }
 
 alias ep=expandpath
