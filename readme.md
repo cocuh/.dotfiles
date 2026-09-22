@@ -50,6 +50,7 @@ Components define how to make symbolic links on each dotfiles.
   * vicious
 * git
 * dunst
+* hypr
 
 screenshots
 -----------
