@@ -21,6 +21,7 @@
         "clock",
     ],
     "hyprland/workspaces": {
+        "all-outputs": true,
         "disable-scroll": true,
         "on-click": "activate"
     },
