@@ -22,12 +22,12 @@ function fzf--insert-commandline() {
 }
 
 function fzf-find() {
-  local filepath="$(find . | grep -v '/\.' | $FZF $FZF_OPTION --prompt 'PATH>')"
+  local filepath="$(find . -name '.?*' -prune -o -print | $FZF $FZF_OPTION --prompt 'PATH>')"
   fzf--insert-commandline $filepath
 }
 
 function fzf-find_dep2() {
-  local filepath="$(find . -maxdepth 2 | grep -v '/\.' | $FZF $FZF_OPTION --prompt 'PATH>')"
+  local filepath="$(find . -maxdepth 2 -name '.?*' -prune -o -print | $FZF $FZF_OPTION --prompt 'PATH>')"
   fzf--insert-commandline $filepath
 }
 
@@ -40,18 +40,6 @@ function fzf-ls() {
   fzf--insert-commandline $filepath
   return
 }
-
-zle -N fzf-find
-bindkey -r '^S'
-bindkey '^S' fzf-find
-
-zle -N fzf-find_dep2
-bindkey -r '^D'
-bindkey '^D' fzf-find_dep2
-
-zle -N fzf-ls
-bindkey -r '^F'
-bindkey '^F' fzf-ls
 
 function fdr() {
   local dirs=()
@@ -68,11 +56,21 @@ function fdr() {
 }
 
 function fh() {
-  LBUFFER=$(history 0 | fzf +s --tac -e | sed -e 's/\s*[0-9]\+\s\+\(\*\s\+\)\?//')
+  local selected="$(fc -rln 1 | fzf +s -e)"
+  [[ -n $selected ]] && LBUFFER=$selected
   zle redisplay
 }
-if (( $+commands[$FZF] )); then
+
+if (( $+commands[fzf] )); then
+  zle -N fzf-find
+  bindkey '^S' fzf-find
+
+  zle -N fzf-find_dep2
+  bindkey '^D' fzf-find_dep2
+
+  zle -N fzf-ls
+  bindkey '^F' fzf-ls
+
   zle -N fh
-  bindkey -r '^R'
   bindkey '^R' fh
 fi
