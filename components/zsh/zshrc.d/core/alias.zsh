@@ -38,9 +38,6 @@ hogehoge() {
 
 if (( $+commands[nvim] )); then
     alias vim='nvim'
-    export EDITOR='nvim'
-elif (( $+commands[vim] )); then
-    export EDITOR='vim'
 fi
 
 alias globalip='curl -fsS https://ifconfig.me; echo'

@@ -1,0 +1,17 @@
+() {
+  setopt local_options no_mark_dirs
+
+  typeset -gU path
+  path+=(
+    ~/bin(N-/)
+    ~/.local/bin(N-/)
+    ~/.cargo/bin(N-/)
+    ~/.local/share/JetBrains/Toolbox/scripts(N-/)
+  )
+
+  if (( $+commands[nvim] )); then
+    export EDITOR='nvim'
+  elif (( $+commands[vim] )); then
+    export EDITOR='vim'
+  fi
+}

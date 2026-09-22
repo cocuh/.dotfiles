@@ -1,7 +1,2 @@
-typeset -gU path
-path+=(
-  ~/bin(N-/)
-  ~/.local/bin(N-/)
-  ~/.cargo/bin(N-/)
-  ~/.local/share/JetBrains/Toolbox/scripts(N-/)
-)
+# re-apply ~/.zshenv in case /etc/zprofile (/etc/profile) reset PATH on login shells
+[[ -r ~/.zshenv ]] && source ~/.zshenv
