@@ -33,19 +33,8 @@ function fzf-find_dep2() {
 
 function fzf-ls() {
   function custom-ls() {
-    case $(uname) in
-    Darwin*)
-      /bin/ls
-      /bin/ls -A | grep "^\."
-      ;;
-    Linux*)
-      /bin/ls --color='never'
-      /bin/ls --color='never' -A | grep "^\."
-      ;;
-    *)
-      /bin/ls
-      ;;
-    esac
+    /bin/ls --color='never'
+    /bin/ls --color='never' -A | grep "^\."
   }
   local filepath="./$(custom-ls | $FZF $FZF_OPTION --prompt 'PATH>')"
   fzf--insert-commandline $filepath
@@ -63,16 +52,6 @@ bindkey '^D' fzf-find_dep2
 zle -N fzf-ls
 bindkey -r '^F'
 bindkey '^F' fzf-ls
-
-function agvim() {
-  local data="$(ag $@ | fzf)"
-  local filepath="$(echo $data | awk -F : '{print $1}')"
-  local lineno="$(echo $data | awk -F : '{print $2}')"
-  [ -z "$filepath" ] && return
-  if [ -f "$filepath" ]; then
-    vim -c $lineno "$filepath"
-  fi
-}
 
 function fdr() {
   local declare dirs=()

@@ -1,11 +1,6 @@
 #zsh PROMPT
 
-local sha
-if [ `which sha1sum` ];then
-  sha=sha1sum
-else
-  sha=shasum
-fi
+local sha=sha1sum
 
 local host_formats
 host_formats=('%{${fg[red]}%}' '%{${fg[green]}%}' '%{${fg[cyan]}%}' '%{${fg[blue]}%}' '%{${fg[yellow]}%}' '%{${fg[magenta]}%}' '%{${fg[white]}%}')
