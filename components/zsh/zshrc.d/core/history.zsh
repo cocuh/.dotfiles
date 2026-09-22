@@ -1,10 +1,6 @@
 local histdir=${XDG_STATE_HOME:-$HOME/.local/state}/zsh
 [[ -d $histdir ]] || mkdir -p $histdir
 HISTFILE=$histdir/history
-# migrate from the old location
-if [[ -f ~/.zsh_history && ! -e $HISTFILE ]]; then
-  mv ~/.zsh_history $HISTFILE
-fi
 HISTSIZE=100000
 SAVEHIST=100000
 
