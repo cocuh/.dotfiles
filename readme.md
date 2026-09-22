@@ -27,10 +27,9 @@ profile
 
 componentのまとまり
 
-* p193
-* macbookair
-* macbookpro
+* thinkpad
 * server
+* work
 
 
 component
@@ -39,42 +38,21 @@ Components define how to make symbolic links on each dotfiles.
 
 * zsh
 * bin
-* vim
+* nvim
 * tmux
-* mlterm
-* ipython
 * xdefaults
+* xkbdefaults
 * xresources
-* vimfx
 * python
   * virtualenvwrapper
 * awesome
   * lain
   * vicious
-  * pomodoro
-  * rofi
-  * feh
-  * wallpaperchanger.py
-* ~~vimperator~~
-  * change to `vimfx`(2017/03/11)
-* ~~qtile~~
-  * change to `awesome`(2017/01/20)
-  * rofi
-  * xboomx
-  * feh
-  * wallpaperchanger.py
-* ~~xmonad~~
-  * change to `qtile`(2015/04/18)
+* git
+* dunst
 
 screenshots
 -----------
 
 ### awesome
 ![](https://raw.github.com/wiki/cocuh/.dotfiles/screenshots/awesome.jpg)
-
-### qtile
-#### saya
-![](https://raw.github.com/wiki/cocuh/.dotfiles/screenshots/qtile-saya.jpg)
-
-#### stern
-![](https://raw.github.com/wiki/cocuh/.dotfiles/screenshots/qtile-stern.jpg)
