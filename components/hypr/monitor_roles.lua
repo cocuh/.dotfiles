@@ -25,6 +25,9 @@ local function resolve()
 			end
 		end
 	end
+	if not main then
+		return nil, nil
+	end
 	return main.name, sub and sub.name
 end
 
@@ -39,6 +42,9 @@ end
 
 function M.reassign()
 	current.main, current.sub = resolve()
+	if not current.main then
+		return
+	end
 
 	for _, ws in ipairs(hl.get_workspaces()) do
 		if not ws.special and ws.name ~= SUB_WORKSPACE and ws.monitor and ws.monitor.name ~= current.main then

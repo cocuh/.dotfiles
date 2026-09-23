@@ -27,6 +27,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("fcitx5")
 end)
 
+-- Reload recreates the Lua state, dropping the resolved main/sub monitors.
+hl.on("config.reloaded", roles.reassign)
+
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
