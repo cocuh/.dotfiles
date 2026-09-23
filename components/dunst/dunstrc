@@ -43,19 +43,19 @@
 # Backgrounds carry alpha because the transparency option is X11-only.
 # Urgency is told apart by the frame color only; the background stays the same.
 [urgency_low]
-    background = "#2b2e37e6"
+    background = "#1c1e24e6"
     foreground = "#888888"
     frame_color = "#3b3e47"
     timeout = 10
 
 [urgency_normal]
-    background = "#2b2e37e6"
+    background = "#1c1e24e6"
     foreground = "#d8d8d8"
     frame_color = "#7aa2f7"
     timeout = 10
 
 [urgency_critical]
-    background = "#2b2e37e6"
+    background = "#1c1e24e6"
     foreground = "#d8d8d8"
     frame_color = "#f7768e"
     timeout = 0
