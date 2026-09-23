@@ -6,7 +6,7 @@ themes {
     akani {
         text_unselected {
             base 216 216 216
-            background 43 46 55
+            background 28 30 36
             emphasis_0 224 175 104
             emphasis_1 125 207 255
             emphasis_2 158 206 106
@@ -21,7 +21,7 @@ themes {
             emphasis_3 187 154 247
         }
         ribbon_unselected {
-            base 43 46 55
+            base 28 30 36
             background 184 184 184
             emphasis_0 247 118 142
             emphasis_1 216 216 216
@@ -29,7 +29,7 @@ themes {
             emphasis_3 187 154 247
         }
         ribbon_selected {
-            base 43 46 55
+            base 28 30 36
             background 122 162 247
             emphasis_0 247 118 142
             emphasis_1 224 175 104
@@ -46,7 +46,7 @@ themes {
         }
         table_cell_unselected {
             base 216 216 216
-            background 43 46 55
+            background 28 30 36
             emphasis_0 224 175 104
             emphasis_1 125 207 255
             emphasis_2 158 206 106
@@ -62,7 +62,7 @@ themes {
         }
         list_unselected {
             base 216 216 216
-            background 43 46 55
+            background 28 30 36
             emphasis_0 224 175 104
             emphasis_1 125 207 255
             emphasis_2 158 206 106
