@@ -29,6 +29,8 @@ end)
 
 -- Reload recreates the Lua state, dropping the resolved main/sub monitors.
 hl.on("config.reloaded", roles.reassign)
+hl.on("monitor.added", roles.reassign)
+hl.on("monitor.removed", roles.reassign)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----

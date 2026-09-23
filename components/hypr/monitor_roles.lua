@@ -6,11 +6,16 @@ local M = {}
 
 local current = { main = nil, sub = nil }
 
+-- A disconnected monitor can still be listed (disabled) while monitor.removed fires.
+local function usable(mon)
+	return mon and mon.enabled and not mon.is_mirror
+end
+
 local function resolve()
 	local main
 	for _, selector in ipairs(monitors.main_candidates) do
 		local mon = hl.get_monitor(selector)
-		if mon and not mon.is_mirror then
+		if usable(mon) then
 			main = mon
 			break
 		end
@@ -18,7 +23,7 @@ local function resolve()
 
 	local sub
 	for _, mon in ipairs(hl.get_monitors()) do
-		if not mon.is_mirror then
+		if usable(mon) then
 			main = main or mon
 			if mon.name ~= main.name and not sub then
 				sub = mon
