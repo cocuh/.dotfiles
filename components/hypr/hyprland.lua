@@ -25,6 +25,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("fcitx5")
+	hl.exec_cmd("dunst")
 end)
 
 -------------------------------
@@ -201,6 +202,12 @@ hl.bind(
 -- App launcher
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("rofi -show combi"))
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("rofi -show window"))
+
+-- Notifications
+hl.bind("SUPER + period", hl.dsp.exec_cmd("dunstctl close"))
+hl.bind("SUPER + SHIFT + period", hl.dsp.exec_cmd("dunstctl history-pop"))
+hl.bind("CTRL + SHIFT + period", hl.dsp.exec_cmd("dunstctl context"))
+hl.bind("CTRL + SHIFT + SPACE", hl.dsp.exec_cmd("dunstctl close-all"))
 
 
 -- Move focus with mainMod + arrow keys
