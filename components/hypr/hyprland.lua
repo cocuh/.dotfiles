@@ -207,7 +207,7 @@ hl.bind(
 
 -- App launcher
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("rofi -show combi"))
-hl.bind("SUPER + TAB", hl.dsp.exec_cmd("rofi -show window"))
+hl.bind("SUPER + D", hl.dsp.exec_cmd("rofi -show window"))
 
 -- Notifications
 hl.bind("SUPER + period", hl.dsp.exec_cmd("dunstctl close"))
@@ -232,6 +232,7 @@ end
 for i = 1, 9 do -- [0, -, =] is scratchpad
 	register_key_workspace(i, i)
 end
+hl.bind("SUPER + TAB", hl.dsp.focus({ workspace = "previous" }))
 
 -- Sub monitor: a single dedicated workspace
 hl.bind("SUPER + grave", roles.focus_sub)
@@ -254,10 +255,12 @@ end
 register_key_scratchpad(0, "0")
 register_key_scratchpad("-", "Minus")
 register_key_scratchpad("=", "Equal")
-register_key_scratchpad("Q", "Q")
 register_key_scratchpad("W", "W")
 register_key_scratchpad("E", "E")
 register_key_scratchpad("R", "R")
+
+-- Hide whichever scratchpad is open, returning focus to the regular workspace
+hl.bind("SUPER + Q", hl.dsp.exec_cmd("~/.config/hypr/scripts/scratchpad-hide.sh"))
 
 hl.window_rule({
 	name = "scratchpad-opacity",
