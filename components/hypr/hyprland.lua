@@ -26,6 +26,7 @@ hl.on("hyprland.start", function()
 	roles.reassign()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("fcitx5")
+	hl.exec_cmd("dunst")
 end)
 
 -- Reload recreates the Lua state, dropping the resolved main/sub monitors.
@@ -207,6 +208,10 @@ hl.bind(
 -- App launcher
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("rofi -show combi"))
 hl.bind("SUPER + TAB", hl.dsp.exec_cmd("rofi -show window"))
+
+-- Notifications
+hl.bind("SUPER + period", hl.dsp.exec_cmd("dunstctl close"))
+hl.bind("SUPER + SHIFT + period", hl.dsp.exec_cmd("dunstctl history-pop"))
 
 
 -- Move focus with mainMod + arrow keys

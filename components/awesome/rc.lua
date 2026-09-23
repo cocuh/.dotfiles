@@ -387,6 +387,16 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "w",
         function()
           awful.spawn.with_shell("feh --bg-fill ~/picture/wallpaper/saya.png")
+        end),
+
+-- notification
+    awful.key({ modkey, }, "period",
+        function()
+          awful.util.spawn("dunstctl close")
+        end),
+    awful.key({ modkey, "Shift" }, "period",
+        function()
+          awful.util.spawn("dunstctl history-pop")
         end))
 
 clientkeys = awful.util.table.join(
