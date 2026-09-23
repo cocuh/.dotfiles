@@ -1,3 +1,4 @@
+# machine-local settings (credential helpers etc.) go in ~/.gitconfig, which is not tracked
 [alias]
 	st = status -sb
     watch-st = !watch --color git -c color.status=always st
@@ -15,7 +16,6 @@
 [core]
 	autocrlf = input
 	pager=less -q -R 
-	excludesfile = ~/.gitignore
 [merge]
 	tool = vimdiff
 #[push]
