@@ -22,6 +22,7 @@
     ],
     "hyprland/workspaces": {
         "all-outputs": true,
+        "ignore-workspaces": ["^sub$"],
         "disable-scroll": true,
         "on-click": "activate"
     },
