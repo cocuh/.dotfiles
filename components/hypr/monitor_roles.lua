@@ -6,42 +6,26 @@ local M = {}
 
 local current = { main = nil, sub = nil }
 
-local function matches(mon, selector)
-	local desc = selector:match("^desc:(.*)$")
-	if desc then
-		return mon.description:sub(1, #desc) == desc
-	end
-	return mon.name == selector
-end
-
 local function resolve()
-	local connected = {}
-	for _, mon in ipairs(hl.get_monitors()) do
-		if not mon.is_mirror then
-			table.insert(connected, mon)
-		end
-	end
-
 	local main
 	for _, selector in ipairs(monitors.main_candidates) do
-		for _, mon in ipairs(connected) do
-			if matches(mon, selector) then
-				main = mon
-				break
-			end
-		end
-		if main then
+		local mon = hl.get_monitor(selector)
+		if mon and not mon.is_mirror then
+			main = mon
 			break
 		end
 	end
-	main = main or connected[1]
 
-	for _, mon in ipairs(connected) do
-		if mon.name ~= main.name then
-			return main.name, mon.name
+	local sub
+	for _, mon in ipairs(hl.get_monitors()) do
+		if not mon.is_mirror then
+			main = main or mon
+			if mon.name ~= main.name and not sub then
+				sub = mon
+			end
 		end
 	end
-	return main.name, nil
+	return main.name, sub and sub.name
 end
 
 local function restart_waybar(output)
