@@ -1,23 +1,22 @@
 [global]
     monitor = 0
     follow = none
-    width = 400
+    width = 360
     height = (0, 300)
     notification_limit = 5
     origin = top-right
-    offset = (0, 20)
+    offset = (8, 8)
     indicate_hidden = yes
 
-    separator_height = 2
-    padding = 8
-    horizontal_padding = 8
-    frame_width = 0
-    frame_color = "#aaaaaa"
-    separator_color = auto
+    gap_size = 6
+    padding = 10
+    horizontal_padding = 12
+    frame_width = 1
+    corner_radius = 0
     sort = yes
     idle_threshold = 120
 
-    font = Ricty 12
+    font = JetBrainsMono Nerd Font 10
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
@@ -31,7 +30,7 @@
     show_indicators = yes
 
     icon_position = left
-    max_icon_size = 64
+    max_icon_size = 32
     icon_theme = Adwaita
     enable_recursive_icon_lookup = true
 
@@ -42,20 +41,23 @@
     verbosity = mesg
 
 # Backgrounds carry alpha because the transparency option is X11-only.
+# Urgency is told apart by the frame color only; the background stays the same.
 [urgency_low]
-    background = "#222222e6"
+    background = "#2b2e37e6"
     foreground = "#888888"
+    frame_color = "#3b3e47"
     timeout = 10
 
 [urgency_normal]
-    background = "#285577e6"
-    foreground = "#ffffff"
+    background = "#2b2e37e6"
+    foreground = "#d8d8d8"
+    frame_color = "#7aa2f7"
     timeout = 10
 
 [urgency_critical]
-    background = "#900000e6"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#2b2e37e6"
+    foreground = "#d8d8d8"
+    frame_color = "#f7768e"
     timeout = 0
 
 # vim: ft=cfg
