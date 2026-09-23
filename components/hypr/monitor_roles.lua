@@ -2,7 +2,7 @@ local monitors = require("monitors")
 
 local SUB_WORKSPACE = "sub"
 
-local M = {}
+local monitor_roles = {}
 
 local current = { main = nil, sub = nil }
 
@@ -45,7 +45,7 @@ local function restart_waybar(output)
 	hl.exec_cmd(string.format("pkill -x waybar; waybar -c %s -s %s/.config/waybar/style.css", path, home))
 end
 
-function M.reassign()
+function monitor_roles.reassign_and_restart_waybar()
 	current.main, current.sub = resolve()
 	if not current.main then
 		return
@@ -70,14 +70,14 @@ function M.reassign()
 end
 
 -- Focusing main first keeps new workspaces from being created on sub.
-function M.focus_workspace(name)
+function monitor_roles.focus_workspace(name)
 	if current.main then
 		hl.dispatch(hl.dsp.focus({ monitor = current.main }))
 	end
 	hl.dispatch(hl.dsp.focus({ workspace = "name:" .. name }))
 end
 
-function M.move_window_to_workspace(name)
+function monitor_roles.move_window_to_workspace(name)
 	hl.dispatch(hl.dsp.window.move({ workspace = "name:" .. name, follow = false }))
 	local ws = hl.get_workspace("name:" .. name)
 	if current.main and ws and ws.monitor and ws.monitor.name ~= current.main then
@@ -85,7 +85,7 @@ function M.move_window_to_workspace(name)
 	end
 end
 
-function M.focus_sub()
+function monitor_roles.focus_sub()
 	if current.sub then
 		hl.dispatch(hl.dsp.focus({ monitor = current.sub }))
 	else
@@ -93,8 +93,8 @@ function M.focus_sub()
 	end
 end
 
-function M.move_window_to_sub()
+function monitor_roles.move_window_to_sub()
 	hl.dispatch(hl.dsp.window.move({ workspace = "name:" .. SUB_WORKSPACE, follow = false }))
 end
 
-return M
+return monitor_roles
