@@ -397,14 +397,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift" }, "period",
         function()
           awful.util.spawn("dunstctl history-pop")
-        end),
-    awful.key({ "Control", "Shift" }, "period",
-        function()
-          awful.util.spawn("dunstctl context")
-        end),
-    awful.key({ "Control", "Shift" }, "space",
-        function()
-          awful.util.spawn("dunstctl close-all")
         end))
 
 clientkeys = awful.util.table.join(

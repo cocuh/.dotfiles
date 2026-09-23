@@ -206,8 +206,6 @@ hl.bind("SUPER + TAB", hl.dsp.exec_cmd("rofi -show window"))
 -- Notifications
 hl.bind("SUPER + period", hl.dsp.exec_cmd("dunstctl close"))
 hl.bind("SUPER + SHIFT + period", hl.dsp.exec_cmd("dunstctl history-pop"))
-hl.bind("CTRL + SHIFT + period", hl.dsp.exec_cmd("dunstctl context"))
-hl.bind("CTRL + SHIFT + SPACE", hl.dsp.exec_cmd("dunstctl close-all"))
 
 
 -- Move focus with mainMod + arrow keys

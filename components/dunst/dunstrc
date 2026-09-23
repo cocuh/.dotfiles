@@ -38,9 +38,6 @@
     sticky_history = yes
     history_length = 20
 
-    # rofi works on both X11 (awesome) and Wayland (Hyprland); dmenu is X11-only
-    dmenu = rofi -dmenu -p dunst
-    browser = xdg-open
     always_run_script = true
     verbosity = mesg
 
