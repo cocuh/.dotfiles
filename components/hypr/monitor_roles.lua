@@ -36,16 +36,7 @@ local function resolve()
 	return main.name, sub and sub.name
 end
 
-local function restart_waybar(output)
-	local home = os.getenv("HOME")
-	local path = os.getenv("XDG_RUNTIME_DIR") .. "/waybar-config.jsonc"
-	local f = assert(io.open(path, "w"))
-	f:write(string.format('{ "output": %q, "include": [%q] }\n', output, home .. "/.config/waybar/config.jsonc"))
-	f:close()
-	hl.exec_cmd(string.format("pkill -x waybar; waybar -c %s -s %s/.config/waybar/style.css", path, home))
-end
-
-function monitor_roles.reassign_and_restart_waybar()
+function monitor_roles.reassign()
 	current.main, current.sub = resolve()
 	if not current.main then
 		return
@@ -65,8 +56,6 @@ function monitor_roles.reassign_and_restart_waybar()
 		hl.dispatch(hl.dsp.focus({ workspace = "name:" .. SUB_WORKSPACE }))
 	end
 	hl.dispatch(hl.dsp.focus({ monitor = current.main }))
-
-	restart_waybar(current.main)
 end
 
 -- Focusing main first keeps new workspaces from being created on sub.

@@ -22,15 +22,16 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(terminal)
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("hyprpaper")
-	roles.reassign_and_restart_waybar()
+	hl.exec_cmd("waybar")
+	roles.reassign()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("fcitx5")
 end)
 
 -- Reload recreates the Lua state, dropping the resolved main/sub monitors.
-hl.on("config.reloaded", roles.reassign_and_restart_waybar)
-hl.on("monitor.added", roles.reassign_and_restart_waybar)
-hl.on("monitor.removed", roles.reassign_and_restart_waybar)
+hl.on("config.reloaded", roles.reassign)
+hl.on("monitor.added", roles.reassign)
+hl.on("monitor.removed", roles.reassign)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
@@ -230,7 +231,7 @@ end
 -- Sub monitor: a single dedicated workspace
 hl.bind("SUPER + grave", roles.focus_sub)
 hl.bind("SUPER + SHIFT + grave", roles.move_window_to_sub)
-hl.bind("SUPER + SHIFT + P", roles.reassign_and_restart_waybar)
+hl.bind("SUPER + SHIFT + P", roles.reassign)
 
 -- Scratchpads
 local register_key_scratchpad = function(name, key)
