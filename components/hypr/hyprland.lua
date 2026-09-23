@@ -197,6 +197,7 @@ hl.gesture({
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
+-- Keep scripts/palette.py in sync; it doubles as keybinding help.
 -- Basic keybindings
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close())
@@ -208,6 +209,7 @@ hl.bind(
 -- App launcher
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("rofi -show combi"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("rofi -show window"))
+hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd("~/.config/hypr/scripts/palette.py"))
 
 -- Notifications
 hl.bind("SUPER + period", hl.dsp.exec_cmd("dunstctl close"))
@@ -237,7 +239,6 @@ hl.bind("SUPER + TAB", hl.dsp.focus({ workspace = "previous" }))
 -- Sub monitor: a single dedicated workspace
 hl.bind("SUPER + grave", roles.focus_sub)
 hl.bind("SUPER + SHIFT + grave", roles.move_window_to_sub)
-hl.bind("SUPER + SHIFT + P", roles.reassign)
 
 -- Scratchpads
 local register_key_scratchpad = function(name, key)
