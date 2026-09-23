@@ -1,8 +1,10 @@
 local monitors = require("monitors")
 
-local SUB = "sub"
+local SUB_WORKSPACE = "sub"
 
-local M = { main = nil, sub = nil }
+local M = {}
+
+local current = { main = nil, sub = nil }
 
 local function matches(mon, selector)
 	local desc = selector:match("^desc:(.*)$")
@@ -21,7 +23,7 @@ local function resolve()
 	end
 
 	local main
-	for _, selector in ipairs(monitors.main_priority) do
+	for _, selector in ipairs(monitors.main_candidates) do
 		for _, mon in ipairs(connected) do
 			if matches(mon, selector) then
 				main = mon
@@ -51,53 +53,53 @@ local function restart_waybar(output)
 	hl.exec_cmd(string.format("pkill -x waybar; waybar -c %s -s %s/.config/waybar/style.css", path, home))
 end
 
-function M.apply()
-	M.main, M.sub = resolve()
+function M.reassign()
+	current.main, current.sub = resolve()
 
 	for _, ws in ipairs(hl.get_workspaces()) do
-		if not ws.special and ws.name ~= SUB and ws.monitor and ws.monitor.name ~= M.main then
-			hl.dispatch(hl.dsp.workspace.move({ workspace = "name:" .. ws.name, monitor = M.main }))
+		if not ws.special and ws.name ~= SUB_WORKSPACE and ws.monitor and ws.monitor.name ~= current.main then
+			hl.dispatch(hl.dsp.workspace.move({ workspace = "name:" .. ws.name, monitor = current.main }))
 		end
 	end
 
-	if M.sub then
-		hl.dispatch(hl.dsp.focus({ monitor = M.sub }))
-		if hl.get_workspace("name:" .. SUB) then
-			hl.dispatch(hl.dsp.workspace.move({ workspace = "name:" .. SUB, monitor = M.sub }))
+	if current.sub then
+		hl.dispatch(hl.dsp.focus({ monitor = current.sub }))
+		if hl.get_workspace("name:" .. SUB_WORKSPACE) then
+			hl.dispatch(hl.dsp.workspace.move({ workspace = "name:" .. SUB_WORKSPACE, monitor = current.sub }))
 		end
-		hl.dispatch(hl.dsp.focus({ workspace = "name:" .. SUB }))
+		hl.dispatch(hl.dsp.focus({ workspace = "name:" .. SUB_WORKSPACE }))
 	end
-	hl.dispatch(hl.dsp.focus({ monitor = M.main }))
+	hl.dispatch(hl.dsp.focus({ monitor = current.main }))
 
-	restart_waybar(M.main)
+	restart_waybar(current.main)
 end
 
 -- Focusing main first keeps new workspaces from being created on sub.
 function M.focus_workspace(name)
-	if M.main then
-		hl.dispatch(hl.dsp.focus({ monitor = M.main }))
+	if current.main then
+		hl.dispatch(hl.dsp.focus({ monitor = current.main }))
 	end
 	hl.dispatch(hl.dsp.focus({ workspace = "name:" .. name }))
 end
 
-function M.move_window(name)
+function M.move_window_to_workspace(name)
 	hl.dispatch(hl.dsp.window.move({ workspace = "name:" .. name, follow = false }))
 	local ws = hl.get_workspace("name:" .. name)
-	if M.main and ws and ws.monitor and ws.monitor.name ~= M.main then
-		hl.dispatch(hl.dsp.workspace.move({ workspace = "name:" .. name, monitor = M.main }))
+	if current.main and ws and ws.monitor and ws.monitor.name ~= current.main then
+		hl.dispatch(hl.dsp.workspace.move({ workspace = "name:" .. name, monitor = current.main }))
 	end
 end
 
 function M.focus_sub()
-	if M.sub then
-		hl.dispatch(hl.dsp.focus({ monitor = M.sub }))
+	if current.sub then
+		hl.dispatch(hl.dsp.focus({ monitor = current.sub }))
 	else
-		hl.dispatch(hl.dsp.focus({ workspace = "name:" .. SUB }))
+		hl.dispatch(hl.dsp.focus({ workspace = "name:" .. SUB_WORKSPACE }))
 	end
 end
 
 function M.move_window_to_sub()
-	hl.dispatch(hl.dsp.window.move({ workspace = "name:" .. SUB, follow = false }))
+	hl.dispatch(hl.dsp.window.move({ workspace = "name:" .. SUB_WORKSPACE, follow = false }))
 end
 
 return M
