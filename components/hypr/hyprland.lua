@@ -127,7 +127,7 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 
 hl.window_rule({
 	name = "no-gaps-wtv1",
-	match = { float = false, workspace = "w[tv1]" },
+	match = { float = false, workspace = "w[tv1]s[false]" },
 	border_size = 0,
 	rounding = 0,
 })
@@ -241,7 +241,8 @@ local register_key_scratchpad = function(name, key)
 		workspace = "special:"..name,
 		gaps_out = 40,
 		gaps_in = 8,
-			on_created_empty = "~/.config/hypr/scripts/scratchpad-placeholder.sh "..name,
+		border_size = 2,
+		on_created_empty = "~/.config/hypr/scripts/scratchpad-placeholder.sh "..name,
 	})
 end
 
@@ -252,6 +253,12 @@ register_key_scratchpad("Q", "Q")
 register_key_scratchpad("W", "W")
 register_key_scratchpad("E", "E")
 register_key_scratchpad("R", "R")
+
+hl.window_rule({
+	name = "scratchpad-opacity",
+	match = { workspace = "s[true]", class = "negative:^kitty$" },
+	opacity = "0.98 override 1.0",
+})
 
 hl.window_rule({
   name = "scratchpad-empty-placeholder",

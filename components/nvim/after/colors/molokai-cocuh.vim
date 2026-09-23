@@ -47,7 +47,7 @@ hi Error           guifg=#960050 guibg=#1E0010
 hi ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
 hi Exception       guifg=#A6E22E               gui=bold
 hi Float           guifg=#AE81FF
-hi FoldColumn      guifg=#465457 guibg=#000000
+hi FoldColumn      guifg=#465457 guibg=NONE
 hi Folded          guifg=#465457 guibg=#000000
 hi Function        guifg=#A6E22E
 hi Identifier      guifg=#FD971F
@@ -76,7 +76,7 @@ hi Question        guifg=#66D9EF
 hi Repeat          guifg=#F92672               gui=bold
 hi Search          guifg=#FFFFFF guibg=#455354
 " marks column
-hi SignColumn      guifg=#A6E22E guibg=#232526
+hi SignColumn      guifg=#A6E22E guibg=NONE
 hi SpecialChar     guifg=#F92672               gui=bold
 hi SpecialComment  guifg=#465457               gui=bold
 hi Special         guifg=#66D9EF guibg=bg      gui=italic
@@ -107,19 +107,19 @@ hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
 hi WildMenu        guifg=#66D9EF guibg=#000000
 
 if s:molokai_original == 1
-   hi Normal          guifg=#F8F8F2 guibg=#272822
+   hi Normal          guifg=#F8F8F2 guibg=NONE
    hi Comment         guifg=#75715E
    hi CursorLine                    guibg=#3E3D32
    hi CursorColumn                  guibg=#3E3D32
-   hi LineNr          guifg=#BCBCBC guibg=#3B3A32
-   hi NonText         guifg=#BCBCBC guibg=#3B3A32
+   hi LineNr          guifg=#BCBCBC guibg=NONE
+   hi NonText         guifg=#BCBCBC guibg=NONE
 else
-   hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
+   hi Normal          guifg=#F8F8F2 guibg=NONE
    hi Comment         guifg=#465457
    hi CursorLine                    guibg=#293739
    hi CursorColumn                  guibg=#293739
-   hi LineNr          guifg=#BCBCBC guibg=#232526
-   hi NonText         guifg=#BCBCBC guibg=#232526
+   hi LineNr          guifg=#BCBCBC guibg=NONE
+   hi NonText         guifg=#BCBCBC guibg=NONE
 end
 
 "
@@ -147,7 +147,7 @@ if &t_Co > 255
    hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
    hi Exception       ctermfg=118               cterm=bold
    hi Float           ctermfg=135
-   hi FoldColumn      ctermfg=67  ctermbg=16
+   hi FoldColumn      ctermfg=67  ctermbg=NONE
    hi Folded          ctermfg=67  ctermbg=16
    hi Function        ctermfg=118
    hi Identifier      ctermfg=208
@@ -177,7 +177,7 @@ if &t_Co > 255
    hi Search          ctermfg=253 ctermbg=66
 
    " marks column
-   hi SignColumn      ctermfg=118 ctermbg=235
+   hi SignColumn      ctermfg=118 ctermbg=NONE
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
    hi Special         ctermfg=81  ctermbg=232
@@ -206,7 +206,7 @@ if &t_Co > 255
    hi Comment         ctermfg=59
    hi CursorLine                  ctermbg=234   cterm=none
    hi CursorColumn                ctermbg=234
-   hi LineNr          ctermfg=250 ctermbg=234
+   hi LineNr          ctermfg=250 ctermbg=NONE
    hi NonText         ctermfg=250 ctermbg=none
 end
 "cocu
