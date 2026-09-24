@@ -291,7 +291,7 @@ hl.bind("SUPER + SHIFT + SPACE", hl.dsp.window.float({
 }))
 
 -- Lock screen
-hl.bind("SUPER + SHIFT + L", hl.dsp.exec_cmd("loginctl lock-session"))
+hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("loginctl lock-session"))
 
 hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
 
