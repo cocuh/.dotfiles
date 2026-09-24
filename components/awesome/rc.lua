@@ -356,11 +356,7 @@ globalkeys = awful.util.table.join(
         end),
 
 -- program
-    awful.key({ modkey, }, "l",
-        function()
-          awful.util.spawn(const.get("command_screenlock", "echo"))
-        end),
-    awful.key({ modkey, "Shift" }, "l",
+    awful.key({ modkey, "Mod1" }, "l",
         function()
           awful.util.spawn(const.get("command_screenlock", "echo"))
         end),
