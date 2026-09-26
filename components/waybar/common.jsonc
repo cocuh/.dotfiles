@@ -3,7 +3,7 @@
     "layer": "top",
     "position": "top",
     "height": 24,
-    "spacing": 4,
+    "spacing": 0,
     "modules-left": [
         "hyprland/workspaces",
         "custom/scratchpad",

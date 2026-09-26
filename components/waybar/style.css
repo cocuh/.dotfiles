@@ -1,3 +1,4 @@
+/* Colors follow the kitty palette; the accent matches Hyprland's active border. */
 * {
   transition: none;
   box-shadow: none;
@@ -16,73 +17,76 @@
 }
 
 #workspaces button {
-  margin: 4px 0;
+  margin: 0;
   padding: 0 2px;
   color: #d8d8d8;
   min-width: 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
 }
 
-#workspaces button.visible {
-}
-
-#workspaces button.active {
-  border-radius: 4px;
-  background-color: #3b3e47;
-}
-
-#workspaces button.urgent {
-  color: rgba(238, 46, 36, 1);
+#workspaces button:hover {
+  background: #2b2e37;
 }
 
 #workspaces button.special {
-  border-bottom: 1px solid #b8b8b8;
+  color: #5c6370;
 }
 
+#workspaces button.active {
+  color: #ffffff;
+  border-bottom-color: #a65d52;
+}
+
+#workspaces button.urgent {
+  color: #f7768e;
+}
 
 #mode, #battery, #system, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #language, #window, #tray, #mpris {
-  margin: 2px 0px;
-  padding: 0 4px;
-  background-color: #3b3e47;
-  border-radius: 4px;
+  padding: 0 8px;
   min-width: 20px;
 }
 
+.modules-right > widget:not(:first-child) > * {
+  border-left: 1px solid #3b3e47;
+}
+
 #pulseaudio.muted, #pulseaudio.source-muted {
-  color: #a16946;
+  color: #f7768e;
 }
 
 #pulseaudio.bluetooth {
-  color: #86c1b9;
+  color: #7dcfff;
 }
 
 #clock {
+  color: #d8d8d8;
   margin-right: 4px;
 }
 
 #mpris.paused {
-  color: #7c7c7c;
+  color: #5c6370;
 }
 
 /* Dim icons mean normal; a value appears, colored, only past a threshold. */
 #cpu, #memory, #temperature {
   padding: 0 2px;
-  color: #7c7c7c;
+  color: #5c6370;
 }
 
 #cpu.warning, #memory.warning, #temperature.warning,
 #battery.warning:not(.charging):not(.plugged) {
-  color: #f7ca88;
+  color: #e0af68;
 }
 
 #cpu.critical, #memory.critical, #temperature.critical,
 #battery.critical:not(.charging):not(.plugged) {
-  color: #ab4642;
+  color: #f7768e;
 }
 
 #window {
-  margin-left: 2px;
-  margin-right: 2px;
-  background-color: transparent;
   font-family: sans-serif;
   font-size: 0.9em;
 }
