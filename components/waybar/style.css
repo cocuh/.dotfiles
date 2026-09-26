@@ -35,6 +35,11 @@
   color: #5c6370;
 }
 
+/* Shown on a monitor that does not have focus. */
+#workspaces button.visible {
+  border-bottom-color: #5c6370;
+}
+
 #workspaces button.active {
   color: #ffffff;
   border-bottom-color: #a65d52;

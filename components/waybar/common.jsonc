@@ -20,9 +20,9 @@
         "idle_inhibitor",
         "clock",
     ],
+    // monitor_roles keeps every workspace except sub* on main, so each bar lists
+    // only its own monitor: the whole list on main, just sub* on a sub monitor.
     "hyprland/workspaces": {
-        "all-outputs": true,
-        "ignore-workspaces": ["^sub[0-9]*$"],
         "disable-scroll": true,
         "on-click": "activate"
     },
