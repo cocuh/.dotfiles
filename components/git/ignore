@@ -1,6 +1,4 @@
-.idea
-.ipynb_checkpoints
-.DS_Store
-.directory
+.claude/worktrees/
+.env
 .venv
-.vscode
+*.sw[op]
