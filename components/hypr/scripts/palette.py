@@ -93,8 +93,8 @@ SECTIONS: list[Section] = [
     Section("Workspaces", "workspace-switcher", [
         Entry("Go to workspace 1-9", "Super+1..9"),
         Entry("Move window to workspace 1-9", "Super+Shift+1..9"),
-        Entry("Go to sub monitor workspace", "Super+`"),
-        Entry("Move window to sub monitor workspace", "Super+Shift+`"),
+        Entry("Go to sub monitor (cycles through several)", "Super+`"),
+        Entry("Move window to the first sub monitor", "Super+Shift+`"),
         Entry("Make focused monitor main", command=hypr_eval('require("monitor_roles").set_main_to_focused()')),
     ]),
     Section("Scratchpads", "window-new", [
