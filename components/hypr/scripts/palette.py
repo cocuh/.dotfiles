@@ -13,8 +13,8 @@ Adding an entry:
   - keys:    binding shown next to the label; omit if unbound.
   - command: shell command run on selection (bash); omit for help-only rows.
   - Hyprland dispatchers run as Lua through hyprctl; use hypr("hl.dsp...").
-  - Bindings that call local Lua functions in hyprland.lua (e.g. roles.*)
-    cannot be reached from hyprctl; list them as help-only rows.
+  - Local Lua functions in hyprland.lua cannot be reached from hyprctl;
+    call module functions with lua('require("module").fn()') instead.
   - When changing a binding in hyprland.lua, update its keys here.
 
 Only SECTIONS needs editing for new entries; the code below it renders them.
@@ -45,10 +45,13 @@ def hypr(expr: str) -> str:
     return f"hyprctl dispatch {shlex.quote(expr)}"
 
 
+def lua(code: str) -> str:
+    return f"hyprctl eval {shlex.quote(code)}"
+
+
 SECTIONS: list[Section] = [
     Section("Hyprland", "preferences-system", [
-        # Reload fires config.reloaded, which reassigns monitors.
-        Entry("Reload config and reassign monitors", command="hyprctl reload"),
+        Entry("Reload config", command="hyprctl reload"),
         Entry("Hide scratchpad", "Super+Q", "~/.config/hypr/scripts/scratchpad-hide.sh"),
         Entry("Toggle floating", "Super+Shift+Space", hypr('hl.dsp.window.float({ action = "toggle" })')),
         Entry(
@@ -91,6 +94,7 @@ SECTIONS: list[Section] = [
         Entry("Move window to workspace 1-9", "Super+Shift+1..9"),
         Entry("Go to sub monitor workspace", "Super+`"),
         Entry("Move window to sub monitor workspace", "Super+Shift+`"),
+        Entry("Make focused monitor main", command=lua('require("monitor_roles").set_main_to_focused()')),
     ]),
     Section("Scratchpads", "window-new", [
         Entry("Toggle scratchpad 0 / - / = / W / E / R", "Super+0 / - / = / W / E / R"),
