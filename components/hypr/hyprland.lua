@@ -227,8 +227,14 @@ hl.bind("SUPER + J", hl.dsp.focus({ direction = "down" }))
 -- Monitor focus and window moves
 hl.bind("SUPER + bracketleft", hl.dsp.focus({ monitor = "l" }))
 hl.bind("SUPER + bracketright", hl.dsp.focus({ monitor = "r" }))
-hl.bind("SUPER + SHIFT + bracketleft", hl.dsp.window.move({ monitor = "l", follow = false }))
-hl.bind("SUPER + SHIFT + bracketright", hl.dsp.window.move({ monitor = "r", follow = false }))
+-- Moving past the edge raises an error notification; focus only logs a warning.
+local move_window_to_monitor = function(dir)
+	if hl.get_monitor(dir) then
+		hl.dispatch(hl.dsp.window.move({ monitor = dir, follow = false }))
+	end
+end
+hl.bind("SUPER + SHIFT + bracketleft", function() move_window_to_monitor("l") end)
+hl.bind("SUPER + SHIFT + bracketright", function() move_window_to_monitor("r") end)
 
 -- Workspaces
 local register_key_workspace = function(name, key)
