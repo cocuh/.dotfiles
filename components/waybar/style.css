@@ -39,7 +39,7 @@
 }
 
 
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #temperature, #language, #window, #tray {
+#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #temperature, #language, #window, #tray, #mpris {
   margin: 2px 0px;
   padding: 0 4px;
   background-color: #3b3e47;
@@ -57,6 +57,10 @@
 
 #clock {
   margin-right: 4px;
+}
+
+#mpris.paused {
+  color: #7c7c7c;
 }
 
 #temperature.critical {
