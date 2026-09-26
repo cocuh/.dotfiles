@@ -1,6 +1,6 @@
-.idea
-.ipynb_checkpoints
-.DS_Store
-.directory
+# Claude Code creates its worktrees inside the repository.
+.claude/worktrees/
+# Kept out of every repository to avoid committing secrets by accident.
+.env
 .venv
-.vscode
+*.sw[op]
