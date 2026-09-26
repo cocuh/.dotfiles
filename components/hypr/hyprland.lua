@@ -224,9 +224,11 @@ hl.bind("SUPER + L", hl.dsp.focus({ direction = "right" }))
 hl.bind("SUPER + K", hl.dsp.focus({ direction = "up" }))
 hl.bind("SUPER + J", hl.dsp.focus({ direction = "down" }))
 
--- Monitor focus
+-- Monitor focus and window moves
 hl.bind("SUPER + bracketleft", hl.dsp.focus({ monitor = "l" }))
 hl.bind("SUPER + bracketright", hl.dsp.focus({ monitor = "r" }))
+hl.bind("SUPER + SHIFT + bracketleft", hl.dsp.window.move({ monitor = "l", follow = false }))
+hl.bind("SUPER + SHIFT + bracketright", hl.dsp.window.move({ monitor = "r", follow = false }))
 
 -- Workspaces
 local register_key_workspace = function(name, key)

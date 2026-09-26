@@ -87,6 +87,7 @@ SECTIONS: list[Section] = [
     Section("Focus", "view-grid", [
         Entry("Focus left / down / up / right", "Super+H / J / K / L"),
         Entry("Focus monitor left / right", "Super+[ / ]"),
+        Entry("Move window to monitor left / right", "Super+Shift+[ / ]"),
         Entry("Previous workspace", "Super+Tab", hypr_dispatch('hl.dsp.focus({ workspace = "previous" })')),
         Entry("Scroll workspaces", "Super+Wheel"),
     ]),
