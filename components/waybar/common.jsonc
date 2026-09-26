@@ -13,9 +13,7 @@
     ],
     "modules-right": [
         "mpris",
-        "cpu",
-        "memory",
-        "temperature",
+        "group/system",
         "pulseaudio",
         "tray",
         "battery",
@@ -43,26 +41,39 @@
         "on-click": "playerctl -p spotify play-pause",
         "on-click-right": "playerctl -p spotify next"
     },
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": ["cpu", "memory", "temperature"]
+    },
     "clock": {
-        "format": "{:%Y-%m-%d(%a) %H:%M}",
+        "format": "{:%m/%d(%a) %H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "states": { "warning": 70, "critical": 90 },
+        "format": "",
+        "format-warning": "{usage}% ",
+        "format-critical": "{usage}% "
     },
     "memory": {
-        "format": "{}% ",
-        "tooltip": false
+        "states": { "warning": 80, "critical": 90 },
+        "format": "",
+        "format-warning": "{}% ",
+        "format-critical": "{}% ",
+        "tooltip-format": "{used:0.1f} / {total:0.1f} GiB"
     },
     "temperature": {
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
+        "warning-threshold": 75,
+        "critical-threshold": 85,
+        "format": "{icon}",
+        "format-warning": "{temperatureC}°C {icon}",
+        "format-critical": "{temperatureC}°C {icon}",
         "format-icons": [
             "",
             "",
             "󰉪"
         ],
-        "tooltip": false
+        "tooltip-format": "{temperatureC}°C"
     },
     "battery": {
         "states": {
@@ -99,7 +110,7 @@
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": "󰅶 {icon} {format_source}",
         "format-muted": "󰅶 {format_source}",
-        "format-source": "{volume}% ",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",

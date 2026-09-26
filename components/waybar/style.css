@@ -39,7 +39,7 @@
 }
 
 
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #temperature, #language, #window, #tray, #mpris {
+#mode, #battery, #system, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #language, #window, #tray, #mpris {
   margin: 2px 0px;
   padding: 0 4px;
   background-color: #3b3e47;
@@ -63,8 +63,20 @@
   color: #7c7c7c;
 }
 
-#temperature.critical {
-  color: #a16946;
+/* Dim icons mean normal; a value appears, colored, only past a threshold. */
+#cpu, #memory, #temperature {
+  padding: 0 2px;
+  color: #7c7c7c;
+}
+
+#cpu.warning, #memory.warning, #temperature.warning,
+#battery.warning:not(.charging):not(.plugged) {
+  color: #f7ca88;
+}
+
+#cpu.critical, #memory.critical, #temperature.critical,
+#battery.critical:not(.charging):not(.plugged) {
+  color: #ab4642;
 }
 
 #window {
