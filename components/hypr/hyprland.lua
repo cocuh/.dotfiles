@@ -292,6 +292,12 @@ hl.window_rule({
 
 
 -- Window state change
+-- Keeps a maximized or fullscreen video from dimming when focus moves to another monitor.
+hl.window_rule({
+	name = "opaque-fullscreen",
+	match = { fullscreen = true },
+	opacity = "1.0 override 1.0 override",
+})
 hl.bind("SUPER + M", hl.dsp.window.fullscreen({
     mode = "maximized",
     action = "toggle",
