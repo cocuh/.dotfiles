@@ -210,6 +210,9 @@ hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("rofi -show combi"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("rofi -show window"))
 hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd("~/.config/hypr/scripts/palette.py"))
 
+-- Status bar
+hl.bind("SUPER + B", hl.dsp.exec_cmd("pkill waybar || waybar"))
+
 -- Notifications
 hl.bind("SUPER + period", hl.dsp.exec_cmd("dunstctl close"))
 hl.bind("SUPER + SHIFT + period", hl.dsp.exec_cmd("dunstctl history-pop"))
