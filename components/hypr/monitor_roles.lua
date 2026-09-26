@@ -5,8 +5,9 @@ local monitor_roles = {}
 local current = { main = nil, sub = nil }
 
 -- A disconnected monitor can still be listed (disabled).
+-- Some Hyprland builds leave `enabled` nil, so only an explicit false rejects.
 local function usable(mon)
-	return mon and mon.enabled and not mon.is_mirror
+	return mon and mon.enabled ~= false and not mon.is_mirror
 end
 
 local function other_usable(name)
