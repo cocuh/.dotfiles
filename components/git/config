@@ -5,6 +5,9 @@
 	today = "!git log --since=midnight --author=\"$(git config user.name)\" --oneline"
 	c = commit
     ll = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	# Deletes local branches already merged into origin's default branch.
+	# Keeps the default branch and any branch checked out in a worktree.
+	delete-merged-branches = "!f() { base=$(git rev-parse --abbrev-ref origin/HEAD) || return; git branch --merged \"$base\" --format='%(refname:short) %(worktreepath)' | awk -v keep=\"${base#origin/}\" '$2 == \"\" && $1 != keep { print $1 }' | xargs -r git branch -D; }; f"
 [color]
 	ui = auto
 [user]
@@ -24,3 +27,6 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+[fetch]
+	# Drops origin/* refs for branches deleted on GitHub.
+	prune = true
