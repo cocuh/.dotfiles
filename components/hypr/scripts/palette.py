@@ -61,6 +61,7 @@ SECTIONS: list[Section] = [
         ),
         Entry("Close window", "Super+Shift+Q", hypr_dispatch("hl.dsp.window.close()")),
         Entry("Lock screen", "Super+Alt+L", "loginctl lock-session"),
+        Entry("Toggle waybar", "Super+B", "pkill waybar || waybar"),
     ]),
     Section("Screenshot", "camera-photo", [
         Entry("Screenshot region and edit", "Print", 'grim -g "$(slurp)" - | swappy -f -'),
