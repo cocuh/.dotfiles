@@ -372,6 +372,20 @@ hl.window_rule({
 	no_focus = true,
 })
 
+-- Chrome recreates the PiP window on every tab switch, so place it by rule
+-- instead of relying on where it was left. 16:9 at a quarter of the width.
+hl.window_rule({
+	name = "picture-in-picture",
+	match = { title = "^Picture in picture$" },
+
+	float = true,
+	pin = true,
+	no_initial_focus = true,
+	keep_aspect_ratio = true,
+	size = "monitor_w*0.25 monitor_w*0.25*9/16",
+	move = "monitor_w*0.75-20 monitor_h-monitor_w*0.25*9/16-20",
+})
+
 hl.window_rule({
 	name = "move-hyprland-run",
 	match = { class = "hyprland-run" },
