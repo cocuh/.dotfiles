@@ -351,6 +351,9 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- Spotify only, so a browser tab playing video isn't the one that reacts
+hl.bind("SUPER + semicolon", hl.dsp.exec_cmd("playerctl -p spotify play-pause"), { locked = true })
+hl.bind("SUPER + apostrophe", hl.dsp.exec_cmd("playerctl -p spotify next"), { locked = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----

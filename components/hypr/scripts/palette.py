@@ -102,6 +102,10 @@ SECTIONS: list[Section] = [
         Entry("Toggle scratchpad 0 / - / = / W / E / R", "Super+0 / - / = / W / E / R"),
         Entry("Move window to scratchpad", "Super+Shift+0 / - / = / W / E / R"),
     ]),
+    Section("Media", "multimedia-player", [
+        Entry("Spotify play / pause", "Super+;", "playerctl -p spotify play-pause"),
+        Entry("Spotify next track", "Super+'", "playerctl -p spotify next"),
+    ]),
     Section("Mouse", "input-mouse", [
         Entry("Move window", "Super+Left drag"),
         Entry("Resize window", "Super+Right drag"),
