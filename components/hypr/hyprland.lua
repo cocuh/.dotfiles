@@ -2,6 +2,7 @@
 ---- MONITORS ----
 ------------------
 
+require("monitors")
 local roles = require("monitor_roles")
 
 ---------------------
@@ -23,16 +24,14 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("waybar")
-	roles.reassign()
+	roles.set_main_to_focused()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("fcitx5")
 	hl.exec_cmd("dunst")
 end)
 
--- Reload recreates the Lua state, dropping the resolved main/sub monitors.
-hl.on("config.reloaded", roles.reassign)
-hl.on("monitor.added", roles.reassign)
-hl.on("monitor.removed", roles.reassign)
+-- Reload recreates the Lua state, dropping the main/sub monitors.
+hl.on("config.reloaded", roles.restore)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----

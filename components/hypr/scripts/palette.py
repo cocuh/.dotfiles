@@ -12,9 +12,9 @@ Adding an entry:
   - label:   shown and searched in rofi.
   - keys:    binding shown next to the label; omit if unbound.
   - command: shell command run on selection (bash); omit for help-only rows.
-  - Hyprland dispatchers run as Lua through hyprctl; use hypr("hl.dsp...").
-  - Bindings that call local Lua functions in hyprland.lua (e.g. roles.*)
-    cannot be reached from hyprctl; list them as help-only rows.
+  - Hyprland dispatchers run as Lua through hyprctl; use hypr_dispatch("hl.dsp...").
+  - Local Lua functions in hyprland.lua cannot be reached from hyprctl;
+    call module functions with hypr_eval('require("module").fn()') instead.
   - When changing a binding in hyprland.lua, update its keys here.
 
 Only SECTIONS needs editing for new entries; the code below it renders them.
@@ -41,22 +41,25 @@ class Section:
     entries: list[Entry]
 
 
-def hypr(expr: str) -> str:
+def hypr_dispatch(expr: str) -> str:
     return f"hyprctl dispatch {shlex.quote(expr)}"
+
+
+def hypr_eval(code: str) -> str:
+    return f"hyprctl eval {shlex.quote(code)}"
 
 
 SECTIONS: list[Section] = [
     Section("Hyprland", "preferences-system", [
-        # Reload fires config.reloaded, which reassigns monitors.
-        Entry("Reload config and reassign monitors", command="hyprctl reload"),
+        Entry("Reload config", command="hyprctl reload"),
         Entry("Hide scratchpad", "Super+Q", "~/.config/hypr/scripts/scratchpad-hide.sh"),
-        Entry("Toggle floating", "Super+Shift+Space", hypr('hl.dsp.window.float({ action = "toggle" })')),
+        Entry("Toggle floating", "Super+Shift+Space", hypr_dispatch('hl.dsp.window.float({ action = "toggle" })')),
         Entry(
             "Toggle maximize",
             "Super+M",
-            hypr('hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })'),
+            hypr_dispatch('hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" })'),
         ),
-        Entry("Close window", "Super+Shift+Q", hypr("hl.dsp.window.close()")),
+        Entry("Close window", "Super+Shift+Q", hypr_dispatch("hl.dsp.window.close()")),
         Entry("Lock screen", "Super+Alt+L", "loginctl lock-session"),
     ]),
     Section("Screenshot", "camera-photo", [
@@ -83,7 +86,7 @@ SECTIONS: list[Section] = [
     Section("Focus", "view-grid", [
         Entry("Focus left / down / up / right", "Super+H / J / K / L"),
         Entry("Focus monitor left / right", "Super+[ / ]"),
-        Entry("Previous workspace", "Super+Tab", hypr('hl.dsp.focus({ workspace = "previous" })')),
+        Entry("Previous workspace", "Super+Tab", hypr_dispatch('hl.dsp.focus({ workspace = "previous" })')),
         Entry("Scroll workspaces", "Super+Wheel"),
     ]),
     Section("Workspaces", "workspace-switcher", [
@@ -91,6 +94,7 @@ SECTIONS: list[Section] = [
         Entry("Move window to workspace 1-9", "Super+Shift+1..9"),
         Entry("Go to sub monitor workspace", "Super+`"),
         Entry("Move window to sub monitor workspace", "Super+Shift+`"),
+        Entry("Make focused monitor main", command=hypr_eval('require("monitor_roles").set_main_to_focused()')),
     ]),
     Section("Scratchpads", "window-new", [
         Entry("Toggle scratchpad 0 / - / = / W / E / R", "Super+0 / - / = / W / E / R"),
@@ -104,7 +108,7 @@ SECTIONS: list[Section] = [
         Entry(
             "Exit Hyprland",
             "Super+Shift+Escape",
-            "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || " + hypr("hl.dsp.exit()"),
+            "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || " + hypr_dispatch("hl.dsp.exit()"),
         ),
     ]),
 ]
