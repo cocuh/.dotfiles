@@ -143,6 +143,6 @@
         "exec": "~/.config/waybar/scripts/scratchpad-indicator.sh",
         "interval": 1,
         "return-type": "json",
-        "on-click": "hyprctl dispatch togglespecialworkspace"
+        "on-click": "~/.config/hypr/scripts/scratchpad-hide.sh"
     }
 }
