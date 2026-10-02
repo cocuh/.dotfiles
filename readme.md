@@ -53,6 +53,7 @@ Components define how to make symbolic links on each dotfiles.
 * hypr
 * waybar
 * kitty
+* nix (Hyprland from Nix for the work profile; see `components/nix/readme.md`)
 
 screenshots
 -----------

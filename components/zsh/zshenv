@@ -2,6 +2,9 @@
   setopt local_options no_mark_dirs
 
   typeset -gU path
+  # Nix profile first: hyprctl must match the Nix-built Hyprland, not the older
+  # one in /usr/bin. No-op on machines without Nix.
+  path=(~/.nix-profile/bin(N-/) $path)
   path+=(
     ~/bin(N-/)
     ~/.local/bin(N-/)

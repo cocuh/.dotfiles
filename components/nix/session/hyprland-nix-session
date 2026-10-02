@@ -1,0 +1,18 @@
+#!/bin/sh
+# Entry point of the "Hyprland (Nix)" session. Copied to /usr/local/bin by hand
+# (see ../readme.md), because display managers only read session files under
+# /usr/share/wayland-sessions and do not expand ~ in Exec=.
+
+# Display managers do not run the login shell, so nothing has put the Nix
+# profile on PATH yet. It has to come before /usr/bin: start-hyprland finds
+# Hyprland through PATH, and the hypr/waybar scripts need the Nix hyprctl.
+PATH="$HOME/.nix-profile/bin:$PATH"
+export PATH
+
+# The display manager does not load Home Manager's session variables. They
+# point the portal frontend at the Nix portal backends
+# (NIX_XDG_DESKTOP_PORTAL_DIR) and add Nix-installed data to XDG_DATA_DIRS.
+vars="$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+[ -r "$vars" ] && . "$vars"
+
+exec start-hyprland
