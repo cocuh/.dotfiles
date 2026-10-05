@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Hyprland (Nix)
+Comment=Hyprland installed by Home Manager
+Exec=/usr/local/bin/hyprland-nix-session
+Type=Application
+DesktopNames=Hyprland
