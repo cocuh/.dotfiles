@@ -88,8 +88,9 @@ must stay readable by the hyprlock version on the work machine.
 
 `hyprland.lua` starts them, and their configs in this repository are written
 against the versions on Arch. The work distribution may ship older versions
-or none. Unlike hyprlock, they need neither PAM nor the GPU, so the Nix
-versions work without extra setup.
+or none. Unlike hyprlock, they do not need PAM. hyprpaper renders with EGL,
+which the drivers from `targets.genericLinux` provide, so the Nix versions work
+without further setup.
 
 ### Screen sharing goes through Home Manager's `xdg.portal`
 
@@ -124,10 +125,11 @@ Setup
    (`experimental-features = nix-command flakes` in `/etc/nix/nix.conf`).
 2. Create the links: `./install.py work`.
 3. Apply the configuration. On the first run, `nix run` fetches Home Manager,
-   since it is not installed yet:
+   since it is not installed yet. `--inputs-from` makes it the revision pinned
+   in `flake.lock`:
 
    ```
-   nix run home-manager/master -- switch --impure --flake ~/.config/home-manager#work
+   nix run --inputs-from ~/.config/home-manager home-manager -- switch --impure --flake ~/.config/home-manager#work
    ```
 
    After that:

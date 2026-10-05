@@ -15,8 +15,10 @@ in
       assertion = pkgs.hyprland.version == hyprlandVersion;
       message = ''
         nixpkgs provides hyprland ${pkgs.hyprland.version}, but home.nix expects
-        ${hyprlandVersion}. Either update hyprlandVersion to match Arch, or keep
-        the previous flake.lock until Arch reaches this version.
+        ${hyprlandVersion}.
+        - If Arch has ${pkgs.hyprland.version}, set hyprlandVersion to it.
+        - Otherwise nixpkgs is behind or ahead of Arch: revert flake.lock and
+          run nix flake update again later.
       '';
     }
     {
