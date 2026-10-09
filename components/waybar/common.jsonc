@@ -106,23 +106,25 @@
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
+        // Muted is the safe state, so the slashed icons are green. Spans color
+        // the speaker and the mic separately; a CSS class would color both.
         "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "󰅶 {icon} {format_source}",
-        "format-muted": "󰅶 {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        "format-bluetooth": "{volume}% {icon} 󰂯 {format_source}",
+        "format-bluetooth-muted": "<span color='#9ece6a'>󰖁</span> 󰂯 {format_source}",
+        "format-muted": "<span color='#9ece6a'>󰖁</span> {format_source}",
+        "format-source": "󰍬",
+        "format-source-muted": "<span color='#9ece6a'>󰍭</span>",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "󰂑",
-            "headset": "󰂑",
-            "phone": "",
-            "portable": "",
-            "car": "",
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰄜",
+            "portable": "󰄜",
+            "car": "󰄋",
             "default": [
-                "",
-                "",
-                ""
+                "󰕿",
+                "󰖀",
+                "󰕾"
             ]
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",

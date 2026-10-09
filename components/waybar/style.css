@@ -58,10 +58,6 @@
   border-left: 1px solid #3b3e47;
 }
 
-#pulseaudio.muted, #pulseaudio.source-muted {
-  color: #f7768e;
-}
-
 #pulseaudio.bluetooth {
   color: #7dcfff;
 }
