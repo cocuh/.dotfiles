@@ -92,6 +92,14 @@ or none. Unlike hyprlock, they do not need PAM. hyprpaper renders with EGL,
 which the drivers from `targets.genericLinux` provide, so the Nix versions work
 without further setup.
 
+### The Nerd Font comes from Nix
+
+waybar's icons are Nerd Font glyphs, and the work distribution does not ship
+JetBrains Mono Nerd Font. The fonts are not committed to this repository:
+they would add megabytes to every clone, and `flake.lock` already pins a
+version. `fonts.fontconfig.enable` makes fontconfig on a non-NixOS system see
+fonts installed through `home.packages`. Arch installs the font with pacman.
+
 ### Screen sharing goes through Home Manager's `xdg.portal`
 
 The portal backend, `xdg-desktop-portal-hyprland`, speaks Hyprland-specific

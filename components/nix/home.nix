@@ -45,7 +45,12 @@ in
     pkgs.hypridle
     pkgs.hyprpaper
     pkgs.waybar
+    # waybar's icons need a Nerd Font.
+    pkgs.nerd-fonts.jetbrains-mono
   ];
+
+  # Without it, fontconfig outside NixOS does not see fonts from home.packages.
+  fonts.fontconfig.enable = true;
 
   # Screen sharing: the portal backend must match the Hyprland version.
   xdg.portal = {
