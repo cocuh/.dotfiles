@@ -5,12 +5,11 @@ local hostname = io.popen("hostname"):read("l")
 local eizo = {
 	output = "desc:Eizo Nanao Corporation",
 	mode = "preferred",
-	scale = "auto",
+	scale = 1.2,
 	position = "auto-right",
 }
 if hostname == "shiina" then
 	eizo.mode = "highres"
-	eizo.scale = 1.2
 end
 hl.monitor(eizo)
 
