@@ -310,6 +310,7 @@ hl.bind("SUPER + SHIFT + SPACE", hl.dsp.window.float({
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("loginctl lock-session"))
 
 hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd('g="$(slurp)" && sleep 3 && grim -c -g "$g" - | swappy -f -'))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

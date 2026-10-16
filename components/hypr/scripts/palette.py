@@ -66,6 +66,7 @@ SECTIONS: list[Section] = [
     ]),
     Section("Screenshot", "camera-photo", [
         Entry("Screenshot region and edit", "Print", 'grim -g "$(slurp)" - | swappy -f -'),
+        Entry("Screenshot region with cursor after 3s and edit", "Shift+Print", 'g="$(slurp)" && sleep 3 && grim -c -g "$g" - | swappy -f -'),
         Entry("Screenshot region to clipboard", command='grim -g "$(slurp)" - | wl-copy'),
         Entry("Screenshot full screen and edit", command="grim - | swappy -f -"),
         Entry(
